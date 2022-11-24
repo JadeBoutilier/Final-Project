@@ -11,19 +11,19 @@ export const GoogleMapsProvider = ({children}) => {
 
     const [libraries]= useState(['places'])
     const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: window._RUNTIME_CONFIG__.REACT_APP_GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: window.__RUNTIME_CONFIG__.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
       });
     
     const [map, setMap] =useState(/** @type google.maps.Map */ (null))
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance]=useState("")
-    const []
+    const [duration, setDuration]=useState("")
 
     const center = { lat: 45.5019, lng: -73.5674};
 
     return ( 
-        <GoogleMapsContext.Provider value={{map, setMap, center, isLoaded}}>
+        <GoogleMapsContext.Provider value={{map, setMap, center, isLoaded, directionsResponse, setDirectionsResponse, distance, setDistance, duration, setDuration}}>
             {children}
         </GoogleMapsContext.Provider>
      );

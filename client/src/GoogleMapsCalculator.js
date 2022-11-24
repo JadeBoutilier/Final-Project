@@ -1,12 +1,41 @@
 import {Autocomplete} from "@react-google-maps/api";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 
 import styled from "styled-components";
 import { GoogleMapsContext } from "./GoogleMapsContext";
 
 const GoogleMapCalculator = () => {
 
-const {map, setMap, center, isLoaded} =useContext(GoogleMapsContext)
+const {map, setMap, center, isLoaded, directionsResponse, setDirectionsResponse, distance, setDistance, duration, setDuration} =useContext(GoogleMapsContext)
+
+const originRef = useRef()
+const destinationRef = useRef()
+
+const calculateRoute = async () => {
+if(originRef.current.value ==="" || destinationRef.current.value === ""){
+  return
+}
+// eslint-disable-next-line no-undef
+const directionService = new google.maps.DirectionsService()
+const results = await directionService.route({
+  origin: originRef.current.value,
+  destination: destinationRef.current.value,
+  // eslint-disable-next-line no-undef
+  travelMode: google.maps.TravelMode.DRIVING
+})
+setDirectionsResponse(results)
+setDistance(results.routes[0].legs[0].distance.text)
+setDuration(results.routes[0].legs[0].duration.text)
+}
+
+
+const resetRoute = () => {
+  setDirectionsResponse(null)
+  setDistance("")
+  setDuration("")
+  originRef.current.value = ""
+  setDuration.current.value=""
+}
 
 if (!isLoaded) {
     return <div>Loading...</div>;
@@ -15,19 +44,19 @@ if (!isLoaded) {
         <Box>
             <Inputs>
             <Autocomplete>
-            <input type="text" placeholder="origin"/>
+            <Input type="text" placeholder="origin" ref={originRef}/>
             </Autocomplete>
             <Autocomplete>
-            <input type="text" placeholder="destination"/>
+            <Input type="text" placeholder="destination" ref={destinationRef}/>
             </Autocomplete>
-            <button type="submit">Calc</button>
-            <button type="reset">X</button>
+            <CalcButton type="submit" onClick={calculateRoute}>Calc</CalcButton>
+            <Button onClick={resetRoute}>Go</Button>
             </Inputs>
             <Results>
-            <Result>Distance</Result>
-            <Result>Duration</Result>
+            <Result>Distance: {distance}</Result>
+            <Result>Duration: {duration}</Result>
             {/* PAN TO SET TO MONTREAL  */}
-            <button type="submit" onClick={()=> map.panTo(center)}>*</button>
+            <Button type="submit" onClick={()=> map.panTo(center)}>Reset</Button>
             </Results>
 
         </Box>
@@ -43,6 +72,7 @@ width: 30%;
 `
 const Inputs=styled.div`
 display: flex;
+justify-content: space-between;
 `
 const Results=styled.div`
 display: flex;
@@ -50,5 +80,20 @@ justify-content: space-between;
 `
 const Result=styled.div`
 display:flex;
+`
+const CalcButton =styled.button`
+font-size: 1rem;
+height: 23px;
+padding: 0;
+color: black;
+`
+const Button=styled.button`
+font-size: 1rem;
+height: 23px;
+padding: 0;
+color: black;
+`
+const Input=styled.input`
+width:80px;
 `
 export default GoogleMapCalculator;
