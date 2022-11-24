@@ -9,6 +9,7 @@ import Categories from "./Categories";
 
 
 const App = () => {
+
   return (
     <BrowserRouter>
     <GlobalStyles />

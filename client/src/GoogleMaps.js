@@ -1,29 +1,44 @@
-import {useJsApiLoader, GoogleMap} from '@react-google-maps/api'
-import styled from 'styled-components'
-console.log(window._RUNTIME_CONFIG__)
+import { useJsApiLoader, GoogleMap, MarkerF} from "@react-google-maps/api";
+import { useContext } from "react";
+import styled from "styled-components";
+import { GoogleMapsContext } from "./GoogleMapsContext";
+
 
 const GoogleMaps = () => {
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: window._RUNTIME_CONFIG__.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ['places'],
+  });
 
-    const {isLoaded} = useJsApiLoader({
-        googleMapsApiKey: window._RUNTIME_CONFIG__.REACT_APP_GOOGLE_MAPS_API_KEY
-    })
+  const {map, setMap, center} =useContext(GoogleMapsContext)
 
-    const center = {lat:45.5240, lng:73.6005}
-    
-    if (!isLoaded){
-        return <div>Loading...</div>
-    }
-    return ( 
-        <Map>
-        <GoogleMap center={center} zoom={15} mapContainerStyle={{width: '100vh', height: '100vh'}}>
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <Map>
+      <GoogleMap
+        center={center}
+        zoom={15}
+        mapContainerStyle={{ width: "100vh", height: "100vh" }}
+        options={{
+          mapTypeControl: false,
+          fullscreenControl: false,
+          zoomControl: true,
+          streetViewControl: true,
+        }}
+        onLoad={map => setMap(map)}
+      >
+        <MarkerF position={center}/>
 
-        </GoogleMap>
-        </Map>
-     );
-}
+        {/* WILL NEED TO GENERATE MARKER POSITIONS - NEED TO FIGURE OUT WHY THEY DISAPPEAR*/}
+      </GoogleMap>
+    </Map>
+  );
+};
 const Map = styled.div`
-width: 90%;
-height: 90%;
-margin-left: 40px;
-`
+  width: 90%;
+  height: 90%;
+  margin-left: 40px;
+`;
 export default GoogleMaps;
