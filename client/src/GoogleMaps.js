@@ -1,16 +1,13 @@
-import { useJsApiLoader, GoogleMap, MarkerF} from "@react-google-maps/api";
+import { GoogleMap, MarkerF} from "@react-google-maps/api";
 import { useContext } from "react";
 import styled from "styled-components";
 import { GoogleMapsContext } from "./GoogleMapsContext";
 
 
 const GoogleMaps = () => {
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: window._RUNTIME_CONFIG__.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ['places'],
-  });
 
-  const {map, setMap, center} =useContext(GoogleMapsContext)
+
+  const {map, setMap, center, isLoaded} =useContext(GoogleMapsContext)
 
   if (!isLoaded) {
     return <div>Loading...</div>;

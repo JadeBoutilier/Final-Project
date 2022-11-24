@@ -1,4 +1,4 @@
-// import {Autocomplete} from "@react-google-maps/api";
+import {Autocomplete} from "@react-google-maps/api";
 import { useContext } from "react";
 
 import styled from "styled-components";
@@ -6,18 +6,20 @@ import { GoogleMapsContext } from "./GoogleMapsContext";
 
 const GoogleMapCalculator = () => {
 
-const {map, setMap, center} =useContext(GoogleMapsContext)
+const {map, setMap, center, isLoaded} =useContext(GoogleMapsContext)
 
-
+if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
     return ( 
         <Box>
             <Inputs>
-            {/* <Autocomplete> */}
+            <Autocomplete>
             <input type="text" placeholder="origin"/>
-            {/* </Autocomplete> */}
-            {/* <Autocomplete> */}
+            </Autocomplete>
+            <Autocomplete>
             <input type="text" placeholder="destination"/>
-            {/* </Autocomplete> */}
+            </Autocomplete>
             <button type="submit">Calc</button>
             <button type="reset">X</button>
             </Inputs>
