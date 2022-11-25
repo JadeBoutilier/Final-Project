@@ -32,7 +32,7 @@ const Header = ({setUserEmail, setUserPassword, setDesignerEmail, setDesignerPas
         <SignInWrapper>
           {userSignedIn || designerSignedIn? (
             <>
-              <div>Hello {userSignedIn? userSignedIn.firstName : designerSignedIn.firstName}/</div> 
+              <div>Hello {userSignedIn? userSignedIn.firstName : designerSignedIn.firstName}</div> 
               <SignOut onClick={userHandleClick}>Log out</SignOut>
             </>
           ) : (
