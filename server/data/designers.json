@@ -1,0 +1,37 @@
+[
+    { 
+    "brand": "Captive Atelier", 
+    "firstName": "Jade", 
+    "category": "Jewelry",
+    "city": "Montreal",
+    "address": "160 St. Viateur Est #806",
+    "postalCode": "H2T 1A8",
+    "website": "www.captiveatelier.com", 
+    "instagram": "@captiveAtelier",
+    "phoneNumber": "N/A",
+    "tagLine": "A one woman artisanal jewelry brand based in Montreal Canada.", 
+    "aboutSection1": "Jade blends high realism with organic forms to create statement jewelry for the everyday. Using precious metals and genuine stones, bodies of work are created to entice the eye and stand out in quality.",
+    "aboutSection2": "Jade's approach to goldsmithing uses the lost wax casting process. Transforming hand-carved wax into sculptural jewelery, Jade creates elegant and bold pieces. Each creation is made with meticulous attention and polished to a mirror finish. Working in both silver and gold, Jade often uses genuine stones and accents of oxidation to enhance her work.",
+    "Services": "Custom",
+    "Opening Hours": "Thursday 12-7pm",
+    "sharesStudioWith": "Veri"
+},
+{
+    "brand": "Veri", 
+    "logo": "",
+    "firstName": "Catherine", 
+    "category": "Clothing",
+    "city": "Montreal",
+    "address": "160 St. Viateur Est #806",
+    "postalCode": "H2T 1A8",
+    "website": "www.madebyveri.com", 
+    "instagram": "@madebyveri",
+    "phoneNumber": "N/A", 
+    "tagLine": "A line of clothing and accessories for the human, genderless and seasonless. Always made in Montreal, combining art, design and craftmanship.",
+    "aboutSection1": "The name is veri - like a Parisian pronouncing very. Timeless yet playful apparel and accessories. All imagined in bed, on the street or at an art show. Montreal-based craftmanship. Made with love, for everyone.",
+    "aboutSection2": "Veri is a line of clothing and accessories for the human, genderless and seasonless. Always made in Montreal, combining art, design and craftmanship. By respecting its own ethical values and speaking to the next conscious generation, it offers products that are part of change.",
+    "Services": ["Custom", "repairs"],
+    "Opening Hours": "Thursday 12-7pm",
+    "sharesStudioWith": "Captive"
+}
+]

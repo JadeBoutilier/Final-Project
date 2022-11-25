@@ -17,7 +17,7 @@ const GoogleMaps = () => {
       <GoogleMap 
         center={center}
         zoom={15}
-        mapContainerStyle={{height: "300px", width: "800px"}}
+        mapContainerStyle={{height: "70vh", width: "100vw"}}
         options={{
           mapTypeControl: false,
           fullscreenControl: false,
@@ -35,6 +35,5 @@ const GoogleMaps = () => {
   );
 };
 const Map = styled.div`
-  margin-left: 40px;
 `;
 export default GoogleMaps;
