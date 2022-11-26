@@ -32,22 +32,22 @@ const Header = ({setUserEmail, setUserPassword, setDesignerEmail, setDesignerPas
         <SignInWrapper>
           {userSignedIn || designerSignedIn? (
             <>
-              <div>Hello {userSignedIn? userSignedIn.firstName : designerSignedIn.firstName}</div> 
+              <div>hello {userSignedIn? userSignedIn.firstName : designerSignedIn.firstName}</div> 
               <SignOut onClick={userHandleClick}>Log out</SignOut>
             </>
           ) : (
-            <NavigationLink to="/sign-in" end>
-              Sign In
-            </NavigationLink>
+            <SignInNavigationLink to="/sign-in" end>
+              sign in
+            </SignInNavigationLink>
           )}
         </SignInWrapper>
       </MainHeader>
       <ShopBy>
         <NavigationLink to="/brands" end>
-          Brands
+          brands
         </NavigationLink>
         <NavigationLink to="/categories" end>
-          Categories
+          categories
         </NavigationLink>
       </ShopBy>
     </Wrapper>
@@ -57,10 +57,14 @@ const Header = ({setUserEmail, setUserPassword, setDesignerEmail, setDesignerPas
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f9e18d;
+  background-color: var(--color-golden-yellow);
+  color: var(--color-burnt-red);
+  font-family: var(--font);
 `;
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
+  color: var(--color-burnt-red);
+  font-size: 1.5rem;
 `;
 const MainHeader = styled.div`
   display: flex;
@@ -69,6 +73,11 @@ const MainHeader = styled.div`
 `;
 const SignInWrapper = styled.div`
   display: flex;
+`;
+const SignInNavigationLink= styled(NavLink)`
+text-decoration: none;
+color: var(--color-burnt-red);
+font-size: 1.3rem;
 `;
 const ShopBy = styled.div`
   display: flex;

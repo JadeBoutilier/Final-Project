@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <Wrapper>
       <FeaturedDesigner>
-        <Title>Designer of the week_____VERI</Title>
+        <Title>Designer in Focus</Title>
         <Image src={Veri} alt="featured brand"></Image>
       </FeaturedDesigner>
       <GoogleMapBox>
@@ -31,7 +31,8 @@ const Home = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: #f9e18d;
+  background-color: var(--color-golden-yellow);
+  color: var(--color-burnt-red);
 `;
 const GoogleMapBox = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ const GoogleMapBox = styled.div`
 `;
 const Image = styled.img`
 width: 100vw;
-padding: 60px 0;
+margin-bottom: 80px;
 `
 const FeaturedDesigner = styled.div`
 position: relative;

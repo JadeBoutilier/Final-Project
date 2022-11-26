@@ -89,9 +89,9 @@ const Wrapper = styled.div`
     -ms-flex-pack: center;
     -ms-flex-direction: column;
     flex-direction: column;
-    background-color: #f9e18d;
+    background-color: var(--color-golden-yellow);
+    color: var(--color-burnt-red);
     height: 100vh;
-  background-color: #f9e18d;
   height: 100vh;
 `;
 const SignInTitle =styled.div`
