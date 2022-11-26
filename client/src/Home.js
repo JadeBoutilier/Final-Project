@@ -2,7 +2,7 @@ import GoogleMaps from "./GoogleMaps";
 import GoogleMapsCalculator from "./GoogleMapsCalculator";
 import styled from "styled-components";
 // import Ticker from 'react-ticker'
-import Veri from "./assets/Veri.png"
+import Veri from "./assets/Veri/Veri.png"
 import Calendar from "./Calendar";
 
 
@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <Wrapper>
       <FeaturedDesigner>
-        <Title>Designer in Focus</Title>
+        <Title>in Focus</Title>
         <Image src={Veri} alt="featured brand"></Image>
       </FeaturedDesigner>
       <GoogleMapBox>

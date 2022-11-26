@@ -22,7 +22,7 @@ export const SignInProvider = ({ children }) => {
     })
       .then((res) => res.json())
       .then((usersData) => {
-        console.log(usersData);
+        //console.log(usersData);
         if (usersData.status === 200) {
           setUserSignedIn(usersData.data, "signed-in");
           
@@ -48,7 +48,7 @@ export const SignInProvider = ({ children }) => {
   })
     .then((res) => res.json())
     .then((designersData) => {
-      console.log(designersData);
+      //console.log(designersData);
       if (designersData.status === 200) {
         setDesignerSignedIn(designersData.data, "signed-in");
         

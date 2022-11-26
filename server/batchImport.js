@@ -27,9 +27,9 @@ try{
     const usersInsert = await db.collection("users").insertMany(users);
     const eventsInsert = await db.collection("events").insertMany(events);
 
-    console.log(designersInsert);
-    console.log(usersInsert);
-    console.log(eventsInsert);
+    // console.log(designersInsert);
+    // console.log(usersInsert);
+    // console.log(eventsInsert);
 
 
 }catch(err){

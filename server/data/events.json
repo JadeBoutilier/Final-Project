@@ -1,10 +1,11 @@
 [
-    {
+    {   
+        "_id": "Event01",
         "name": "Test Sale",
         "host": ["Veri", "Captive"],
         "imgUrl": "/testImages/testEvent.png",
         "address": " 123 Street",
-        "postalCode": "F1K 2K2",
+        "postalCode": "N1K1T5",
         "time": "",
         "about": "This is a fake event! Come shop imaginable stuff and meet designers!",
         "participatingBrands": ["Veri", "Captive"]

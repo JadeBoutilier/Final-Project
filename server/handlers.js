@@ -1,4 +1,5 @@
 const { sendResponse, getLatAndLong } = require("../server/utils");
+const { v4: uuidv4 } = require("uuid");
 
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
@@ -18,7 +19,7 @@ const getAllDesigners = async (req, res) => {
 
     const db = client.db("FinalProject");
     const designers = await db.collection("designers").find().toArray(); 
-    console.log(designers)
+    // console.log(designers)
 
     designers
     ? sendResponse(res, 200, designers, "Successfully retrieved all designers!")
@@ -31,8 +32,30 @@ const getAllDesigners = async (req, res) => {
 }
 }
 // -----------------------------------------------------------------------
+const getDesignerById = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+  
+    try {
+    await client.connect();
+     const _id = req.params._id;
 
-const addDesigner= async()=>{
+    const db = client.db("FinalProject");
+    const designer = await db.collection("designers").findOne({ _id });
+    // console.log(designer)
+
+    designer
+    ? sendResponse(res, 200, designer, "Successfully designer!")
+    : sendResponse(res, 404, designer, "Could not find designer!") 
+
+} catch (err) {
+  sendResponse(res, 400, err);
+} finally { 
+  await client.close();
+}
+}
+// -----------------------------------------------------------------------
+
+const addDesigner= async (req, res)=>{
     const client = new MongoClient(MONGO_URI, options);
 
     try {
@@ -40,8 +63,8 @@ const addDesigner= async()=>{
 
         const _id = uuidv4();
         const {latitude, longitude}= getLatAndLong(req.body.postalCode) //func in utils
-        //designer validations - see e-commerce add order
         const designer = {...req.body.designer, _id, latitude, longitude};
+        //designer validations - see e-commerce add order
 
         const db = client.db("FinalProject");
 
@@ -58,4 +81,4 @@ sendResponse(res, 400, null, `${err}`);
 }
 }
 
-module.exports = { getAllDesigners, addDesigner };
+module.exports = { getAllDesigners, addDesigner, getDesignerById,  };

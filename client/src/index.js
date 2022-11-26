@@ -6,11 +6,11 @@ import { SignInProvider } from "./SignInContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <SignInProvider>
       <GoogleMapsProvider>
         <App />
       </GoogleMapsProvider>
     </SignInProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

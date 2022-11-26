@@ -41,7 +41,7 @@ const App = () => {
             />
           }
         />
-        <Route path="/designer:id" element={<DesignerProfile />} />
+        <Route path="/designer/:id" element={<DesignerProfile />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/brands" element={<Brands />} />
         <Route path="" element={<h1>404: Oops!</h1>} />

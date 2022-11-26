@@ -42,6 +42,7 @@ border: none;
 border-radius: 5px;
 font-size: 1.2rem;
 padding-left: 10px;
+background-color: #FFF4CE;
 `
 const Button = styled.button`
 height: 2.5rem;
