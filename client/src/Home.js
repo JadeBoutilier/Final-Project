@@ -2,10 +2,11 @@ import GoogleMaps from "./GoogleMaps";
 import GoogleMapsCalculator from "./GoogleMapsCalculator";
 import styled from "styled-components";
 // import Ticker from 'react-ticker'
-import Veri from "./assets/Veri/Veri.png"
+import Veri from "./assets/Veri.png"
 import Calendar from "./Calendar";
 
-
+//FEATURED DESIGNER - select designer at random and display designer.brand /designer horizontal image
+//click to go to page
 const Home = () => {
   return (
     <Wrapper>
