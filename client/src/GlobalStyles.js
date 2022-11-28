@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --color-burnt-red: #813C1F;
+    --color-burnt-red: black;
     --color-golden-yellow: #EAEAE7;
    --color-blue: #214B6A;
     /* --color-medium-grey: #dedede;

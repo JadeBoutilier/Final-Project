@@ -4,7 +4,7 @@ import GoogleMapsCalculator from "./GoogleMapsCalculator";
 import styled from "styled-components";
 // import Ticker from 'react-ticker'
 import Veri from "./assets/Veri.png"
-import Calendar from "./Calendar";
+import Events from "./Events";
 import { useContext, useEffect, useRef, useState } from "react";
 import { DesignersContext } from "./DesignersContext";
 
@@ -61,7 +61,8 @@ const Home = () => {
         <GoogleMaps />
         <GoogleMapsCalculator />
       </GoogleMapBox>
-     <div ref={ref}><Calendar /></div>
+      <div>Events</div>
+     <div ref={ref}><Events /></div>
     </Wrapper>
   );
 };
@@ -82,7 +83,7 @@ const Button =styled.button`
   background-color: transparent;
   color: var(--color-burnt-red);
   font-size: 1rem;
-  margin: 4px;
+  margin: -2px;
   &:hover {
 border-bottom: 1px solid var(--color-burnt-red);
   }
@@ -94,7 +95,8 @@ border-bottom: 1px solid var(--color-burnt-red);
   text-decoration: none;
   color: var(--color-burnt-red);
   font-size: 1rem;
-  margin: 4px;
+  margin: 0;
+  padding-bottom:2px;
   &:hover {
 border-bottom: 1px solid var(--color-burnt-red);
   }
@@ -118,6 +120,8 @@ position: relative;
 `
 const Title1 = styled.div`
 position: absolute;
+-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 top: 1px;
 left: 20px;
 font-size: 7rem;
@@ -126,6 +130,8 @@ font-family: var(--font-headers);
 `
 const Title2 = styled.div`
 position: absolute;
+-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 top: 100px;
 left: 20px;
 font-size: 7rem;

@@ -9,7 +9,7 @@ export const SignInProvider = ({ children }) => {
 
   const userSignInVerification = (userEmail, userPassword) => {
    
-    return fetch("/sign-in", {
+    return fetch("/user-sign-in", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -22,7 +22,7 @@ export const SignInProvider = ({ children }) => {
     })
       .then((res) => res.json())
       .then((usersData) => {
-        console.log(usersData);
+        // console.log(usersData);
         if (usersData.status === 200) {
           setUserSignedIn(usersData.data, "signed-in");  
           return true;
@@ -34,7 +34,7 @@ export const SignInProvider = ({ children }) => {
   };
 
   const designerSignInVerification = (designerEmail, designerPassword) => {
-  return fetch("/sign-in", {
+  return fetch("/designer-sign-in", {
     method: "POST",
     headers: {
       "Accept": "application/json",

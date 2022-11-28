@@ -17,8 +17,10 @@ const handleUserSignIn = async (req, res) => {
   await client.connect();
 
   const {userEmail, userPassword} = req.body;
+//   console.log(req.body)
   const db = client.db("FinalProject");
   const verifyUser = await db.collection("users").findOne({userEmail, userPassword});
+  console.log(verifyUser)
   const data= {...verifyUser}
   // console.log(designers)
 

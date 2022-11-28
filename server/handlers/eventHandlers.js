@@ -11,32 +11,7 @@ const options = {
 };
 // ------------------------------------------------------------------------
 
-const handleDesignerSignIn = async (req, res) => {
-    
-  const client = new MongoClient(MONGO_URI, options);
- try {
-
-  await client.connect();
-
-  const {designerEmail, designerPassword} = req.body;
-  const db = client.db("FinalProject");
-  const verifyDesigner = await db.collection("designers").findOne({designerEmail, designerPassword});
-  const data= {...verifyDesigner}
-  // console.log(designers)
-
-  verifyDesigner
-  ? sendResponse(res, 200, data, "Successfully found designer!")
-  : sendResponse(res, 404, data, "Could not find designer.") 
-
-} catch (err) {
-sendResponse(res, 400, err);
-} finally { 
-await client.close();
-}
-}
-
-// ------------------------------------------------------------------------
-const getAllDesigners = async (req, res) => {
+const getAllEvents = async (req, res) => {
     
     const client = new MongoClient(MONGO_URI, options);
    try {
@@ -44,12 +19,12 @@ const getAllDesigners = async (req, res) => {
     await client.connect();
 
     const db = client.db("FinalProject");
-    const designers = await db.collection("designers").find().toArray(); 
+    const events = await db.collection("events").find().toArray(); 
     // console.log(designers)
 
-    designers
-    ? sendResponse(res, 200, designers, "Successfully retrieved all designers!")
-    : sendResponse(res, 404, designers, "Could not find designers!") 
+    events
+    ? sendResponse(res, 200, events, "Successfully retrieved all events!")
+    : sendResponse(res, 404, events, "Could not find events!") 
 
 } catch (err) {
   sendResponse(res, 400, err);
@@ -87,19 +62,18 @@ const addDesigner= async (req, res)=>{
     try {
         await client.connect();
 
-        // const _id = uuidv4();
-        const {latt, longt}= await getLatAndLong(req.body.postalCode) //func in utils
-        //console.log(getLatAndLong(req.body.postalCode))
-        const designer = {...req.body, latt, longt};
+        const _id = uuidv4();
+        const {latitude, longitude}= getLatAndLong(req.body.postalCode) //func in utils
+        const designer = {...req.body.designer, _id, latitude, longitude};
         //designer validations - see e-commerce add order
 
         const db = client.db("FinalProject");
 
 const results = await db.collection("designers").insertOne(designer)
-console.log(results);
-results.acknowledged
-? sendResponse(res, 201, designer, "Designer profile created successfully!")
-: sendResponse(res, 400, designer, "Error encountered while creating your designer profile!")
+
+return results
+? sendResponse(res, 201, results, "Designer profile created successfully!")
+: sendResponse(res, 400, results, "Error encountered while creating your designer profile!")
 }catch(err){
 sendResponse(res, 400, null, `${err}`);
 } finally {
@@ -108,4 +82,4 @@ sendResponse(res, 400, null, `${err}`);
 }
 }
 
-module.exports = { getAllDesigners, addDesigner, getDesignerById, handleDesignerSignIn  };
+module.exports = { getAllEvents, };

@@ -7,7 +7,7 @@ import { DesignersProvider } from "./DesignersContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <SignInProvider>
       <DesignersProvider>
         <GoogleMapsProvider>
@@ -15,5 +15,5 @@ root.render(
         </GoogleMapsProvider>
       </DesignersProvider>
     </SignInProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

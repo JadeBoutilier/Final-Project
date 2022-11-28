@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { VscSearch } from "react-icons/vsc";
 import { DesignersContext } from "./DesignersContext";
 import { useNavigate} from "react-router-dom";
@@ -7,42 +7,49 @@ import { useNavigate} from "react-router-dom";
 const SearchBar = () => {
     const {designers} =useContext(DesignersContext)
     const [value, setValue] = useState("");
+    const [matchedSuggestion, setMatchedSuggestion]= useState("")
     const navigate = useNavigate()
 
 //returns all designer brands
     let suggestedDesigners = designers.map((designer)=> {
         return designer
     })
-    //
     let matchedSuggestions = suggestedDesigners.filter((filteredSuggestion)=>{
         return (
-            filteredSuggestion.brand.toLowerCase().includes(value.toLowerCase()) && value.length >= 1 
+            filteredSuggestion._id.toLowerCase().startsWith(value.toLowerCase()) && value.length >= 1 
         )
     })
-    const handleSelect = () => {
-        //how to navigate to designer page
-        const selectedDesigner = designers?.filter((designer)=> {
-            // if (value.toLowerCase === ""){
-            //     return ""
-            // } else {
-            // return designer.brand === value.toLowerCase
-            // }
-        })
-        navigate(`/designer/${selectedDesigner}`)
+
+
+    const handleSelect = (e) => {
+        console.log(e)
+        navigate(`/designer/${matchedSuggestion}`)
+        setValue("")
     }
 
+console.log(matchedSuggestion)
     return ( 
         <Wrapper>
             <BarAndButton>
-            <Button onClick={handleSelect}><VscSearch /></Button>
+            <Button onClick={e => handleSelect(e.target.value)}><VscSearch /></Button>
             <Input 
             type="text" 
             value={value}
-            onChange={ e => setValue(e.target.value)}
+            onChange={ (e) => {
+                setValue(e.target.value) 
+                let matchedSuggestions = suggestedDesigners.filter((filteredSuggestion)=>{
+                    return (
+                        //conditional render the length of name  - first letter.
+                        filteredSuggestion._id.toLowerCase().startsWith(e.target.value.toLowerCase()) && e.target.value.length >= 1 
+                    )
+                    })
+                setMatchedSuggestion(matchedSuggestions[0]?._id)         
+            }}
             placeholder="search by brand or city"
             onKeyDown={(e) => {
                 if (e.key === "Enter"){
                     handleSelect(e.target.value)
+                    setValue("")
                 }
             }
             }
@@ -51,20 +58,20 @@ const SearchBar = () => {
             {matchedSuggestions.length > 0 && (
             <StyledList>
             {matchedSuggestions.map((filteredSuggestion) => {
-                const indexValue = filteredSuggestion.brand
+                const indexValue = filteredSuggestion?._id?.toLowerCase()
                     .toLowerCase()
                     .indexOf(value.toLowerCase());
-                const firstHalf = filteredSuggestion.brand.substring(
+                const firstHalf = filteredSuggestion?._id?.substring(
                     0,
                     value.length + indexValue
                 );
-                const secondHalf = filteredSuggestion.brand.substring(
+                const secondHalf = filteredSuggestion?._id?.substring(
                     value.length + indexValue
                 );
                 return (
                     <StyledListSuggestion
-                    key={filteredSuggestion.id}
-                    onClick={() => handleSelect(filteredSuggestion.brand)}
+                    key={filteredSuggestion._id}
+                    onClick={e => handleSelect(e.target.value)}
                     >
                     {firstHalf}
                     <StyledSpan>{secondHalf}</StyledSpan>
@@ -131,5 +138,6 @@ border-radius: 0 0 5px 5px;
 padding-left: 10px;
 `
 const StyledSpan = styled.span`
+font-style: bold;
 `;
 export default SearchBar;

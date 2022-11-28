@@ -20,7 +20,7 @@ const DesignerProfile = () => {
         }
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   if (!designer) {
     return <div>Loading...</div>;

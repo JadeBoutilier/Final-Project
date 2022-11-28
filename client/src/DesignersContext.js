@@ -24,7 +24,7 @@ export const DesignersProvider = ({ children }) => {
   if (!designers) {
     return <div>Loading...</div>;
   }
-  console.log(designers)
+//   console.log(designers)
     return (
         <DesignersContext.Provider value={{designers}}>
             {children}

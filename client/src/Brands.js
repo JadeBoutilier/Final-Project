@@ -12,7 +12,7 @@ const navigate = useNavigate()
   if (!designers) {
     return <div>Loading...</div>;
   }
-  console.log(designers)
+  // console.log(designers)
     return ( 
     <Wrapper>
       <>All designers:</>
@@ -47,8 +47,7 @@ const BrandContainer =styled.div`
     font-family: var(--font);
     `
 const Image= styled.img`
- width:  100%;
- height: 15rem;
+ height: 13rem;
  object-fit: cover;
  `
  const BrandName = styled.div`
