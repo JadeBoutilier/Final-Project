@@ -5,7 +5,8 @@ import styled from "styled-components";
 // import Ticker from 'react-ticker'
 import Veri from "./assets/Veri.png"
 import Calendar from "./Calendar";
-import { useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { DesignersContext } from "./DesignersContext";
 
 
 //FEATURED DESIGNER - select designer at random and display designer.brand /designer horizontal image
@@ -14,11 +15,22 @@ const Home = () => {
   
   const ref = useRef(null)
   const navigate= useNavigate()
+  // const {designers} = useContext(DesignersContext)
+  // const [FeaturedDesigner, setFeaturedDesigner] = useState([])
 
   const handleClick = () => {
     navigate("/")
     ref.current?.scrollIntoView({behavior: 'smooth'});
   };
+//Featured Designer
+  // const randomDesignerFunc = () => {
+  //   const randomDesigner = designers[Math.floor(Math.random() * designers.length)];
+  //   setFeaturedDesigner(randomDesigner)
+  // }
+  // useEffect(()=>{
+  //   randomDesignerFunc()
+  // }, [])
+
 
   return (
     <Wrapper>

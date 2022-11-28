@@ -12,7 +12,7 @@ export const SignInProvider = ({ children }) => {
     return fetch("/sign-in", {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -22,10 +22,9 @@ export const SignInProvider = ({ children }) => {
     })
       .then((res) => res.json())
       .then((usersData) => {
-        // console.log(usersData);
+        console.log(usersData);
         if (usersData.status === 200) {
-          setUserSignedIn(usersData.data, "signed-in");
-          
+          setUserSignedIn(usersData.data, "signed-in");  
           return true;
         } else if (usersData.status === 400) {
           console.log("User unknown. Please try again.");
@@ -38,7 +37,7 @@ export const SignInProvider = ({ children }) => {
   return fetch("/sign-in", {
     method: "POST",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

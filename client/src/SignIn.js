@@ -3,7 +3,8 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { SignInContext } from "./SignInContext";
 
-const SignIn = ({userEmail,
+const SignIn = ({
+    userEmail,
     setUserEmail,
     userPassword,
     setUserPassword,
@@ -37,7 +38,7 @@ const SignIn = ({userEmail,
         <Wrapper>
             <SignInTitle>Sign in as either User or Designer</SignInTitle>
             <Login>
-            <Public onSubmit={userHandleSubmit}>
+            <User onSubmit={userHandleSubmit}>
                 <div>User</div>
                 <label htmlFor="email" id="email">
               <Input
@@ -56,7 +57,7 @@ const SignIn = ({userEmail,
               ></Input>
             </label>
             <Button onSubmit>Sign In</Button>
-            </Public>
+            </User>
             <Designer onSubmit={designerHandleSubmit}>
                 <div>Designer</div>
                 <label htmlFor="email" id="email">
@@ -103,7 +104,7 @@ const Login= styled.div`
     justify-content: space-between;
     width: 50vw;
 `
-const Public = styled.form`
+const User = styled.form`
 display: flex;
 flex-direction: column;
 `

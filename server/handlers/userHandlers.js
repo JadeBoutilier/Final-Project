@@ -1,5 +1,4 @@
-const { sendResponse, getLatAndLong } = require("../utils")
-const { v4: uuidv4 } = require("uuid");
+const { sendResponse} = require("../utils");
 
 const { MongoClient } = require("mongodb");
 require("dotenv").config();

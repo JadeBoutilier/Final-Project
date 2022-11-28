@@ -24,7 +24,7 @@ const handleDesignerSignIn = async (req, res) => {
   const data= {...verifyDesigner}
   // console.log(designers)
 
-  verifyUser
+  verifyDesigner
   ? sendResponse(res, 200, data, "Successfully found designer!")
   : sendResponse(res, 404, data, "Could not find designer.") 
 

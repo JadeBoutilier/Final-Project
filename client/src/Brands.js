@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { DesignersContext } from "./DesignersContext";
 
 
@@ -15,17 +15,18 @@ const navigate = useNavigate()
   console.log(designers)
     return ( 
     <Wrapper>
-      <Grid>
+      <>All designers:</>
+      <Container id="container">
       {designers.map((designer)=> {
         return (
-          <div key={designer._id}
+          <BrandContainer key={designer._id}
           onClick={()=> navigate(`/designer/${designer._id}`)}>
-            <Image src={designer.brandPic2} alt="band promotion material"/>
-            <div>{designer.brand}</div>
-          </div>
+            <Image src={designer.brandPic2} alt="brand promotion material"/>
+            <BrandName>{designer.brand}</BrandName>
+          </BrandContainer>
         )
       })}
-      </Grid>
+      </Container>
     </Wrapper> 
     );
 }
@@ -33,20 +34,32 @@ const navigate = useNavigate()
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-background-color: var(--color-golden-yellow);
-color: var(--color-burnt-red);
-font-family: var(--font);
-`;
-const Image= styled.img`
+    background-color: var(--color-golden-yellow);
+    color: var(--color-burnt-red);
+    `;
+const BrandContainer =styled.div`
+    text-decoration: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    width: 20%;
-
-`
-const Grid = styled.div`
-  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-family: var(--font);
+    `
+const Image= styled.img`
+ width:  100%;
+ height: 15rem;
+ object-fit: cover;
+ `
+ const BrandName = styled.div`
+ font-family: var(--font-headers);
+ font-size: 2rem;
+ padding-top: 5px;
+ `
+const Container = styled.div`
+gap: 20px;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
   `;
 export default Brands;

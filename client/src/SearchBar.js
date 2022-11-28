@@ -22,11 +22,11 @@ const SearchBar = () => {
     const handleSelect = () => {
         //how to navigate to designer page
         const selectedDesigner = designers?.filter((designer)=> {
-            if (value.toLowerCase === ""){
-                return ""
-            } else {
-            return designer.brand === value.toLowerCase
-            }
+            // if (value.toLowerCase === ""){
+            //     return ""
+            // } else {
+            // return designer.brand === value.toLowerCase
+            // }
         })
         navigate(`/designer/${selectedDesigner}`)
     }
@@ -96,7 +96,7 @@ border: none;
 border-radius: 5px;
 font-size: 1.2rem;
 padding-left: 10px;
-background-color: #FFF4CE;
+background-color: #FDFDFB;
 color: var(--color-burnt-red);
 
 &:focus {
@@ -126,7 +126,7 @@ const StyledList=styled.ul`
 `
 const StyledListSuggestion=styled.li`
 height: 1.5rem;
-background-color: #FFF4CE;
+background-color: #FDFDFB;
 border-radius: 0 0 5px 5px;
 padding-left: 10px;
 `
