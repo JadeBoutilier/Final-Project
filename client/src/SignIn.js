@@ -55,7 +55,7 @@ const SignIn = ({userEmail,
                 onChange={(e) => setUserPassword(e.target.value)}
               ></Input>
             </label>
-            <button>Sign In</button>
+            <Button onSubmit>Sign In</Button>
             </Public>
             <Designer onSubmit={designerHandleSubmit}>
                 <div>Designer</div>
@@ -75,7 +75,7 @@ const SignIn = ({userEmail,
                 onChange={(e) => setDesignerPassword(e.target.value)}
               ></Input>
             </label>
-            <button>Sign In</button>
+            <Button onSubmit>Sign In</Button>
             </Designer>
             </Login>
         </Wrapper>
@@ -114,4 +114,13 @@ flex-direction: column;
 const Input = styled.input`
 margin-top: 15px 0;
 `;
+
+const Button = styled.button`
+cursor: pointer;
+border: none;
+background-color: var(--color-burnt-red);
+&:hover {
+    color: var(--color-golden-yellow);
+}
+`
 export default SignIn;

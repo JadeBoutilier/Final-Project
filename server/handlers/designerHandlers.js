@@ -1,4 +1,4 @@
-const { sendResponse, getLatAndLong } = require("../server/utils");
+const { sendResponse, getLatAndLong } = require("../utils");
 const { v4: uuidv4 } = require("uuid");
 
 const { MongoClient } = require("mongodb");
@@ -9,6 +9,32 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+// ------------------------------------------------------------------------
+
+const handleDesignerSignIn = async (req, res) => {
+    
+  const client = new MongoClient(MONGO_URI, options);
+ try {
+
+  await client.connect();
+
+  const {designerEmail, designerPassword} = req.body;
+  const db = client.db("FinalProject");
+  const verifyDesigner = await db.collection("designers").findOne({designerEmail, designerPassword});
+  const data= {...verifyDesigner}
+  // console.log(designers)
+
+  verifyUser
+  ? sendResponse(res, 200, data, "Successfully found designer!")
+  : sendResponse(res, 404, data, "Could not find designer.") 
+
+} catch (err) {
+sendResponse(res, 400, err);
+} finally { 
+await client.close();
+}
+}
+
 // ------------------------------------------------------------------------
 const getAllDesigners = async (req, res) => {
     
@@ -81,4 +107,4 @@ sendResponse(res, 400, null, `${err}`);
 }
 }
 
-module.exports = { getAllDesigners, addDesigner, getDesignerById,  };
+module.exports = { getAllDesigners, addDesigner, getDesignerById, handleDesignerSignIn  };

@@ -9,20 +9,20 @@ export const SignInProvider = ({ children }) => {
 
   const userSignInVerification = (userEmail, userPassword) => {
    
-    return fetch("/user-sign-in", {
+    return fetch("/sign-in", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: userEmail,
-        password: userPassword,
+        userEmail: userEmail,
+        userPassword: userPassword,
       }),
     })
       .then((res) => res.json())
       .then((usersData) => {
-        //console.log(usersData);
+        // console.log(usersData);
         if (usersData.status === 200) {
           setUserSignedIn(usersData.data, "signed-in");
           
@@ -35,20 +35,20 @@ export const SignInProvider = ({ children }) => {
   };
 
   const designerSignInVerification = (designerEmail, designerPassword) => {
-  return fetch("/designer-sign-in", {
+  return fetch("/sign-in", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: designerEmail,
-      password: designerPassword,
+      designerEmail: designerEmail,
+      designerPassword: designerPassword,
     }),
   })
     .then((res) => res.json())
     .then((designersData) => {
-      //console.log(designersData);
+      // console.log(designersData);
       if (designersData.status === 200) {
         setDesignerSignedIn(designersData.data, "signed-in");
         

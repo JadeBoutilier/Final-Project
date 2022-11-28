@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 import Header from "./Header";
 import Home from "./Home";
@@ -8,12 +8,17 @@ import SignIn from "./SignIn";
 import DesignerProfile from "./DesignerProfile";
 import Categories from "./Categories";
 import Brands from "./Brands";
+import UserProfile from "./UserProfile";
+import NewsFeed from "./NewsFeed";
+import { SignInContext } from "./SignInContext";
 
 const App = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [designerEmail, setDesignerEmail] = useState("");
   const [designerPassword, setDesignerPassword] = useState("");
+
+  const {userSignedIn, designerSignedIn} =useContext(SignInContext)
 
   return (
     <BrowserRouter>
@@ -41,10 +46,34 @@ const App = () => {
             />
           }
         />
+        {userSignedIn? (
+          <>
+        <Route path="/designer/:id" element={<DesignerProfile />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/brands" element={<Brands />} />
+        <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="" element={<h1>404: Oops!</h1>} />
+        </>
+        ): (<>
         <Route path="/designer/:id" element={<DesignerProfile />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/brands" element={<Brands />} />
         <Route path="" element={<h1>404: Oops!</h1>} />
+        </>)}
+        {designerSignedIn? (
+          <>
+        <Route path="/designer/:id" element={<DesignerProfile />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/brands" element={<Brands />} />
+        <Route path="/news-feed" element={<NewsFeed />} />
+        <Route path="" element={<h1>404: Oops!</h1>} />
+        </>
+        ): (<>
+        <Route path="/designer/:id" element={<DesignerProfile />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/brands" element={<Brands />} />
+        <Route path="" element={<h1>404: Oops!</h1>} />
+        </>)}
       </Routes>
     </BrowserRouter>
   );

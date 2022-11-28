@@ -3,8 +3,8 @@
         "_id": "Test1",
         "firstName": "Test1",
         "lastName": "Test", 
-        "email": "test1@gmail.com", 
-        "password": "test1",
+        "userEmail": "test1@gmail.com", 
+        "userPassword": "test1",
         "favourites": ["veri, Captive"],
         "address": "Fake Street",
         "postalCode": "N1k1T7"
@@ -13,8 +13,8 @@
         "_id": "Test2",
         "userFirstName": "Test2",
         "lastName": "Test", 
-        "email": "test2@gmail.com", 
-        "password": "test2",
+        "userEmail": "test2@gmail.com", 
+        "userPassword": "test2",
         "favourites": "veri",
         "address": "Fake Street",
         "postalCode": "H2T1A7"
@@ -23,8 +23,8 @@
         "_id": "Test3",
         "firstName": "Test3",
         "userLastName": "Test", 
-        "email": "test3@gmail.com", 
-        "password": "test3",
+        "userEmail": "test3@gmail.com", 
+        "userPassword": "test3",
         "favourites": "Captive",
         "address": "Fake Street",
         "postalCode": "N1K1T6"
@@ -33,8 +33,8 @@
         "_id": "Test4",
         "firstName": "Test4",
         "userLastName": "Test",
-        "email": "test4@gmail.com", 
-        "password": "test4",
+        "userEmail": "test4@gmail.com", 
+        "userPassword": "test4",
         "favourites": ["veri", "captive"],
         "address": "Fake Street",
         "postalCode": "H2S2G4"

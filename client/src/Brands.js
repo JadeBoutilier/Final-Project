@@ -1,25 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { DesignersContext } from "./DesignersContext";
 
 
 const Brands = () => {
 
-const [designers, setDesigners] =useState()
+const {designers} =useContext(DesignersContext)
 const navigate = useNavigate()
-
-  useEffect(() => {
-    fetch(`/designers`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === 400 || data.status === 500) {
-          throw new Error(data.message);
-        } else {
-          setDesigners(data.data);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   if (!designers) {
     return <div>Loading...</div>;
@@ -48,6 +36,7 @@ const Wrapper = styled.div`
     justify-content: center;
 background-color: var(--color-golden-yellow);
 color: var(--color-burnt-red);
+font-family: var(--font);
 `;
 const Image= styled.img`
     display: flex;

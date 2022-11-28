@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import GoogleMaps from "./GoogleMaps";
 
 const DesignerProfile = () => {
   const id = useParams().id;
@@ -24,54 +25,138 @@ const DesignerProfile = () => {
   if (!designer) {
     return <div>Loading...</div>;
   }
-  console.log(designer)
+  console.log(designer);
   return (
     <Wrapper>
-      <div>{designer.brand}</div>
-      <VerticalPic src={designer.brandPic2} alt="Designer promotion material"/>
-      <div>{designer.tagLine}</div>
-      <Portrait src={designer.designerPhoto}alt="Designer portrait"/>
+      <BrandName>{designer.brand}</BrandName>
       <div>{designer.category}</div>
-      <div>
-      <div>{designer.firstName}</div>
-      <div>{designer.city}</div>
-      <div>{designer.services[1]}</div>
-      <div>{designer.postalCode}</div>
-      <div>{designer.website}</div>
-      <div>{designer.openingHours}</div>
-      <div>{designer.instagram}</div>
-      <BoutiquePic src={designer.boutiquePic} alt="Designer boutique"/>
-      <HorizontalPic src={designer.brandPic1} alt="Designer promotion material"/>
-      <div>{designer.address}</div>
-      <div>{designer.postalCode}</div>
-      </div>
-      <div>{designer.aboutSection1}</div>
-      <div>{designer.aboutSection2}</div>
-      <div>{designer.services[0]}</div>
-      <div>{designer.sharesStudioWith}</div>
-      <Logo src={designer.logo} alt="Designer Logo"/>
+      <BrandIntro>
+        <VerticalPic
+          src={designer.brandPic2}
+          alt="Designer promotion material"
+        />
+        <NameTagLine>
+          <TagLine>{designer.tagLine}</TagLine>
+          <About1>{designer.aboutSection1}</About1>
+        </NameTagLine>
+      </BrandIntro>
+      <AboutBrand id="aboutBrand">
+        <div>{designer.aboutSection2}</div>
+        <Portrait src={designer.designerPhoto} alt="Designer portrait" />
+        <DesignerData>
+          <div>Owner: {designer.firstName}</div>
+          <div>City: {designer.city}</div>
+          <Contact>
+            <div>Contact</div>
+            <ExternalLink href={`https://${designer.website}`} target="_blank">{designer.website}</ExternalLink>
+            <ExternalLink href={`https://instagram.com/${designer.instagram}`} target="_blank">@{designer.instagram}</ExternalLink>
+            <>{designer.designerEmail}</>
+          </Contact>
+        </DesignerData>
+      </AboutBrand>
+      <BoutiqueInfo id="boutique">
+        <BoutiquePic src={designer.boutiquePic} alt="Designer boutique" />
+        <BoutiqueData>
+          <div>Location: {designer.address}</div>
+          <div>{designer.postalCode}</div>
+            <Google>
+              <GoogleMaps/>
+            </Google>
+          <div>Weekly hours: {designer.openingHours}</div>
+          <div>Services offered: {designer.services}</div>
+          <div>Shares studio with: {designer.sharesStudioWith}</div>
+          <Logo src={designer.logo} alt="Designer Logo" />
+        </BoutiqueData>
+      </BoutiqueInfo>
+      <HorizontalPic
+        src={designer.brandPic1}
+        alt="Designer promotion material"
+      />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-golden-yellow);
   color: var(--color-burnt-red);
+  font-family: var(--font);
+  padding: 5%;
+`;
+const BrandIntro = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+const NameTagLine = styled.div`
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+`;
+const BrandName = styled.div`
+  font-family: var(--font-headers);
+  font-size: 3rem;
+  margin-bottom: 10px;
+`;
+const TagLine = styled.div`
+  font-style: italic;
+  font-size: 2rem;
+  text-align: right;
+  margin-bottom: 30px;
+`;
+const About1 = styled.div`
+  font-size: 1.5rem;
+  text-align: right;
+`;
+const AboutBrand = styled.div`
+  display: flex;
+`;
+const DesignerData = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Contact = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+`;
+const ExternalLink=styled.a`
+text-decoration: none;
+`
+const BoutiqueInfo = styled.div`
+  display: flex;
+`;
+const BoutiqueData = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Google = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+padding-bottom: 60%;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
 `;
 const Portrait = styled.img`
-width: 20%;
-`
+  width: 20%;
+`;
 const BoutiquePic = styled.img`
-width: 30%;
-`
+  width: 40%;
+`;
 const HorizontalPic = styled.img`
-width: 100%;
-`
+  width: 100%;
+`;
 const VerticalPic = styled.img`
-width: 40%;
-`
+  width: 40%;
+`;
 const Logo = styled.img`
-width: 20%;
+  width: 20%;
+`;
+const Link=styled.a`
+cursor: pointer;
 `
 
 export default DesignerProfile;

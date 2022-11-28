@@ -4,11 +4,15 @@ export default createGlobalStyle`
   :root {
     --color-burnt-red: #813C1F;
     --color-golden-yellow: #F9E18D;
-   /* --color-light-grey: #f2f2f2;
-    --color-medium-grey: #dedede;
+   --color-blue: #214B6A;
+    /* --color-medium-grey: #dedede;
     --color-grey: #6b6b6b;
-    --color-dark-grey: #262626; */
-    --font: 'neuzeit-grotesk', sans-serif;
+    --color-dark-grey: #262626; */ 
+    /* --font: 'neuzeit-grotesk', sans-serif; */
+    --font: "proxima-soft-thin", sans-serif;
+   --font-headers: "retiro-std-24pt", sans-serif;
+
+    /* --font: bely, serif; */
   }
   
   /* http://meyerweb.com/eric/tools/css/reset/
