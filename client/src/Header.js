@@ -102,13 +102,17 @@ const SignInNavigationLink = styled(NavLink)`
   text-decoration: none;
   color: var(--color-burnt-red);
   font-size: 1.1rem;
-  margin: 4px;
+  padding: 0;
+  margin-bottom: 14px;
   &:hover {
     border-bottom: 1px solid var(--color-darkGrey);
+    margin-bottom: 13px;
+    padding: 0;
   }
 
   &.active {
     border-bottom: 1px solid var(--color-darkGrey);
+    margin-bottom: 13px;
   }
 `;const Hello=styled.div`
 font-size: 0.8rem;

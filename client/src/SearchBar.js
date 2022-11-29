@@ -32,6 +32,7 @@ console.log(matchedSuggestion)
         <Wrapper>
             <BarAndButton>
             <Button onClick={e => handleSelect(e.target.value)}><VscSearch /></Button>
+            <UnderLine></UnderLine>
             <Input 
             type="text" 
             value={value}
@@ -113,6 +114,7 @@ color: var(--color-darkGrey);
 const Button = styled.button`
 height: 2.5rem;
 border:none;
+position: relative;
 background-color: var(--color-grey);
 color: var(--font);
 font-size: 1.5rem;
@@ -121,6 +123,25 @@ cursor: pointer;
 display: flex;
 align-items: center;
 justify-content: center;
+&:hover {
+    padding: 0 10px 0 10px;
+}
+`
+const UnderLine=styled.div`
+position: absolute;
+border-bottom: 1px solid transparent;
+bottom: 0;
+    left: 13px;
+    width: 1.3rem;
+    height: 2rem;
+&:hover {
+    position: absolute;
+border-bottom: 1px solid var(--color-darkGrey);
+bottom: 0;
+    left: 12px;
+    width: 1.3rem;
+    height: 2rem;
+}
 `
 const StyledList=styled.ul`
     position: absolute;

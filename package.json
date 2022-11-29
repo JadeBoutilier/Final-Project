@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "react-hook-form": "^7.39.7",
     "request": "^2.88.2",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "yup": "^0.32.11"
   }
 }

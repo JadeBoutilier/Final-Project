@@ -24,7 +24,7 @@ const Events = () => {
     <Wrapper>
       {events.map((event) => {
         return (
-          <EventContainer>
+          <EventContainer key={event._id}>
             <Image src={event.imgUrl} alt="Event promotion material"/>
             <EventInfo>
             <Text>{event.name}</Text>

@@ -36,7 +36,8 @@ try{
     console.log(err);
 } finally {
     client.close();
-    console.log("database disconnected!")
+    
+    ("database disconnected!")
 }
 }
 

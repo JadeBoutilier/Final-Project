@@ -8,8 +8,8 @@ export default createGlobalStyle`
     /* --color-medium-grey: #dedede;
     --color-grey: #6b6b6b;
     --color-dark-grey: #262626; */ 
-    /* --font: 'neuzeit-grotesk', sans-serif; */
-    --font: "proxima-soft-thin", sans-serif;
+    --font: "futura-pt", sans-serif;
+    /* --font: "proxima-soft-thin", sans-serif; */
    --font-headers: "retiro-std-24pt", sans-serif;
 
     /* --font: bely, serif; */

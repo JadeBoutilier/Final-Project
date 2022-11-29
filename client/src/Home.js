@@ -83,9 +83,11 @@ const Button =styled.button`
   background-color: transparent;
   color: var(--color-darkGrey);
   font-size: 1rem;
-  margin: -2px;
+  padding: 0 0 1px 0px;
+  line-height: 1;
   &:hover {
 border-bottom: 1px solid var(--color-darkGrey);
+padding: 0;
   }
   &.active {
 border-bottom: 1px solid var(--color-darkGrey);
@@ -96,9 +98,12 @@ border-bottom: 1px solid var(--color-darkGrey);
   color: var(--color-darkGrey);
   font-size: 1rem;
   margin: 0;
-  padding-bottom:2px;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0 0 1px 0px;
   &:hover {
 border-bottom: 1px solid var(--color-darkGrey);
+padding: 0;
   }
 
   &.active {

@@ -84,6 +84,7 @@ const SignIn = ({
 }
  
 const Wrapper = styled.div`
+    font-family: var(--font);
     display: flex;
     -ms-flex-align: center;
     align-items: center;
