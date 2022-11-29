@@ -10,6 +10,7 @@ import Categories from "./Categories";
 import Brands from "./Brands";
 import UserProfile from "./UserProfile";
 import NewsFeed from "./NewsFeed";
+import DesignerAccount from "./DesignerAccount";
 import { SignInContext } from "./SignInContext";
 
 const App = () => {
@@ -58,7 +59,7 @@ const App = () => {
         <Route path="/designer/:id" element={<DesignerProfile />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/brands" element={<Brands />} />
-        <Route path="/user/:id" element={<UserProfile />} />
+  
         <Route path="" element={<h1>404: Oops!</h1>} />
         </>)}
         {designerSignedIn? (
@@ -66,6 +67,7 @@ const App = () => {
         <Route path="/designer/:id" element={<DesignerProfile />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/brands" element={<Brands />} />
+        <Route path="/designer/account/:id" element={<DesignerAccount />} />
         <Route path="/news-feed" element={<NewsFeed />} />
         <Route path="" element={<h1>404: Oops!</h1>} />
         </>

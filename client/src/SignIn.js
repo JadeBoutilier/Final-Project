@@ -90,8 +90,8 @@ const Wrapper = styled.div`
     -ms-flex-pack: center;
     -ms-flex-direction: column;
     flex-direction: column;
-    background-color: var(--color-golden-yellow);
-    color: var(--color-burnt-red);
+    background-color: var(--color-grey);
+    color: var(--color-darkGrey);
     height: 100vh;
   height: 100vh;
 `;
@@ -119,9 +119,9 @@ margin-top: 15px 0;
 const Button = styled.button`
 cursor: pointer;
 border: none;
-background-color: var(--color-burnt-red);
+background-color: var(--color-darkGrey);
 &:hover {
-    color: var(--color-golden-yellow);
+    color: var(--color-grey);
 }
 `
 export default SignIn;

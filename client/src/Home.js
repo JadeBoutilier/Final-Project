@@ -68,8 +68,8 @@ const Home = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: var(--color-golden-yellow);
-  color: var(--color-burnt-red);
+  background-color: var(--color-grey);
+  color: var(--color-darkGrey);
   font-family: var(--font);
 `;
 const ShopBy = styled.div`
@@ -81,28 +81,28 @@ const ShopBy = styled.div`
 const Button =styled.button`
   border: none;
   background-color: transparent;
-  color: var(--color-burnt-red);
+  color: var(--color-darkGrey);
   font-size: 1rem;
   margin: -2px;
   &:hover {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
   &.active {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
   `
   const NavigationLink = styled(NavLink)`
   text-decoration: none;
-  color: var(--color-burnt-red);
+  color: var(--color-darkGrey);
   font-size: 1rem;
   margin: 0;
   padding-bottom:2px;
   &:hover {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
 
   &.active {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
 `;
 const GoogleMapBox = styled.div`

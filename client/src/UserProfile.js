@@ -1,37 +1,61 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useState, useEffect} from "react";
 import styled from "styled-components";
-
+import { DesignersContext } from "./DesignersContext";
+import { SignInContext } from "./SignInContext";
 
 const UserProfile = () => {
-    const id = useParams().id;
+  // const id = useParams().id;
+const {userSignedIn} = useContext(SignInContext)
+// const {designers} =useContext(DesignersContext)
+// const [favouriteBrands, setFavouriteBrands] = useState()
+ 
 
-  const [user, setUser] = useState();
+//Two options to find favourites. ... not sure which method.
 
-  //fetching designer info
-  useEffect(() => {
-    fetch(`/user/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === 400 || data.status === 500) {
-          throw new Error(data.message);
-        } else {
-          setUser(data.data);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
+// const findFavourites = ()=> {
+  //   designers.map((designer)=> {
+  //   return designer === userSignedIn.favourites.map((favourite, index) => { 
+  //     return favourite})})}
 
-  if (!user) {
+  if (!userSignedIn) {
     return <div>Loading...</div>;
   }
-  console.log(user);
-    return ( 
+  console.log(userSignedIn);
+  return (
     <Wrapper>
-        <>{user.userFirstName}</>
-    </Wrapper> 
-    );
-}
- const Wrapper= styled.div`
- `
+      <>Welcome {userSignedIn.firstName} {userSignedIn.lastName}</>
+      <UserInfo>
+      <>{userSignedIn.userEmail}</>
+      <>{userSignedIn.userPassword}</>
+      <>{userSignedIn.address}</>
+      <>{userSignedIn.postalCode}</>
+      </UserInfo>
+      <>Your favourite brands: </>
+      {/* {designers.forEach((designer)=> {
+        if (designer === userSignedIn.favourites.map((favourite, index) => { 
+          return favourite})){
+          return (
+            <div>
+            <img src={designer.brandPic2} alt="Brand promotional material"/>
+            <div>{designer.brand}</div>
+            </div>
+          )
+        }
+      })} */}
+
+
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.div`
+background-color: var(--color-grey);
+color: var(--color-darkGrey);
+display: flex;
+`;
+const UserInfo = styled.div`
+display: flex;
+flex-direction: column;
+`;
+
 export default UserProfile;

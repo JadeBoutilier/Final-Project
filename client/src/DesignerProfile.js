@@ -79,8 +79,8 @@ const DesignerProfile = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: var(--color-golden-yellow);
-  color: var(--color-burnt-red);
+  background-color: var(--color-grey);
+  color: var(--color-darkGrey);
   font-family: var(--font);
   padding: 5%;
 `;

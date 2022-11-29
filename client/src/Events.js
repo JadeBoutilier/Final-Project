@@ -40,7 +40,7 @@ const Events = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: var(--color-golden-yellow);
+  background-color: var(--color-grey);
   color: var(--color-burnt-red);
 `;
 const EventContainer = styled.div`

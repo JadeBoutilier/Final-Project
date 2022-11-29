@@ -103,18 +103,17 @@ border: none;
 border-radius: 5px;
 font-size: 1.2rem;
 padding-left: 10px;
-background-color: #FDFDFB;
-color: var(--color-burnt-red);
+background-color: var(--color-lightGrey);
+color: var(--color-darkGrey);
 
 &:focus {
     outline: none !important;
-    color: var(--color-burnt-red);
 }
 `
 const Button = styled.button`
 height: 2.5rem;
 border:none;
-background-color: var(--color-golden-yellow);
+background-color: var(--color-grey);
 color: var(--font);
 font-size: 1.5rem;
 padding: 0 10px;
@@ -133,7 +132,7 @@ const StyledList=styled.ul`
 `
 const StyledListSuggestion=styled.li`
 height: 1.5rem;
-background-color: #FDFDFB;
+background-color: var(--color-lightGrey);
 border-radius: 0 0 5px 5px;
 padding-left: 10px;
 `

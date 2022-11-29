@@ -40,8 +40,8 @@ return (
 };
 
 const Wrapper = styled.div`
-  background-color: var(--color-golden-yellow);
-  color: var(--color-burnt-red);
+  background-color: var(--color-grey);
+  color: var(--color-darkGrey);
   font-family: var(--font);
 `;
 const CategoryList =styled.div`
@@ -51,15 +51,15 @@ justify-content: center;
 const Button= styled.button`
 border: none;
 background-color: transparent;
-color: var(--color-burnt-red);
+color: var(--color-darkGrey);
 font-size: 1.3rem;
 margin: 4px;
 &:hover {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
 
   &.active {
-    border-bottom: 1px solid var(--color-burnt-red);
+    border-bottom: 1px solid var(--color-darkGrey);
   }
 `
 const CategoryHeaders =styled.div`

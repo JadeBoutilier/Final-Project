@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import { SignInContext } from "./SignInContext";
 
 const Header = ({setUserEmail, setUserPassword, setDesignerEmail, setDesignerPassword }) => {
+  
+  const navigate = useNavigate();
+  // const id = useParams().id;
 
   const {
     userSignedIn,
@@ -12,8 +15,6 @@ const Header = ({setUserEmail, setUserPassword, setDesignerEmail, setDesignerPas
     designerSignedIn,
     setDesignerSignedIn,
   } = useContext(SignInContext);
-
-  const navigate = useNavigate();
 
   const userHandleClick = (e) => {
     e.preventDefault();
@@ -37,6 +38,8 @@ const Header = ({setUserEmail, setUserPassword, setDesignerEmail, setDesignerPas
           {userSignedIn || designerSignedIn? (
             <SignedInName>
               <div>Hello {userSignedIn? userSignedIn.firstName : designerSignedIn.firstName}</div> 
+                 {userSignedIn? <NavigationLink to={`/user/${userSignedIn._id}`} end>Profile</NavigationLink> : <NavigationLink to={`/designer/account/${designerSignedIn._id}`} end>Edit Profile</NavigationLink>}
+              
               <SignOut onClick={userHandleClick}>Log out</SignOut>
             </SignedInName>
           ) : (
@@ -53,21 +56,21 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-color: var(--color-golden-yellow);
-  color: var(--color-burnt-red);
+  background-color: var(--color-grey);
+  color: var(--color-darkGrey);
   font-family: var(--font);
 `;
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
-  color: var(--color-burnt-red);
+  color: var(--color-darkGrey);
   font-size: 1.5rem;
   margin: 4px;
   &:hover {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
 
   &.active {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
 `;
 
@@ -80,11 +83,11 @@ color: var(--color-burnt-red);
 font-size: 1.3rem;
 margin: 4px;
 &:hover {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
 
   &.active {
-    border-bottom: 1px solid var(--color-burnt-red);
+    border-bottom: 1px solid var(--color-darkGrey);
   }
 `;
 
@@ -94,9 +97,9 @@ border: none;
 background-color: transparent;
 font-size: 1rem;
 padding: 0;
-color: var(--color-burnt-red);
+color: var(--color-darkGrey);
 &:hover {
-border-bottom: 1px solid var(--color-burnt-red);
+border-bottom: 1px solid var(--color-darkGrey);
   }
 `;
 const SignedInName =styled.div`
