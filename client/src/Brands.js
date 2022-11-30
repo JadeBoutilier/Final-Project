@@ -13,7 +13,8 @@ const Brands = () => {
   // console.log(designers)
   return (
     <Wrapper>
-        <Title>All designers:</Title>
+        <Title>All designers</Title>
+        <Underline></Underline>
       <Container id="container">
         {designers.map((designer) => {
           return (
@@ -34,11 +35,17 @@ const Brands = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-align-items: center;
   background-color: var(--color-grey);
   color: var(--color-darkGrey);
   font-family: var(--font);
   height: 100vh;
+  padding: 20px;
+`;
+const Underline = styled.div`
+  font-family: var(--font);
+  width: 100%;
+  border-bottom: 1px solid var(--color-darkGrey);
+  margin-bottom: 30px;
 `;
 const Container = styled.div`
   gap: 20px;
@@ -61,8 +68,9 @@ const Image = styled.img`
 `;
 const Title = styled.div`
   font-family: var(--font-headers);
-  font-size: 2rem;
+  font-size: 3rem;
 margin-top: 30px;
+padding-left: 30px;
 `;
 const BrandName = styled.div`
   font-size: 1rem;

@@ -2,11 +2,23 @@ import { GoogleMap, MarkerF, DirectionsRenderer} from "@react-google-maps/api";
 import { useContext} from "react";
 import styled from "styled-components";
 import { GoogleMapsContext } from "./GoogleMapsContext";
+import { DesignersContext } from "./DesignersContext";
 
 
 const GoogleMaps = () => {
 
   const {setMap, center, isLoaded, directionsResponse} =useContext(GoogleMapsContext)
+  const {designers} =useContext(DesignersContext)
+
+//get designers postal code
+  const allDesignersPostalCodes = designers.map((designer)=> {
+    return designer.postalCode
+  })
+
+  //translate postalCodes into lat and long using geocoder
+
+
+
 
   if (!isLoaded) {
     return <div>Loading...</div>;

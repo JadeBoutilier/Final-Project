@@ -1,3 +1,8 @@
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
 const { sendResponse, getLatAndLong } = require("../utils");
 const { v4: uuidv4 } = require("uuid");
 
@@ -107,5 +112,36 @@ sendResponse(res, 400, null, `${err}`);
 
 }
 }
+// -----------------------------------------------------------------------
 
-module.exports = { getAllDesigners, addDesigner, getDesignerById, handleDesignerSignIn  };
+const updateDesigner= async (req, res)=>{
+  const client = new MongoClient(MONGO_URI, options);
+
+  try {
+      await client.connect();
+
+      // const _id = uuidv4();
+      const {latt, longt}= await getLatAndLong(req.body.postalCode) //func in utils
+      //console.log(getLatAndLong(req.body.postalCode))
+      const designer = {...req.body, latt, longt};
+      //designer validations - see e-commerce add order
+
+      const db = client.db("FinalProject");
+
+      const query = { _id : req.body._id };
+      delete req.body._id
+      const newValues = { $set: { ...req.body} };
+console.log(query, newValues)
+const results = await db.collection("designers").updateOne(query, newValues)
+console.log(results);
+results.acknowledged
+? sendResponse(res, 201, designer, "Designer profile created successfully!")
+: sendResponse(res, 400, designer, "Error encountered while creating your designer profile!")
+}catch(err){
+sendResponse(res, 400, null, `${err}`);
+} finally {
+    await client.close();
+
+}
+}
+module.exports = { getAllDesigners, addDesigner, getDesignerById, handleDesignerSignIn, updateDesigner  };

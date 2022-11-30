@@ -46,7 +46,7 @@ console.log(matchedSuggestion)
                     })
                 setMatchedSuggestion(matchedSuggestions[0]?._id)         
             }}
-            placeholder="search by brand or city"
+            placeholder="search by brand"
             onKeyDown={(e) => {
                 if (e.key === "Enter"){
                     handleSelect(e.target.value)

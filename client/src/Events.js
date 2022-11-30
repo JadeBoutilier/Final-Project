@@ -42,11 +42,14 @@ const Events = () => {
 const Wrapper = styled.div`
   background-color: var(--color-grey);
   color: var(--color-burnt-red);
+  padding: 0 100px;
 `;
 const EventContainer = styled.div`
   display: flex;
-  padding: 100px;
   align-items: center;
+  background-color: var(--color-lightGrey);
+  padding: 20px;
+  border-radius: 5px;
   `;
 const EventInfo=styled.div`
 display: flex;

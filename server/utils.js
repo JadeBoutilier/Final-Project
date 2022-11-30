@@ -10,11 +10,9 @@ const sendResponse = (res, status, data, message = "No message included.") => {
     const response = await request(`https://geocoder.ca/?locate=${postalCode}&geoit=XML&json=1`)
   
     const latAndLongData= await JSON.parse(response)
-    //  const latitude = latAndLongData.latt
-    //  const longitude = latAndLongData.longt
       return {latt: latAndLongData.latt, longt: latAndLongData.longt}
       
-      // {latt: data.latt , longt:data.longt}
+
     } catch (err) {
       console.log("Error: ", err);
     }

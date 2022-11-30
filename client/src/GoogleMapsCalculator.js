@@ -50,7 +50,7 @@ if (!isLoaded) {
             <Input type="text" placeholder="destination" ref={destinationRef}/>
             </Autocomplete>
             <CalcButton type="submit" onClick={calculateRoute}>Calc</CalcButton>
-            <Button onClick={resetRoute}>Go</Button>
+            <Button onClick={resetRoute}>Recenter</Button>
             </Inputs>
             <Results>
             <Result>Distance: {distance}</Result>
@@ -68,7 +68,7 @@ display:flex;
 flex-direction: column;
 padding: 20px;
 border: solid 1px black;
-width: 30%;
+width: 100%;
 `
 const Inputs=styled.div`
 display: flex;
@@ -94,6 +94,6 @@ padding: 0;
 color: black;
 `
 const Input=styled.input`
-width:80px;
+width:200px;
 `
 export default GoogleMapCalculator;

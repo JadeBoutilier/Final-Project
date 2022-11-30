@@ -1,3 +1,4 @@
+
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
@@ -5,7 +6,7 @@ const morgan = require("morgan");
 const port = 8000;
 
 //designer
-const { getAllDesigners, addDesigner, getDesignerById, handleDesignerSignIn, } = require("./handlers/designerHandlers");
+const { getAllDesigners, addDesigner, getDesignerById, handleDesignerSignIn, updateDesigner} = require("./handlers/designerHandlers");
 //user
 const { handleUserSignIn, getUserById} = require("./handlers/userHandlers");
 //events
@@ -22,6 +23,7 @@ express()
     .get("/designer/:_id", getDesignerById)
     .post("/add-designer" , addDesigner)
     .post("/designer-sign-in", handleDesignerSignIn)
+    .patch("/designer/update" , updateDesigner)
     
     
     .post("/user-sign-in", handleUserSignIn)
@@ -31,10 +33,6 @@ express()
     .get("/latandlong" , getLatAndLong)
 
 
-
-
-
     .listen(port, () => {
         console.log(`Example app listening on port ${port}`);
     });
-

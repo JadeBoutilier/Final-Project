@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import { useContext, useState } from "react";
 
+import Photo from "./Photo"
 import Header from "./Header";
 import Home from "./Home";
 import SignIn from "./SignIn";
@@ -56,6 +57,7 @@ const App = () => {
         <Route path="" element={<h1>404: Oops!</h1>} />
         </>
         ): (<>
+               <Route path="/photo" element={<Photo />} /> 
         <Route path="/designer/:id" element={<DesignerProfile />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/brands" element={<Brands />} />
