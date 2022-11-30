@@ -115,7 +115,7 @@ const SignInNavigationLink = styled(NavLink)`
     margin-bottom: 13px;
   }
 `;const Hello=styled.div`
-font-size: 0.8rem;
+font-size: 1rem;
 margin-bottom: 5px;
 `
 
@@ -129,23 +129,25 @@ const SignOut = styled.button`
   cursor: pointer;
   border: none;
   background-color: transparent;
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding: 0 0 1px 0px;
-  margin-left: 5px;
+  margin-left: 10px;
   line-height: 1;
   /* margin-left: 5px; */
   color: var(--color-darkGrey);
   &:hover {
     border-bottom: 1px solid var(--color-darkGrey);
+    padding: 0 
   }
 `;
 
 const ProfileNavigationLink = styled(NavLink)`
   text-decoration: none;
   color: var(--color-darkGrey);
-  font-size: 0.8rem;
+  font-size: 1rem;
   /* margin: 4px; */
-  &:hover {
+  &:hover {   
+    padding: 0;
     border-bottom: 1px solid var(--color-darkGrey);
   }
 

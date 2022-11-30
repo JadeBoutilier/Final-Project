@@ -221,10 +221,20 @@ const BrandName = styled.input`
   font-family: var(--font-headers);
   font-size: 3rem;
   width: 50%;
+  border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
+    
+  ::placeholder { 
+  color: var(--color-darkGrey);
+}
 `;
 const Category = styled.select`
   font-style: italic;
   font-size: 1.5rem;
+  border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
 `;
 const BrandIntro = styled.div`
   display: flex;
@@ -246,6 +256,9 @@ const TagLine = styled.textarea`
   margin-bottom: 30px;
   font-family: var(--font);
   resize: none;
+  border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
 `;
 const AboutSection = styled.div`
   display: flex;
@@ -259,6 +272,9 @@ const About1 = styled.textarea`
   height: 200px;
   font-family: var(--font);
   resize: none;
+  border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
 `;
 const AboutBrand = styled.div`
   display: flex;
@@ -281,6 +297,9 @@ const About2 = styled.textarea`
   height: 300px;
   font-family: var(--font);
   resize: none;
+  border: none;
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
 `;
 const Portrait = styled.img`
   max-height: 16rem;
@@ -293,6 +312,13 @@ const Input = styled.input`
   margin: 1px 0;
   text-align: center;
   width: 100%;
+  border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
+    
+  ::placeholder { 
+  color: var(--color-darkGrey);
+}
 `;
 const ContactInput = styled.input`
   font-style: italic;
@@ -300,6 +326,14 @@ const ContactInput = styled.input`
   margin-left: 5px;
   margin: 1px 0;
   text-align: center;
+  border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
+  color: var(--color-darkGrey);
+    
+  ::placeholder { 
+  color: var(--color-darkGrey);
+}
   `
 const Italic = styled.div`/////////DELETE AFTER
   font-style: italic;
@@ -400,9 +434,23 @@ const SmallHeader = styled.div`
 `;
 const Options = styled.input`
 text-align:center;
+border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
+    
+  ::placeholder { 
+  color: var(--color-darkGrey);
+}
 `;
 const TimeOptions = styled.input`
-text-align:center;
+text-align:center; 
+border: 2px solid var(--color-lightGrey);
+  background-color: var(--color-lightGrey);
+  border-radius: 5px;
+  
+  ::placeholder { 
+  color: var(--color-darkGrey);
+}
 `;
 const CityPostalCode=styled.div`
 display: flex;
