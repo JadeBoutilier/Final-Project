@@ -2,22 +2,29 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import GoogleMaps from "./GoogleMaps";
+import { useNavigate } from "react-router-dom";
 
 
 const DesignerProfile = () => {
+  const navigate = useNavigate()  
   const id = useParams().id;
 
+
   const [designer, setDesigner] = useState();
-  const [formData, setFormData] = useState({});
+  const [designerFormData, setDesignerFormData] = useState({});
 
   const handleChange = (key, value) => {
-    setFormData({
-      ...formData,
+    setDesignerFormData({
+      ...designerFormData,
       [key]: value,
     });
   };
 
-  //fetching designer info
+  const handleReset = (e) => {
+    e.preventDefault()
+    setDesignerFormData("")
+  }
+
   useEffect(() => {
     fetch(`/designer/${id}`)
       .then((res) => res.json())
@@ -30,13 +37,36 @@ const DesignerProfile = () => {
       })
       .catch((err) => console.log(err));
   }, [id]);
+  
+const formSubmit = (e) => {
+    e.preventDefault();
+
+    fetch("/add-designer", {
+        method: "POST",
+        headers: {
+            "Accept" : "application/json",
+            "Content-Type" : "application/json",
+        },
+        body: JSON.stringify({newDesigner : designerFormData})
+    })
+    .then(res => res.json())
+    .then((data) => {
+        if(data.status === 400){
+            throw new Error(data.message);
+        } else {
+            navigate(`/designer/${designerFormData._id}`);
+        }
+    })
+    .catch(error => window.alert(error));
+  }
+   
 
   if (!designer) {
     return <div>Loading...</div>;
   }
   console.log(designer);
   return (
-    <Wrapper>
+    <Wrapper onSubmit={(e) => formSubmit(e)} onReset={handleReset}>
       <BrandNameSection>
         <BrandNameCategory>
         <BrandName id="brandName" type="text" placeholder={designer.brand}/>
@@ -81,18 +111,18 @@ const DesignerProfile = () => {
               <Contact>
                 <div>Contact</div>
                 <Underline></Underline>
-                <ExternalLink
+                {/* <ExternalLink
                   href={`https://${designer.website}`}
                   target="_blank"
-                >
+                > */}
                   <ContactInput id="website" type="text" placeholder={designer.website}/>
-                </ExternalLink>
-                <ExternalLink
-                  href={`https://instagram.com/${designer.instagram}`}
+                {/* </ExternalLink> */}
+                {/* <ExternalLink */}
+                  {/* href={`https://instagram.com/${designer.instagram}`}
                   target="_blank"
-                >
+                > */}
                   <ContactInput id="instagram" type="text" placeholder={designer.instagram}/>
-                </ExternalLink>
+                {/* </ExternalLink> */}
                 <ContactInput id="designerEmail" type="text" placeholder={designer.designerEmail}/>
               </Contact>
             </DesignerData>
@@ -115,7 +145,7 @@ const DesignerProfile = () => {
                   {designer.openingHours.map((dayTime, index) => {
                     return <TimeOptions key={index} id="dayTime" type="text" placeholder={dayTime}/>;
                   })}
-                  <button>Add</button>
+                  <Button>Add</Button>
                 </Italic>
               </Info>
               <Underline></Underline>
@@ -125,7 +155,7 @@ const DesignerProfile = () => {
                   {designer.services.map((service, index) => {
                     return <Options key={index}id="service" type="text" placeholder={service}/>;
                   })}
-                  <button>Add</button>
+                  <Button>Add</Button>
                 </Italic>
               </Info>
               <Underline></Underline>
@@ -135,7 +165,7 @@ const DesignerProfile = () => {
                   {designer.sharesStudioWith.map((studioMate, index) => {
                     return <Options key={index} id="service" type="text" placeholder={studioMate}/>;
                   })}
-                  <button>Add</button>
+                  <Button>Add</Button>
                 </Italic>
               </Info>
               <Underline></Underline>
@@ -161,11 +191,15 @@ const DesignerProfile = () => {
         src={designer.brandPic1}
         alt="Designer promotion material"
       />
+      <SubmitReset>
+      <Reset>Reset Form</Reset>
+      <Submit>Submit</Submit>
+      </SubmitReset>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   background-color: var(--color-grey);
@@ -372,6 +406,40 @@ text-align:center;
 `;
 const CityPostalCode=styled.div`
 display: flex;
+`
+const Button=styled.button`
+font-size: 1rem;
+font-family: var(--font);
+background-color: var(--color-darkGrey);
+border: none;
+border-radius: 2px;
+margin-left: 5px;
+cursor: pointer;
+`
+const Submit=styled.button`
+font-size: 1rem;
+font-family: var(--font);
+background-color: var(--color-darkGrey);
+border: none;
+border-radius: 4px;
+margin-left: 5px;
+padding:10px 20px;
+cursor: pointer;
+`
+const Reset =styled.button`
+font-size: 1rem;
+font-family: var(--font);
+background-color: var(--color-darkGrey);
+border: none;
+border-radius: 4px;
+margin-left: 5px;
+padding:10px 20px;
+cursor: pointer;
+`
+const SubmitReset=styled.div`
+display: flex;
+padding: 0 150px;
+justify-content: space-around;
 `
 export default DesignerProfile;
 
