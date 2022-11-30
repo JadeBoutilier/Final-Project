@@ -2,12 +2,20 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import GoogleMaps from "./GoogleMaps";
-import { VscLayersDot } from "react-icons/vsc";
+
 
 const DesignerProfile = () => {
   const id = useParams().id;
 
   const [designer, setDesigner] = useState();
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (key, value) => {
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
+  };
 
   //fetching designer info
   useEffect(() => {
@@ -31,8 +39,15 @@ const DesignerProfile = () => {
     <Wrapper>
       <BrandNameSection>
         <BrandNameCategory>
-          <BrandName>{designer.brand}</BrandName>
-          <Category>{designer.category}</Category>
+        <BrandName id="brandName" type="text" placeholder={designer.brand}/>
+          <Category id="category" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>
+            <option value={designer.category}>Jewelry</option>
+            <option>Clothing</option>
+            <option>Hats</option>
+            <option>Furniture</option>
+            <option>Art</option>
+            <option>Shoes</option>
+            </Category>
         </BrandNameCategory>
         <Underline></Underline>
       </BrandNameSection>
@@ -42,8 +57,8 @@ const DesignerProfile = () => {
           alt="Designer promotion material"
         />
         <NameTagLine id="NameTagLine">
-          <TagLine>{designer.tagLine}</TagLine>
-          <About1>{designer.aboutSection1}</About1>
+        <TagLine id="tagline"  wrap="hard">{designer.tagLine}</TagLine>
+          <About1 id="about1" wrap="hard">{designer.aboutSection1}</About1>
         </NameTagLine>
       </BrandIntro>
       <AboutSection>
@@ -53,7 +68,7 @@ const DesignerProfile = () => {
         </AboutHeader>
         <AboutBrand id="aboutBrand">
           <HeaderInfo>
-            <About2>{designer.aboutSection2}</About2>
+            <About2 id="about2" wrap="hard">{designer.aboutSection2}</About2>
           </HeaderInfo>
           <ContactBrand>
             <Portrait src={designer.designerPhoto} alt="Designer portrait" />
@@ -61,7 +76,7 @@ const DesignerProfile = () => {
                 <Contact>
                <div>Owner/ Founder </div>
                 <Underline></Underline>
-               <Italic>{designer.firstName}</Italic>
+               <ContactInput id="firstName" type="text" placeholder={designer.firstName}/>
                </Contact>
               <Contact>
                 <div>Contact</div>
@@ -70,15 +85,15 @@ const DesignerProfile = () => {
                   href={`https://${designer.website}`}
                   target="_blank"
                 >
-                  <Italic>{designer.website}</Italic>
+                  <ContactInput id="website" type="text" placeholder={designer.website}/>
                 </ExternalLink>
                 <ExternalLink
                   href={`https://instagram.com/${designer.instagram}`}
                   target="_blank"
                 >
-                  <Italic>@{designer.instagram}</Italic>
+                  <ContactInput id="instagram" type="text" placeholder={designer.instagram}/>
                 </ExternalLink>
-                <Italic>{designer.designerEmail}</Italic>
+                <ContactInput id="designerEmail" type="text" placeholder={designer.designerEmail}/>
               </Contact>
             </DesignerData>
           </ContactBrand>
@@ -98,8 +113,9 @@ const DesignerProfile = () => {
                 <SmallHeader>Open for walk-ins:</SmallHeader>
                 <Italic>
                   {designer.openingHours.map((dayTime, index) => {
-                    return <TimeOptions key={index}>{dayTime}</TimeOptions>;
+                    return <TimeOptions key={index} id="dayTime" type="text" placeholder={dayTime}/>;
                   })}
+                  <button>Add</button>
                 </Italic>
               </Info>
               <Underline></Underline>
@@ -107,8 +123,9 @@ const DesignerProfile = () => {
                 <SmallHeader>Services:</SmallHeader>
                 <Italic>
                   {designer.services.map((service, index) => {
-                    return <Options key={index}>{service}</Options>;
+                    return <Options key={index}id="service" type="text" placeholder={service}/>;
                   })}
+                  <button>Add</button>
                 </Italic>
               </Info>
               <Underline></Underline>
@@ -116,8 +133,9 @@ const DesignerProfile = () => {
                 <SmallHeader>Studio Mates:</SmallHeader>
                 <Italic>
                   {designer.sharesStudioWith.map((studioMate, index) => {
-                    return <Options key={index}>{studioMate}</Options>;
+                    return <Options key={index} id="service" type="text" placeholder={studioMate}/>;
                   })}
+                  <button>Add</button>
                 </Italic>
               </Info>
               <Underline></Underline>
@@ -128,8 +146,11 @@ const DesignerProfile = () => {
                 <Google>
                   <GoogleMaps />
                 </Google>
-                <Italic> {designer.address}</Italic>
-                <Italic> {designer.city}, {designer.postalCode}</Italic>
+                <Input id="street address" type="text" placeholder={designer.address}/>
+                <CityPostalCode>
+                <Input id="city" type="text" placeholder={designer.city + ","}/>
+                <Input id="postalCode" type="test" placeholder={designer.postalCode}/>
+                </CityPostalCode>
               </Location>
             </BoutiqueData2>
           </AboutBoutique>
@@ -162,11 +183,12 @@ const BrandNameCategory = styled.div`
   align-items: baseline;
   justify-content: space-between;
 `;
-const BrandName = styled.div`
+const BrandName = styled.input`
   font-family: var(--font-headers);
   font-size: 3rem;
+  width: 50%;
 `;
-const Category = styled.div`
+const Category = styled.select`
   font-style: italic;
   font-size: 1.5rem;
 `;
@@ -181,24 +203,32 @@ margin-left: 30px;
   flex-direction: column;
   align-items: flex-end;
 `;
-const TagLine = styled.div`
+const TagLine = styled.textarea`
   font-style: italic;
+  width: 100%;
+  height: 200px;
   font-size: 2rem;
   text-align: right;
   margin-bottom: 30px;
+  font-family: var(--font);
+  resize: none;
 `;
 const AboutSection = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
 `;
-const About1 = styled.div`
+const About1 = styled.textarea`
   font-size: 1.2rem;
   text-align: right;
+  width: 100%;
+  height: 200px;
+  font-family: var(--font);
+  resize: none;
 `;
 const AboutBrand = styled.div`
   display: flex;
-  justify-content: space-around; //************************* */
+  justify-content: space-around;
 `;
 const ContactBrand = styled.div`
   display: flex;
@@ -208,21 +238,41 @@ const ContactBrand = styled.div`
 const HeaderInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width:100%;//**************** */
+  width:100%;
 `;
-const About2 = styled.div`
+const About2 = styled.textarea`
   font-size: 1.2rem;
   text-align: left;
+  width: 100%;
+  height: 300px;
+  font-family: var(--font);
+  resize: none;
 `;
 const Portrait = styled.img`
   max-height: 16rem;
   margin: 0 15px 0 30px;
 `;
-const Italic = styled.div`
+const Input = styled.input`
   font-style: italic;
   font-size: 1rem;
   margin-left: 5px;
   margin: 1px 0;
+  text-align: center;
+  width: 100%;
+`;
+const ContactInput = styled.input`
+  font-style: italic;
+  font-size: 1rem;
+  margin-left: 5px;
+  margin: 1px 0;
+  text-align: center;
+  `
+const Italic = styled.div`/////////DELETE AFTER
+  font-style: italic;
+  font-size: 1rem;
+  margin-left: 5px;
+  margin: 1px 0;
+
 `;
 const Underline = styled.div`
   font-family: var(--font);
@@ -314,8 +364,17 @@ const AboutHeader = styled.div`
 const SmallHeader = styled.div`
   font-size: 1rem;
 `;
-const Options = styled.span``;
-const TimeOptions = styled.div``;
+const Options = styled.input`
+text-align:center;
+`;
+const TimeOptions = styled.input`
+text-align:center;
+`;
+const CityPostalCode=styled.div`
+display: flex;
+`
 export default DesignerProfile;
 
-// "openingHours": [{"Day":[ {"Thursday": "Thursday"}]}, [{"11 am": "11 am"}, {"7 pm": "7 pm"}]],
+    // "openingHours": [{"Day":[ {"Thursday": "Thursday"}]}, [{"11 am": "11 am"}, {"7 pm": "7 pm"}]],
+
+
