@@ -124,7 +124,9 @@ const updateDesigner= async (req, res)=>{
       const {latt, longt}= await getLatAndLong(req.body.postalCode) //func in utils
       //console.log(getLatAndLong(req.body.postalCode))
       const designer = {...req.body, latt, longt};
-      //designer validations - see e-commerce add order
+
+      // const {public_id } = req.params;
+      // await cloudinary.uploader.destroy(public_id)
 
       const db = client.db("FinalProject");
 
@@ -141,7 +143,15 @@ results.acknowledged
 sendResponse(res, 400, null, `${err}`);
 } finally {
     await client.close();
-
 }
+
+//-------------------------------------------------------------------------------------
+  // cloudinary.config({
+  //   cloud_name: process.env.CLOUD_NAME,
+  //   api_key: process.env.CLOUD_API_KEY,
+  //   api_secret: process.env.CLOUD_API_SECRET,
+  // });
+
+
 }
 module.exports = { getAllDesigners, addDesigner, getDesignerById, handleDesignerSignIn, updateDesigner  };

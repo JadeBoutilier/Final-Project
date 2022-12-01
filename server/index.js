@@ -18,19 +18,20 @@ express()
     .use(helmet())
     .use(morgan("tiny"))
 
-
+    //designers
     .get("/designers", getAllDesigners)
     .get("/designer/:_id", getDesignerById)
     .post("/add-designer" , addDesigner)
     .post("/designer-sign-in", handleDesignerSignIn)
     .patch("/designer/update" , updateDesigner)
     
-    
+    //users
     .post("/user-sign-in", handleUserSignIn)
     .get("/user/:_id", getUserById)
-//events
+    //events
     .get("/events", getAllEvents)
     .get("/latandlong" , getLatAndLong)
+
 
 
     .listen(port, () => {

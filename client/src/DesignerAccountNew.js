@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import GoogleMaps from "./GoogleMaps";
 import { useNavigate } from "react-router-dom";
+import ImageUpload from "./ImageUpload";
 
 
 const DesignerProfile = () => {
@@ -11,6 +12,7 @@ const DesignerProfile = () => {
 
 
   const [designer, setDesigner] = useState(null);
+  const [profilePic, setProfilePic]= useState(null)
 //   const [designerFormData, setDesignerFormData] = useState("");
 
   const handleChange = (key, value) => {
@@ -64,10 +66,10 @@ const formSubmit = (e) => {
     <Wrapper onSubmit={(e) => formSubmit(e)}>
       <BrandNameSection>
         <BrandNameCategory>
-        <BrandName id="brand" type="text" placeholder={designer?.brand} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+        <BrandName id="brand" type="text" placeholder={designer.brand} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
         {/* <input id="_id" type="text" placeholder={designer.brand} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/> */}
           <Category id="category" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>
-            <option value={designer?.category}>Jewelry</option>
+            <option value={designer.category}>Jewelry</option>
             <option>Clothing</option>
             <option>Hats</option>
             <option>Furniture</option>
@@ -78,13 +80,16 @@ const formSubmit = (e) => {
         <Underline></Underline>
       </BrandNameSection>
       <BrandIntro>
-        <VerticalPic
-          src={designer?.brandPic2}
+      <PhotoInsert>
+      <ImageUpload/>
+      </PhotoInsert>
+        {/* <VerticalPic
+          src={designer.brandPic2}
           alt="Designer promotion material"
-        />
+        /> */}
         <NameTagLine id="NameTagLine">
-        <TagLine id="tagline"  wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer?.tagLine}</TagLine>
-          <About1 id="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer?.aboutSection1}</About1>
+        <TagLine id="tagline"  wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.tagLine}</TagLine>
+          <About1 id="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1>
         </NameTagLine>
       </BrandIntro>
       <AboutSection>
@@ -94,15 +99,19 @@ const formSubmit = (e) => {
         </AboutHeader>
         <AboutBrand id="aboutBrand">
           <HeaderInfo>
-            <About2 id="about2" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer?.aboutSection2}</About2>
+            <About2 id="about2" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection2}</About2>
           </HeaderInfo>
           <ContactBrand>
-            <Portrait src={designer?.designerPhoto} alt="Designer portrait" />
+          <PhotoInsert id="photoinsert">
+            <ImageUpload/>
+        </PhotoInsert>
+            {/* <Portrait src={designer.designerPhoto} alt="Designer portrait" /> */}
+            {/* <Photo/> */}
             <DesignerData>
                 <Contact>
                <div>Owner/ Founder </div>
                 <Underline></Underline>
-               <ContactInput id="firstName" type="text" placeholder={designer?.firstName} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+               <ContactInput id="firstName" type="text" placeholder={designer.firstName} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
                </Contact>
               <Contact>
                 <div>Contact</div>
@@ -111,15 +120,15 @@ const formSubmit = (e) => {
                   href={`https://${designer.website}`}
                   target="_blank"
                 > */}
-                  <ContactInput id="website" type="text" placeholder={designer?.website} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                  <ContactInput id="website" type="text" placeholder={designer.website} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
                 {/* </ExternalLink> */}
                 {/* <ExternalLink */}
                   {/* href={`https://instagram.com/${designer.instagram}`}
                   target="_blank"
                 > */}
-                  <ContactInput id="instagram" type="text" placeholder={designer?.instagram} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                  <ContactInput id="instagram" type="text" placeholder={designer.instagram} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
                 {/* </ExternalLink> */}
-                <ContactInput id="designerEmail" type="text" placeholder={designer?.designerEmail} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                <ContactInput id="designerEmail" type="text" placeholder={designer.designerEmail} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
               </Contact>
             </DesignerData>
           </ContactBrand>
@@ -132,13 +141,14 @@ const formSubmit = (e) => {
             <Underline></Underline>
           </Header>
           <AboutBoutique>
-            <BoutiquePic src={designer?.boutiquePic} alt="Designer boutique" />
-
+          <PhotoInsert id="photoinsert">
+            <ImageUpload/>
+        </PhotoInsert>
             <BoutiqueData2>
               <Info>
                 <SmallHeader>Open for walk-ins:</SmallHeader>
                 <Italic>
-                  {designer?.openingHours.map((dayTime, index) => {
+                  {designer.openingHours.map((dayTime, index) => {
                     return <TimeOptions key={index} id="dayTime" type="text" placeholder={dayTime} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
@@ -148,7 +158,7 @@ const formSubmit = (e) => {
               <Info>
                 <SmallHeader>Services:</SmallHeader>
                 <Italic>
-                  {designer?.services.map((service, index) => {
+                  {designer.services.map((service, index) => {
                     return <Options key={index}id="service" type="text" placeholder={service} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
@@ -158,7 +168,7 @@ const formSubmit = (e) => {
               <Info>
                 <SmallHeader>Studio Mates:</SmallHeader>
                 <Italic>
-                  {designer?.sharesStudioWith.map((studioMate, index) => {
+                  {designer.sharesStudioWith.map((studioMate, index) => {
                     return <Options key={index} id="service" type="text" placeholder={studioMate} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
@@ -167,15 +177,17 @@ const formSubmit = (e) => {
               <Underline></Underline>
               <Location>
                 <LogoSection>
-                  <Logo src={designer?.logo} alt="Designer Logo" />
+                <PhotoInsert id="photoinsert">
+      <ImageUpload/>
+  </PhotoInsert>
                 </LogoSection>
                 <Google>
                   <GoogleMaps />
                 </Google>
-                <Input id="street address" type="text" placeholder={designer?.address} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                <Input id="street address" type="text" placeholder={designer.address} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
                 <CityPostalCode>
-                <Input id="city" type="text" placeholder={designer?.city + ","}/>
-                <Input id="postalCode" type="test" placeholder={designer?.postalCode} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                <Input id="city" type="text" placeholder={designer.city + ","}/>
+                <Input id="postalCode" type="test" placeholder={designer.postalCode} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
                 </CityPostalCode>
               </Location>
             </BoutiqueData2>
@@ -183,10 +195,11 @@ const formSubmit = (e) => {
         </BoutiqueData>
       </BoutiqueInfo>
       <Underline></Underline>
-      <HorizontalPic
-        src={designer?.brandPic1}
-        alt="Designer promotion material"
-      />
+      <HorizontalImageBox>
+     <PhotoInsert id="photoinsert">
+      <ImageUpload/>
+  </PhotoInsert>
+  </HorizontalImageBox>
       <SubmitReset>
       <Submit onSubmit>Submit</Submit>
       </SubmitReset>
@@ -241,6 +254,7 @@ margin-left: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  width:100%;
 `;
 const TagLine = styled.textarea`
   font-style: italic;
@@ -274,11 +288,14 @@ const About1 = styled.textarea`
 const AboutBrand = styled.div`
   display: flex;
   justify-content: space-around;
+  gap: 30px;
 `;
 const ContactBrand = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  gap: 30px;
 `;
 const HeaderInfo = styled.div`
   display: flex;
@@ -369,6 +386,7 @@ const BoutiqueInfo = styled.div`
 const BoutiqueData = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 const BoutiqueData2 = styled.div`
   display: flex;
@@ -483,6 +501,19 @@ const SubmitReset=styled.div`
 display: flex;
 padding: 0 150px;
 justify-content: space-around;
+`
+const PhotoInsert =styled.div`
+display: flex;
+flex-direction: column;
+width: 100%;
+justify-content: center;
+align-items: center;
+`
+const HorizontalImageBox = styled.div`
+height: 400px;
+display: flex;
+justify-content: center;
+align-items: center;
 `
 export default DesignerProfile;
 
