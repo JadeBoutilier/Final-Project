@@ -12,12 +12,15 @@ const DesignerProfile = () => {
 
 
   const [designer, setDesigner] = useState(null);
-  const [profilePic, setProfilePic]= useState(null)
+  const [images, setImages] = useState([]);
 //   const [designerFormData, setDesignerFormData] = useState("");
 
   const handleChange = (key, value) => {
+    const {[key]: _, ...rest} = designer      //designer object gets put into rest variable - except for key
+console.log(rest)
+console.log(key)
     setDesigner({
-      ...designer,
+      ...rest,
       [key]: value,
     });
   };
@@ -33,18 +36,21 @@ const DesignerProfile = () => {
         }
       })
       .catch((err) => console.log(err));
-  }, [id]);
-  
-const formSubmit = (e) => {
-    e.preventDefault();
-
+    }, [id]);
+    
+    console.log(designer);
+    
+    const formSubmit = (e) => {
+        e.preventDefault();
+        
     fetch("/designer/update", {
         method: "PATCH",
         headers: {
-            "Accept" : "application/json",
+            Accept : "application/json",
             "Content-Type" : "application/json",
         },
         body: JSON.stringify(designer)
+            // brandPic1: images[0].url.url)
     })
     .then(res => res.json())
     .then((data) => {
@@ -61,7 +67,6 @@ const formSubmit = (e) => {
   if (designer === null) {
     return <div>Loading...</div>;
   }
-  console.log(designer);
   return (
     <Wrapper onSubmit={(e) => formSubmit(e)}>
       <BrandNameSection>
@@ -81,15 +86,12 @@ const formSubmit = (e) => {
       </BrandNameSection>
       <BrandIntro>
       <PhotoInsert>
-      <ImageUpload/>
+      <ImageUpload />
       </PhotoInsert>
-        {/* <VerticalPic
-          src={designer.brandPic2}
-          alt="Designer promotion material"
-        /> */}
         <NameTagLine id="NameTagLine">
-        <TagLine id="tagline"  name="tagline" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.tagLine}</TagLine>
-          <About1 id="about1" name="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1>
+        <TagLine id="tagLine"  name="tagLine" wrap="hard" defaultValue={designer.tagLine} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+          {/* <About1 id="about1" name="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1> */}
+          <About1 id="aboutSection1" type="text" placeholder={designer.aboutSection1} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
         </NameTagLine>
       </BrandIntro>
       <AboutSection>
@@ -99,14 +101,12 @@ const formSubmit = (e) => {
         </AboutHeader>
         <AboutBrand id="aboutBrand">
           <HeaderInfo>
-            <About2 id="about2" wrap="hard" name="about2" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection2}</About2>
+            <About2 id="aboutSection2" wrap="hard" name="aboutSection2" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection2}</About2>
           </HeaderInfo>
           <ContactBrand>
           <PhotoInsert id="photoinsert">
             <ImageUpload/>
         </PhotoInsert>
-            {/* <Portrait src={designer.designerPhoto} alt="Designer portrait" /> */}
-            {/* <Photo/> */}
             <DesignerData>
                 <Contact>
                <div>Owner/ Founder </div>
@@ -116,18 +116,8 @@ const formSubmit = (e) => {
               <Contact>
                 <div>Contact</div>
                 <Underline></Underline>
-                {/* <ExternalLink
-                  href={`https://${designer.website}`}
-                  target="_blank"
-                > */}
                   <ContactInput id="website" type="text" placeholder={designer.website} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-                {/* </ExternalLink> */}
-                {/* <ExternalLink */}
-                  {/* href={`https://instagram.com/${designer.instagram}`}
-                  target="_blank"
-                > */}
                   <ContactInput id="instagram" type="text" placeholder={designer.instagram} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-                {/* </ExternalLink> */}
                 <ContactInput id="designerEmail" type="text" placeholder={designer.designerEmail} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
               </Contact>
             </DesignerData>
@@ -149,7 +139,7 @@ const formSubmit = (e) => {
                 <SmallHeader>Open for walk-ins:</SmallHeader>
                 <Italic>
                   {designer.openingHours.map((dayTime, index) => {
-                    return <TimeOptions key={index} id="dayTime" type="text" placeholder={dayTime} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
+                    return <TimeOptions key={index} id="openingHours" type="text" placeholder={dayTime} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
                 </Italic>
@@ -159,7 +149,7 @@ const formSubmit = (e) => {
                 <SmallHeader>Services:</SmallHeader>
                 <Italic>
                   {designer.services.map((service, index) => {
-                    return <Options key={index}id="service" type="text" placeholder={service} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
+                    return <Options key={index}id="services" type="text" placeholder={service} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
                 </Italic>
@@ -169,7 +159,7 @@ const formSubmit = (e) => {
                 <SmallHeader>Studio Mates:</SmallHeader>
                 <Italic>
                   {designer.sharesStudioWith.map((studioMate, index) => {
-                    return <Options key={index} id="service" type="text" placeholder={studioMate} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
+                    return <Options key={index} id="sharesStudioWith" type="text" placeholder={studioMate} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
                 </Italic>
@@ -182,9 +172,9 @@ const formSubmit = (e) => {
   </PhotoInsert>
                 </LogoSection>
                 <Google>
-                  <GoogleMaps />
+                  <GoogleMaps lat={designer.latt} lng={designer.longt}/>
                 </Google>
-                <Input id="street address" type="text" placeholder={designer.address} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                <Input id="address" type="text" placeholder={designer.address} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
                 <CityPostalCode>
                 <Input id="city" type="text" placeholder={designer.city + ","}/>
                 <Input id="postalCode" type="test" placeholder={designer.postalCode} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
@@ -274,7 +264,7 @@ const AboutSection = styled.div`
   flex-direction: column;
   margin-top: 3rem;
 `;
-const About1 = styled.textarea`
+const About1 = styled.input`
   font-size: 1.2rem;
   text-align: right;
   width: 100%;
@@ -284,6 +274,13 @@ const About1 = styled.textarea`
   border: 2px solid var(--color-lightGrey);
   background-color: var(--color-lightGrey);
   border-radius: 5px;
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  white-space:pre-line;  
+  position:relative;
+  top:-7px;
+  
+}
 `;
 const AboutBrand = styled.div`
   display: flex;

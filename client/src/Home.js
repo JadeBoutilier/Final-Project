@@ -26,7 +26,7 @@ const Home = () => {
 
   const getNewDesigner = () => {
     const newDesigner = designers[Math.floor(Math.random() * designers.length)];
-    console.log(newDesigner)
+    // console.log(newDesigner)
     setRandomDesigner(newDesigner);
   }
     
@@ -38,7 +38,7 @@ getNewDesigner()
     navigate(`/designer/${randomDesigner?._id}`)
   }
 
-  console.log(randomDesigner)
+  // console.log(randomDesigner)
   return (
     <Wrapper>
       <ShopBy>

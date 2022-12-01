@@ -20,7 +20,7 @@ const handleUserSignIn = async (req, res) => {
 //   console.log(req.body)
   const db = client.db("FinalProject");
   const verifyUser = await db.collection("users").findOne({userEmail, userPassword});
-  console.log(verifyUser)
+  // console.log(verifyUser)
   const data= {...verifyUser}
   // console.log(designers)
 

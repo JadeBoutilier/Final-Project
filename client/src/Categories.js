@@ -31,7 +31,7 @@ const handleClick = (i) => {
 if(!designers){
   return <div>Loading</div>
 }
-console.log(designers)
+// console.log(designers)
 return (
   <Wrapper>
     <CategoryList>

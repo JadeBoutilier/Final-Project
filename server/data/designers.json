@@ -22,7 +22,9 @@
     "aboutSection2": "Jade's approach to goldsmithing uses the lost wax casting process. Transforming hand-carved wax into sculptural jewelery, Jade creates elegant and bold pieces. Each creation is made with meticulous attention and polished to a mirror finish. Working in both silver and gold, Jade often uses genuine stones and accents of oxidation to enhance her work.",
     "services": ["Customs"],
     "openingHours": ["Thursday 11am - 7pm"],
-    "sharesStudioWith": ["Veri"]
+    "sharesStudioWith": ["Veri"],
+    "latt":"45.527293",
+    "longt": "-73.597404"
 },
 {   
     "_id": "veri",  
@@ -48,6 +50,8 @@
     "services": ["Customs", "repairs"],
     "openingHours": ["Thursday 11am - 7pm"],
     "sharesStudioWith": ["Captive"],
+    "latt": "45.527293",
+    "longt": "-73.597404",
     "events": [{"event" :[
         {"_id": "Event01"},
         {"name": "Test Sale"},

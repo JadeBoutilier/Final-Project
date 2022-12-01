@@ -10,15 +10,6 @@ const GoogleMaps = () => {
   const {setMap, center, isLoaded, directionsResponse} =useContext(GoogleMapsContext)
   const {designers} =useContext(DesignersContext)
 
-//get designers postal code
-  const allDesignersPostalCodes = designers.map((designer)=> {
-    return designer.postalCode
-  })
-
-  //translate postalCodes into lat and long using geocoder
-
-
-
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -37,8 +28,16 @@ const GoogleMaps = () => {
         }}
         onLoad={map => setMap(map)}
       >
-        <MarkerF position={center}/>
-        {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
+        {designers.map((designer)=> {
+          const position= {lat: parseFloat(designer.latt), lng: parseFloat(designer.longt)}
+          console.log(designer)
+          return (<>
+          <MarkerF position={position}/>
+          {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
+          </>
+          )
+        })}
+   
 
         {/* WILL NEED TO GENERATE MARKER POSITIONS */}
       </GoogleMap>

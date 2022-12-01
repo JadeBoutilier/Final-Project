@@ -33,7 +33,7 @@ const DesignerProfile = () => {
   if (!designer) {
     return <div>Loading...</div>;
   }
-  console.log(designer);
+  // console.log(designer);
   return (
     <Wrapper>
       <BrandNameSection>
@@ -167,7 +167,7 @@ const DesignerProfile = () => {
                   <Logo src={designer.logo} alt="Designer Logo" />
                 </LogoSection>
                 <Google>
-                  <GoogleMaps />
+                  <GoogleMaps lat={designer.latt} lng={designer.longt}/>
                 </Google>
                 <Italic> {designer.address}</Italic>
                 <Italic>
