@@ -7,16 +7,19 @@ const UserProfile = () => {
   const [toggle, setToggle] = useState(false);
   // const id = useParams().id;
   const { userSignedIn } = useContext(SignInContext);
-  // const {designers} =useContext(DesignersContext)
+  const {designers} =useContext(DesignersContext)
   // const [favouriteBrands, setFavouriteBrands] = useState()
-
+  
   //Two options to find favourites. ... not sure which method.
+  
+  const designer = designers.map((designer)=> {
+    return designer})
 
-  // const findFavourites = ()=> {
-  //   designers.map((designer)=> {
-  //   return designer === userSignedIn.favourites.map((favourite, index) => {
-  //     return favourite})})}
-
+    const designerBrand = designer.map((attribute)=> {
+      return attribute.brand
+    })
+    
+    console.log("DESIGNER", designerBrand)
   if (!userSignedIn) {
     return <div>Loading...</div>;
   }
@@ -33,12 +36,27 @@ const UserProfile = () => {
             <Underline></Underline>
             {toggle === true ? (
             <InfoSection>
+              <Info>Name: {userSignedIn.firstName}</Info>
+              <Info>Last Name: {userSignedIn.lastName}</Info>
               <Info>Email: {userSignedIn.userEmail}</Info>
             </InfoSection>
           ) : (
             ""
             )}
+{userSignedIn &&
+          userSignedIn?.favourites.includes(designerBrand) ?
+          (<div>{designer.brand}</div>): ("")
+            
 
+           }
+
+
+{/* {userSignedIn &&
+          userSignedIn?.favourites.map((favourite)=> {
+            if (favourite === designerBrand){
+              console.log("RETURN", favourite)
+            return <div>{designer.brand}</div>
+            }})} */}
       {/* <Info>City: {userSignedIn.address}</Info> */}
       {/* <Info>{userSignedIn.postalCode}</Info> */}
 
@@ -53,6 +71,7 @@ const UserProfile = () => {
           )
         }
       })} */}
+     
     </Wrapper>
   );
 };
@@ -91,6 +110,7 @@ const InfoSection = styled.div`
   margin-top: 5px;
   padding: 5px;
   margin-bottom: 20px;
+  justify-content: center;
 `;
 const Info = styled.div`
   font-size: 0.8rem;
@@ -99,7 +119,7 @@ const Info = styled.div`
 `;
 const FavouriteSection = styled.div`
   font-family: var(--font-headers);
-  font-size: 2rem;
+  font-size: 2.5rem;
   padding-left: 30px;
 `;
 const Underline = styled.div`

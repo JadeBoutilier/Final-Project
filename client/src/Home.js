@@ -15,22 +15,30 @@ const Home = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
 
-  // const {designers} = useContext(DesignersContext)
-  // const [FeaturedDesigner, setFeaturedDesigner] = useState([])
+  const {designers} = useContext(DesignersContext)
+  const [randomDesigner, setRandomDesigner] = useState(null)
 
   const handleClick = () => {
     navigate("/");
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
-  //Featured Designer
-  // const randomDesignerFunc = () => {
-  //   const randomDesigner = designers[Math.floor(Math.random() * designers.length)];
-  //   setFeaturedDesigner(randomDesigner)
-  // }
-  // useEffect(()=>{
-  //   randomDesignerFunc()
-  // }, [])
 
+
+  const getNewDesigner = () => {
+    const newDesigner = designers[Math.floor(Math.random() * designers.length)];
+    console.log(newDesigner)
+    setRandomDesigner(newDesigner);
+  }
+    
+useEffect(()=>{
+getNewDesigner()
+  }, [])
+
+  const handleClick2= () => {
+    navigate(`/designer/${randomDesigner?._id}`)
+  }
+
+  console.log(randomDesigner)
   return (
     <Wrapper>
       <ShopBy>
@@ -46,8 +54,8 @@ const Home = () => {
       <FeaturedDesigner>
         <Title1>Designer</Title1>
         <Title2>Focus</Title2>
-        <Title3>Veri</Title3>
-        <Image src={Veri} alt="Featured brand"></Image>
+        <Title3>{randomDesigner?.brand}</Title3>
+        <ImageButton onClick={handleClick2}><Image src={randomDesigner?.brandPic1} alt="Featured brand"/></ImageButton>
       </FeaturedDesigner>
       <MapTitle>Find Local Brands</MapTitle>
       <Underline></Underline>
@@ -123,7 +131,7 @@ const NavigationLink = styled(NavLink)`
 `;
 const Image = styled.img`
   width: 100%;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
   `;
 const FeaturedDesigner = styled.div`
   position: relative;
@@ -137,6 +145,7 @@ const Title1 = styled.div`
   font-size: 7rem;
   /* font-family: bely-display, sans-serif; */
   font-family: var(--font-headers);
+  z-index: 1;
   `;
 const Title2 = styled.div`
   position: absolute;
@@ -147,14 +156,15 @@ const Title2 = styled.div`
   font-size: 7rem;
   /* font-family: bely-display, sans-serif; */
   font-family: var(--font-headers);
+  z-index: 1;
   `;
 const Title3 = styled.div`
   position: absolute;
-  bottom: 112px;
-  left: 26px;
-  font-size: 3rem;
-  /* font-family: bely-display, sans-serif; */
-  font-family: retiro-std-24pt, sans-serif;
+    bottom: 74px;
+    right: 32px;
+    font-size: 1.7rem;
+    font-family: var(--font-headers);
+    z-index: 1;
   `;
 const Underline = styled.div`
   font-family: var(--font);
@@ -196,5 +206,10 @@ const RouteButton = styled.button`
   `
    const CalcBox = styled.div`
    margin: 10px 0 30px 0;
+   `
+   const ImageButton =styled.button`
+   border:none;
+   background-color: transparent;
+   cursor: pointer;
    `
 export default Home;

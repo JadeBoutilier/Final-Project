@@ -2,7 +2,7 @@
     {   
     "_id": "captive",
     "designerEmail": "info@captiveatelier.com",
-    "designerPassword": "captive",   
+    "designerPassword": "captive", 
     "brand": "Captive Atelier",
     "logo": "/images/designers/Captive/Captive_Logo.png", 
     "designerPhoto": "/images/designers/Captive/jade-225.jpg",
@@ -47,6 +47,17 @@
     "aboutSection2": "Veri is a line of clothing and accessories for the human, genderless and seasonless. Always made in Montreal, combining art, design and craftmanship. By respecting its own ethical values and speaking to the next conscious generation, it offers products that are part of change.",
     "services": ["Customs", "repairs"],
     "openingHours": ["Thursday 11am - 7pm"],
-    "sharesStudioWith": ["Captive"]
+    "sharesStudioWith": ["Captive"],
+    "events": [{"event" :[
+        {"_id": "Event01"},
+        {"name": "Test Sale"},
+        {"host": ["Veri", "Captive"]},
+        {"imgUrl": "/testImages/testEvent.png"},
+        {"address": " 123 Street"},
+        {"postalCode": "N1K1T5"},
+        {"time": ""},
+        {"about": "This is a fake event! Come shop imaginable stuff and meet designers!"},
+        {"participatingBrands": ["Veri", "Captive"]}
+    ]}]
 }
 ]

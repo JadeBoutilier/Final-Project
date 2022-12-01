@@ -88,8 +88,8 @@ const formSubmit = (e) => {
           alt="Designer promotion material"
         /> */}
         <NameTagLine id="NameTagLine">
-        <TagLine id="tagline"  wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.tagLine}</TagLine>
-          <About1 id="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1>
+        <TagLine id="tagline"  name="tagline" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.tagLine}</TagLine>
+          <About1 id="about1" name="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1>
         </NameTagLine>
       </BrandIntro>
       <AboutSection>
@@ -99,7 +99,7 @@ const formSubmit = (e) => {
         </AboutHeader>
         <AboutBrand id="aboutBrand">
           <HeaderInfo>
-            <About2 id="about2" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection2}</About2>
+            <About2 id="about2" wrap="hard" name="about2" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection2}</About2>
           </HeaderInfo>
           <ContactBrand>
           <PhotoInsert id="photoinsert">

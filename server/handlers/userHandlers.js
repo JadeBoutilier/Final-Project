@@ -58,5 +58,44 @@ const getUserById = async (req, res) => {
 }
 // -----------------------------------------------------------------------
 
+// const addFavouriteDesignerById= async (req, res)=>{
+//   const client = new MongoClient(MONGO_URI, options);
+
+//   try {
+//       await client.connect();
+//       const designer = {...req.body, latt, longt};
+//       //designer validations - see e-commerce add order
+
+//       const db = client.db("FinalProject");
+
+// const results = await db.collection("user").insertOne(designer.brand)
+// console.log(results);
+
+// results.acknowledged
+// ? sendResponse(res, 201, designer, "Designer profile created successfully!")
+// : sendResponse(res, 400, designer, "Error encountered while creating your designer profile!")
+// }catch(err){
+// sendResponse(res, 400, null, `${err}`);
+// } finally {
+//     await client.close();
+
+// }
+// }
+
+// -----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------
+
 
 module.exports = {handleUserSignIn, getUserById };

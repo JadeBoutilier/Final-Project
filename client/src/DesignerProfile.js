@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { FaHeart } from "react-icons/fa";
 import GoogleMaps from "./GoogleMaps";
-import { VscLayersDot } from "react-icons/vsc";
+import { SignInContext } from "./SignInContext";
 
 const DesignerProfile = () => {
   const id = useParams().id;
 
   const [designer, setDesigner] = useState();
+  const [isActive, setIsActive] = useState(false); 
+  const {userSignedIn}=useContext(SignInContext)
+
+  const handleClick = () => {
+    setIsActive((current) => !current);
+  };
 
   //fetching designer info
   useEffect(() => {
@@ -41,10 +48,45 @@ const DesignerProfile = () => {
           src={designer.brandPic2}
           alt="Designer promotion material"
         />
-        <NameTagLine id="NameTagLine">
-          <TagLine>{designer.tagLine}</TagLine>
-          <About1>{designer.aboutSection1}</About1>
-        </NameTagLine>
+        <HeartDiv id="heartdiv">
+        {userSignedIn &&
+          userSignedIn?.Favourites.map(favourite=> favourite) === designer.brand ? (
+          <FavouriteButton
+          onClick={handleClick}
+          style={{
+            color: isActive
+              ? "var(--color-lightGrey)"
+              : "var(--color-darkGrey)"
+          }}
+        >
+          <FaHeart />
+        </FavouriteButton>
+                ) : (
+          <FavouriteButton
+          onClick={handleClick}
+          style={{
+            color: isActive
+              ? "var(--color-lightGrey)"
+              : "var(--color-darkGrey)"
+          }}
+        >
+          <FaHeart />
+        </FavouriteButton> )}
+          {/* <FavouriteButton
+            onClick={handleClick}
+            style={{
+              color: isActive
+                ? "var(--color-lightGrey)"
+                : "var(--color-darkGrey)"
+            }}
+          >
+            <FaHeart />
+          </FavouriteButton> */}
+          <NameTagLine id="NameTagLine">
+            <TagLine>{designer.tagLine}</TagLine>
+            <About1>{designer.aboutSection1}</About1>
+          </NameTagLine>
+        </HeartDiv>
       </BrandIntro>
       <AboutSection>
         <AboutHeader>
@@ -58,11 +100,11 @@ const DesignerProfile = () => {
           <ContactBrand>
             <Portrait src={designer.designerPhoto} alt="Designer portrait" />
             <DesignerData>
-                <Contact>
-               <div>Owner/ Founder </div>
+              <Contact>
+                <div>Owner/ Founder </div>
                 <Underline></Underline>
-               <Italic>{designer.firstName}</Italic>
-               </Contact>
+                <Italic>{designer.firstName}</Italic>
+              </Contact>
               <Contact>
                 <div>Contact</div>
                 <Underline></Underline>
@@ -92,7 +134,6 @@ const DesignerProfile = () => {
           </Header>
           <AboutBoutique>
             <BoutiquePic src={designer.boutiquePic} alt="Designer boutique" />
-
             <BoutiqueData2>
               <Info>
                 <SmallHeader>Open for walk-ins:</SmallHeader>
@@ -129,7 +170,10 @@ const DesignerProfile = () => {
                   <GoogleMaps />
                 </Google>
                 <Italic> {designer.address}</Italic>
-                <Italic> {designer.city}, {designer.postalCode}</Italic>
+                <Italic>
+                  {" "}
+                  {designer.city}, {designer.postalCode}
+                </Italic>
               </Location>
             </BoutiqueData2>
           </AboutBoutique>
@@ -176,7 +220,7 @@ const BrandIntro = styled.div`
   justify-content: space-around;
 `;
 const NameTagLine = styled.div`
-margin-left: 30px;
+  margin-left: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -208,7 +252,7 @@ const ContactBrand = styled.div`
 const HeaderInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width:100%;//**************** */
+  width: 100%; //**************** */
 `;
 const About2 = styled.div`
   font-size: 1.2rem;
@@ -316,6 +360,27 @@ const SmallHeader = styled.div`
 `;
 const Options = styled.span``;
 const TimeOptions = styled.div``;
+
+const FavouriteButton = styled.button`
+  cursor: pointer;
+  border: none;
+  background-color: var(--color-grey);
+  color: var(--color-lightGrey);
+  font-size: 2.5rem;
+  text-align: right;
+  position: absolute;
+  top: 220px;
+  right: 65px;
+
+  &:hover {
+    color: 1px solid var(--color-darkGrey);
+  }
+`;
+const HeartDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
 export default DesignerProfile;
 
 // "openingHours": [{"Day":[ {"Thursday": "Thursday"}]}, [{"11 am": "11 am"}, {"7 pm": "7 pm"}]],
