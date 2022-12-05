@@ -5,7 +5,7 @@
         "lastName": "Test", 
         "userEmail": "test1@gmail.com", 
         "userPassword": "test1",
-        "favourites": ["veri, Captive"],
+        "favourites": ["veri", "captive", "vaste"],
         "address": "Fake Street",
         "postalCode": "N1k1T7"
     },
@@ -15,7 +15,7 @@
         "lastName": "Test", 
         "userEmail": "test2@gmail.com", 
         "userPassword": "test2",
-        "favourites": "veri",
+        "favourites": ["veri"],
         "address": "Fake Street",
         "postalCode": "H2T1A7"
     },
@@ -25,7 +25,7 @@
         "userLastName": "Test", 
         "userEmail": "test3@gmail.com", 
         "userPassword": "test3",
-        "favourites": "Captive",
+        "favourites": ["captive"],
         "address": "Fake Street",
         "postalCode": "N1K1T6"
     },

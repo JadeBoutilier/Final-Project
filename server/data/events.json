@@ -2,13 +2,45 @@
     {   
         "_id": "Event01",
         "name": "Test Sale",
-        "host": ["Veri", "Captive"],
+        "host": ["veri"],
         "imgUrl": "/testImages/testEvent.png",
         "address": " 123 Street",
         "postalCode": "N1K1T5",
         "time": "",
         "about": "This is a fake event! Come shop imaginable stuff and meet designers!",
-        "participatingBrands": ["Veri", "Captive"]
+        "participatingBrands": ["veri", "captive"]
 
+    },  {   
+        "_id": "Event02",
+        "name": "Test Sale",
+        "host": ["veri"],
+        "imgUrl": "/testImages/testEvent.png",
+        "address": " 123 Street",
+        "postalCode": "N1K1T5",
+        "time": "",
+        "about": "This is a fake event! Come shop imaginable stuff and meet designers!",
+        "participatingBrands": ["veri", "captive"]
+    }, 
+    {   
+        "_id": "Event03",
+        "name": "Test Sale",
+        "host": ["veri"],
+        "imgUrl": "/testImages/testEvent.png",
+        "address": " 123 Street",
+        "postalCode": "N1K1T5",
+        "time": "",
+        "about": "This is a fake event! Come shop imaginable stuff and meet designers!",
+        "participatingBrands": ["veri", "captive"]
+    },
+    {   
+        "_id": "Event04",
+        "name": "Test Sale",
+        "host": ["veri"],
+        "imgUrl": "/testImages/testEvent.png",
+        "address": " 123 Street",
+        "postalCode": "N1K1T5",
+        "time": "",
+        "about": "This is a fake event! Come shop imaginable stuff and meet designers!",
+        "participatingBrands": ["veri", "captive"]
     }
 ]

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import * as FontAwesome from "react-icons/fa";
 
 const Events = () => {
   const [events, setEvents] = useState();
@@ -17,9 +18,11 @@ const Events = () => {
   }, []);
 
   if (!events) {
-    return <div>Loading...</div>;
+    return <Spinner>
+    <FontAwesome.FaSpinner />
+  </Spinner>;
   }
-  console.log(events);
+  // console.log(events);
   return (
     <Wrapper>
       {events.map((event) => {
@@ -50,6 +53,7 @@ const EventContainer = styled.div`
   background-color: var(--color-lightGrey);
   padding: 20px;
   border-radius: 5px;
+  margin-bottom: 30px;
   `;
 const EventInfo=styled.div`
 display: flex;
@@ -64,4 +68,20 @@ const Image= styled.img`
  const Text=styled.div`
  padding: 10px;
  `
+ const Spin = keyframes`
+ from {transform: rotate(0deg);}
+ to {transform: rotate(360deg);}
+ `;
+ 
+ const Spinner = styled.span`
+   font-size: 2rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   animation: ${Spin} 1s infinite;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translateX(-50%);
+ `;
 export default Events;

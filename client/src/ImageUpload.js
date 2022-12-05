@@ -34,9 +34,7 @@ const [images, setImages]=useState([])
     );
     myWidget.open();
   };
-//   if (isLoading) {
-//     return <div>Loading ...</div>;
-//   }
+
   return (
     <div>
       <Container>

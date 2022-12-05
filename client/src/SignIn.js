@@ -36,7 +36,8 @@ const SignIn = ({
 
     return ( 
         <Wrapper>
-            <SignInTitle>Sign in as either User or Designer</SignInTitle>
+          <Container>
+            <SignInTitle>Sign in as either a general user or designer</SignInTitle>
             <Login>
             <User onSubmit={userHandleSubmit}>
                 <div>User</div>
@@ -79,6 +80,7 @@ const SignIn = ({
             <Button onSubmit>Sign In</Button>
             </Designer>
             </Login>
+            </Container>
         </Wrapper>
      );
 }
@@ -96,8 +98,15 @@ const Wrapper = styled.div`
     height: 100vh;
   height: 100vh;
 `;
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+margin-top: 10%;
+`
 const SignInTitle =styled.div`
-margin-bottom: 40px;;
+margin-bottom: 40px;
+display: flex;
+justify-content: center;
 `
 const Login= styled.div`
     display: flex;
@@ -118,11 +127,20 @@ margin-top: 15px 0;
 `;
 
 const Button = styled.button`
-cursor: pointer;
-border: none;
-background-color: var(--color-darkGrey);
-&:hover {
-    color: var(--color-grey);
-}
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  padding: 0 0 1px 0px;
+  line-height: 1;
+  margin-left: 20px;
+  color: var(--color-darkGrey);
+  width: fit-content;
+  margin-top: 30px;
+  &:hover {
+    border-bottom: 1px solid var(--color-darkGrey);
+    padding: 0;
+  }
 `
+
 export default SignIn;

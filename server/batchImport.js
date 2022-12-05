@@ -21,7 +21,8 @@ try{
     console.log("database connected!");
 
     console.log(`designers: ${designers.length} items to be inserted to database`);
-    console.log(`users: ${users.length} items to be inserted to database`);
+    
+    (`users: ${users.length} items to be inserted to database`);
     console.log(`events: ${events.length} items to be inserted to database`);
     const designersInsert = await db.collection("designers").insertMany(designers);
     const usersInsert = await db.collection("users").insertMany(users);

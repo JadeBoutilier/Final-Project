@@ -20,7 +20,7 @@ export const GoogleMapsProvider = ({children}) => {
     const [distance, setDistance]=useState("")
     const [duration, setDuration]=useState("")
 
-    const center = { lat: 45.5019, lng: -73.5674};
+    const center = { lat: 45.530040, lng: -73.590745};
 
     return ( 
         <GoogleMapsContext.Provider value={{map, setMap, center, isLoaded, directionsResponse, setDirectionsResponse, distance, setDistance, duration, setDuration}}>

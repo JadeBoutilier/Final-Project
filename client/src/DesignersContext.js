@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import * as FontAwesome from "react-icons/fa";
 
 export const DesignersContext = createContext();
 
@@ -22,7 +24,9 @@ export const DesignersProvider = ({ children }) => {
   }, []);
 
   if (!designers) {
-    return <div>Loading...</div>;
+    return <Spinner>
+    <FontAwesome.FaSpinner />
+  </Spinner>;
   }
 //   console.log(designers)
     return (
@@ -31,3 +35,19 @@ export const DesignersProvider = ({ children }) => {
         </DesignersContext.Provider>
     )
 }
+const Spin = keyframes`
+from {transform: rotate(0deg);}
+to {transform: rotate(360deg);}
+`;
+
+const Spinner = styled.span`
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${Spin} 1s infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+`;

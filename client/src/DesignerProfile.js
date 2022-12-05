@@ -1,16 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FaHeart } from "react-icons/fa";
 import GoogleMaps from "./GoogleMaps";
 import { SignInContext } from "./SignInContext";
+import Events from "./Events";
+import * as FontAwesome from "react-icons/fa";
 
 const DesignerProfile = () => {
   const id = useParams().id;
 
   const [designer, setDesigner] = useState();
-  const [isActive, setIsActive] = useState(false); 
-  const {userSignedIn}=useContext(SignInContext)
+  const [isActive, setIsActive] = useState(false);
+  const { userSignedIn } = useContext(SignInContext);
 
   const handleClick = () => {
     setIsActive((current) => !current);
@@ -31,9 +33,13 @@ const DesignerProfile = () => {
   }, [id]);
 
   if (!designer) {
-    return <div>Loading...</div>;
+    return (
+      <Spinner>
+        <FontAwesome.FaSpinner />
+      </Spinner>
+    );
   }
-  // console.log(designer);
+  console.log("events", designer.events);
   return (
     <Wrapper>
       <BrandNameSection>
@@ -49,39 +55,31 @@ const DesignerProfile = () => {
           alt="Designer promotion material"
         />
         <HeartDiv id="heartdiv">
-        {userSignedIn &&
-          userSignedIn?.Favourites.map(favourite=> favourite) === designer.brand ? (
-          <FavouriteButton
-          onClick={handleClick}
-          style={{
-            color: isActive
-              ? "var(--color-lightGrey)"
-              : "var(--color-darkGrey)"
-          }}
-        >
-          <FaHeart />
-        </FavouriteButton>
-                ) : (
-          <FavouriteButton
-          onClick={handleClick}
-          style={{
-            color: isActive
-              ? "var(--color-lightGrey)"
-              : "var(--color-darkGrey)"
-          }}
-        >
-          <FaHeart />
-        </FavouriteButton> )}
-          {/* <FavouriteButton
-            onClick={handleClick}
-            style={{
-              color: isActive
-                ? "var(--color-lightGrey)"
-                : "var(--color-darkGrey)"
-            }}
-          >
-            <FaHeart />
-          </FavouriteButton> */}
+          {userSignedIn &&
+          userSignedIn?.Favourites?.map((favourite) => favourite) ===
+            designer.brand ? (
+            <FavouriteButton
+              onClick={handleClick}
+              style={{
+                color: isActive
+                  ? "var(--color-lightGrey)"
+                  : "var(--color-darkGrey)",
+              }}
+            >
+              <FaHeart />
+            </FavouriteButton>
+          ) : (
+            <FavouriteButton
+              onClick={handleClick}
+              style={{
+                color: isActive
+                  ? "var(--color-lightGrey)"
+                  : "var(--color-darkGrey)",
+              }}
+            >
+              <FaHeart />
+            </FavouriteButton>
+          )}
           <NameTagLine id="NameTagLine">
             <TagLine>{designer.tagLine}</TagLine>
             <About1>{designer.aboutSection1}</About1>
@@ -130,7 +128,7 @@ const DesignerProfile = () => {
         <BoutiqueData>
           <Header>
             <div>Boutique</div>
-            <Underline></Underline>
+            <Underline30></Underline30>
           </Header>
           <AboutBoutique>
             <BoutiquePic src={designer.boutiquePic} alt="Designer boutique" />
@@ -138,7 +136,7 @@ const DesignerProfile = () => {
               <Info>
                 <SmallHeader>Open for walk-ins:</SmallHeader>
                 <Italic>
-                  {designer.openingHours.map((dayTime, index) => {
+                  {designer?.openingHours?.map((dayTime, index) => {
                     return <TimeOptions key={index}>{dayTime}</TimeOptions>;
                   })}
                 </Italic>
@@ -147,7 +145,7 @@ const DesignerProfile = () => {
               <Info>
                 <SmallHeader>Services:</SmallHeader>
                 <Italic>
-                  {designer.services.map((service, index) => {
+                  {designer?.services?.map((service, index) => {
                     return <Options key={index}>{service}</Options>;
                   })}
                 </Italic>
@@ -156,7 +154,7 @@ const DesignerProfile = () => {
               <Info>
                 <SmallHeader>Studio Mates:</SmallHeader>
                 <Italic>
-                  {designer.sharesStudioWith.map((studioMate, index) => {
+                  {designer?.sharesStudioWith?.map((studioMate, index) => {
                     return <Options key={index}>{studioMate}</Options>;
                   })}
                 </Italic>
@@ -167,7 +165,7 @@ const DesignerProfile = () => {
                   <Logo src={designer.logo} alt="Designer Logo" />
                 </LogoSection>
                 <Google>
-                  <GoogleMaps lat={designer.latt} lng={designer.longt}/>
+                  <GoogleMaps lat={designer.latt} lng={designer.longt} />
                 </Google>
                 <Italic> {designer.address}</Italic>
                 <Italic>
@@ -184,6 +182,9 @@ const DesignerProfile = () => {
         src={designer.brandPic1}
         alt="Designer promotion material"
       />
+      <Header>Upcoming Events</Header>
+      <Underline30></Underline30>
+      <Events />
     </Wrapper>
   );
 };
@@ -194,7 +195,7 @@ const Wrapper = styled.div`
   background-color: var(--color-grey);
   color: var(--color-darkGrey);
   font-family: var(--font);
-  padding: 5%;
+  padding: 0 5% 5% 5%;
 `;
 const BrandNameSection = styled.div`
   display: flex;
@@ -216,7 +217,6 @@ const Category = styled.div`
 `;
 const BrandIntro = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-around;
 `;
 const NameTagLine = styled.div`
@@ -242,7 +242,7 @@ const About1 = styled.div`
 `;
 const AboutBrand = styled.div`
   display: flex;
-  justify-content: space-around; //************************* */
+  justify-content: space-around;
 `;
 const ContactBrand = styled.div`
   display: flex;
@@ -252,7 +252,7 @@ const ContactBrand = styled.div`
 const HeaderInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%; //**************** */
+  width: 100%;
 `;
 const About2 = styled.div`
   font-size: 1.2rem;
@@ -273,6 +273,13 @@ const Underline = styled.div`
   width: 100%;
   border-bottom: 1px solid var(--color-darkGrey);
   margin: 5px 0;
+`;
+const Underline30 = styled.div`
+  font-family: var(--font);
+  width: 100%;
+  border-bottom: 1px solid var(--color-darkGrey);
+  margin: 5px 0;
+  margin-bottom: 30px;
 `;
 const DesignerData = styled.div`
   display: flex;
@@ -366,11 +373,9 @@ const FavouriteButton = styled.button`
   border: none;
   background-color: var(--color-grey);
   color: var(--color-lightGrey);
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: right;
-  position: absolute;
-  top: 220px;
-  right: 65px;
+margin-bottom: 40px;
 
   &:hover {
     color: 1px solid var(--color-darkGrey);
@@ -380,6 +385,22 @@ const HeartDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+`;
+const Spin = keyframes`
+from {transform: rotate(0deg);}
+to {transform: rotate(360deg);}
+`;
+
+const Spinner = styled.span`
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${Spin} 1s infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
 `;
 export default DesignerProfile;
 

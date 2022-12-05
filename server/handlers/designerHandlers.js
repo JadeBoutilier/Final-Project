@@ -99,7 +99,7 @@ const addDesigner = async (req, res) => {
     const db = client.db("FinalProject");
 
     const results = await db.collection("designers").insertOne(designer);
-    console.log(results);
+    // console.log(results);
     results.acknowledged
       ? sendResponse(
           res,

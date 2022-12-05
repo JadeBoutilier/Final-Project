@@ -1,7 +1,8 @@
 import {Autocomplete} from "@react-google-maps/api";
 import { useContext, useRef } from "react";
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import * as FontAwesome from "react-icons/fa";
 import { GoogleMapsContext } from "./GoogleMapsContext";
 
 const GoogleMapCalculator = () => {
@@ -38,62 +39,120 @@ const resetRoute = () => {
 }
 
 if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <Spinner>
+    <FontAwesome.FaSpinner />
+  </Spinner>;
   }
     return ( 
         <Box>
-            <Inputs>
+          <Container1 id="container1">
             <Autocomplete>
-            <Input type="text" placeholder="origin" ref={originRef}/>
+            <Input id="input" type="text" placeholder="Origin" ref={originRef}/>
             </Autocomplete>
-            <Autocomplete>
-            <Input type="text" placeholder="destination" ref={destinationRef}/>
-            </Autocomplete>
-            <CalcButton type="submit" onClick={calculateRoute}>Calc</CalcButton>
-            <Button onClick={resetRoute}>Recenter</Button>
-            </Inputs>
-            <Results>
             <Result>Distance: {distance}</Result>
-            <Result>Duration: {duration}</Result>
+            </Container1>
+            <Container2>
+            <Autocomplete>
+            <Input id="input" type="text" placeholder="Destination" ref={destinationRef}/>
+            </Autocomplete>
+            <Result>Duration (driving): {duration}</Result>
+            </Container2>
+            <Container3>
+            <CalcButton type="submit" onClick={calculateRoute}>Calculate Route</CalcButton>
+            <ResetButton onClick={resetRoute}>Reset Route</ResetButton>
+            </Container3>
             {/* PAN TO SET TO MONTREAL  */}
-            <Button type="submit" onClick={()=> map.panTo(center)}>Reset</Button>
-            </Results>
-
+            {/* <Button type="submit" onClick={()=> map.panTo(center)}>Recenter Map</Button> */}
         </Box>
      );
 }
  
 const Box=styled.div`
 display:flex;
-flex-direction: column;
 padding: 20px;
-border: solid 1px black;
 width: 100%;
 `
-const Inputs=styled.div`
+const Container1 = styled.div`
 display: flex;
-justify-content: space-between;
+flex-direction: column;
 `
-const Results=styled.div`
+const Container2=styled.div`
 display: flex;
-justify-content: space-between;
+flex-direction: column;
+`
+const Container3=styled.div`
+display: flex;
+margin-top: 5px;
+flex-direction: column;
 `
 const Result=styled.div`
 display:flex;
+width: 30vw;
+margin-left: 10px;
 `
 const CalcButton =styled.button`
-font-size: 1rem;
-height: 23px;
-padding: 0;
-color: black;
+   cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  padding: 0 0 1px 0px;
+  margin-left: 20px;
+  line-height: 1;
+  color: var(--color-darkGrey);
+  margin-bottom: 17px;
+  text-align: end;
+  &:hover {
+    border-bottom: 1px solid var(--color-darkGrey);
+    padding: 0 
+
+  }
 `
-const Button=styled.button`
-font-size: 1rem;
-height: 23px;
-padding: 0;
-color: black;
+const ResetButton=styled.button`
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  padding: 0 0 1px 0px;
+  line-height: 1;
+  margin-left: 20px;
+  color: var(--color-darkGrey);
+  width: fit-content;
+  &:hover {
+    border-bottom: 1px solid var(--color-darkGrey);
+    padding: 0;
+
+  }
 `
 const Input=styled.input`
-width:200px;
+width: 30vw;
+  height: 1.5rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  padding-left: 10px;
+  background-color: var(--color-lightGrey);
+  color: var(--color-darkGrey);
+  margin-right: 10px;
+  margin-bottom: 15px;
+
+  &:focus {
+    outline: none !important;
+  }
 `
+const Spin = keyframes`
+from {transform: rotate(0deg);}
+to {transform: rotate(360deg);}
+`;
+
+const Spinner = styled.span`
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${Spin} 1s infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+`;
 export default GoogleMapCalculator;

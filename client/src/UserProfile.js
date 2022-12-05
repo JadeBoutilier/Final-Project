@@ -2,26 +2,27 @@ import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { DesignersContext } from "./DesignersContext";
 import { SignInContext } from "./SignInContext";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [toggle, setToggle] = useState(false);
+  const navigate = useNavigate();
   // const id = useParams().id;
   const { userSignedIn } = useContext(SignInContext);
-  const {designers} =useContext(DesignersContext)
-  // const [favouriteBrands, setFavouriteBrands] = useState()
-  
-  //Two options to find favourites. ... not sure which method.
-  
-  const designer = designers.map((designer)=> {
-    return designer})
+  const { designers } = useContext(DesignersContext);
+  const [userFavourites, setUserfavourites] = useState(null);
+  // const [userProfileData, setuserProfileData] = useState(userSignedIn);
 
-    const designerBrand = designer.map((attribute)=> {
-      return attribute.brand
-    })
-    
-    console.log("DESIGNER", designerBrand)
-  if (!userSignedIn) {
-    return <div>Loading...</div>;
+  const array = userSignedIn.favourites;
+
+  const individualDesigner = designers.map((designer) => {
+    return designer;
+  });
+
+  // console.log("FAVOURITE", favouriteBrands)
+
+  if (!userSignedIn || userFavourites) {
+    return;
   }
   return (
     <Wrapper>
@@ -33,45 +34,29 @@ const UserProfile = () => {
           <Button onClick={() => setToggle(!toggle)}>Account Info</Button>
         </UserInfo>
       </Title>
-            <Underline></Underline>
-            {toggle === true ? (
-            <InfoSection>
-              <Info>Name: {userSignedIn.firstName}</Info>
-              <Info>Last Name: {userSignedIn.lastName}</Info>
-              <Info>Email: {userSignedIn.userEmail}</Info>
-            </InfoSection>
-          ) : (
-            ""
-            )}
-{userSignedIn &&
-          userSignedIn?.favourites.includes(designerBrand) ?
-          (<div>{designer.brand}</div>): ("")
-            
-
-           }
-
-
-{/* {userSignedIn &&
-          userSignedIn?.favourites.map((favourite)=> {
-            if (favourite === designerBrand){
-              console.log("RETURN", favourite)
-            return <div>{designer.brand}</div>
-            }})} */}
-      {/* <Info>City: {userSignedIn.address}</Info> */}
-      {/* <Info>{userSignedIn.postalCode}</Info> */}
-
-      {/* {designers.forEach((designer)=> {
-        if (designer === userSignedIn.favourites.map((favourite, index) => { 
-          return favourite})){
-          return (
-            <div>
-            <img src={designer.brandPic2} alt="Brand promotional material"/>
-            <div>{designer.brand}</div>
-            </div>
-          )
-        }
-      })} */}
-     
+      <Underline></Underline>
+      {toggle === true ? (
+        <InfoSection>
+          <Info>Name: {userSignedIn.firstName}</Info>
+          <Info>Last Name: {userSignedIn.lastName}</Info>
+          <Info>Email: {userSignedIn.userEmail}</Info>
+        </InfoSection>
+      ) : (
+        ""
+      )}
+      <Container>
+        {individualDesigner?.map((x) => {
+          if (array?.includes(x._id)) {
+            return (
+              <BrandContainer key={x._id} onClick={() => navigate(`/designer/${x._id}`)}>
+                <Image src={x.brandPic2} alt="brand promotion" />
+                <div>{x.brand}</div>
+              </BrandContainer>
+            );
+          }
+        })}
+      </Container>
+      {/* <div>HELLO</div> */}
     </Wrapper>
   );
 };
@@ -83,14 +68,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-family: var(--font);
+  height: 100vh;
 `;
-const Title=styled.div`
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-margin-top: 30px;
-
-`
+const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 30px;
+`;
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -128,5 +113,23 @@ const Underline = styled.div`
   border-bottom: 1px solid var(--color-darkGrey);
   margin-bottom: 30px;
 `;
-
+const Container = styled.div`
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+const BrandContainer = styled.div`
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+`;
+const Image = styled.img`
+  height: 13rem;
+  object-fit: cover;
+`;
 export default UserProfile;

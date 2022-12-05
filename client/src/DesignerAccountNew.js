@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import * as FontAwesome from "react-icons/fa";
 import GoogleMaps from "./GoogleMaps";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload";
@@ -17,8 +18,8 @@ const DesignerProfile = () => {
 
   const handleChange = (key, value) => {
     const {[key]: _, ...rest} = designer      //designer object gets put into rest variable - except for key
-console.log(rest)
-console.log(key)
+// console.log(rest)
+// console.log(key)
     setDesigner({
       ...rest,
       [key]: value,
@@ -65,7 +66,9 @@ console.log(key)
    
 
   if (designer === null) {
-    return <div>Loading...</div>;
+    return <Spinner>
+    <FontAwesome.FaSpinner />
+  </Spinner>;
   }
   return (
     <Wrapper onSubmit={(e) => formSubmit(e)}>
@@ -90,8 +93,8 @@ console.log(key)
       </PhotoInsert>
         <NameTagLine id="NameTagLine">
         <TagLine id="tagLine"  name="tagLine" wrap="hard" defaultValue={designer.tagLine} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-          {/* <About1 id="about1" name="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1> */}
-          <About1 id="aboutSection1" type="text" placeholder={designer.aboutSection1} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+          <About1 id="about1" name="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1>
+          {/* <About1 id="aboutSection1" type="text" placeholder={designer.aboutSection1} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/> */}
         </NameTagLine>
       </BrandIntro>
       <AboutSection>
@@ -138,7 +141,7 @@ console.log(key)
               <Info>
                 <SmallHeader>Open for walk-ins:</SmallHeader>
                 <Italic>
-                  {designer.openingHours.map((dayTime, index) => {
+                  {designer?.openingHours?.map((dayTime, index) => {
                     return <TimeOptions key={index} id="openingHours" type="text" placeholder={dayTime} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
@@ -148,8 +151,8 @@ console.log(key)
               <Info>
                 <SmallHeader>Services:</SmallHeader>
                 <Italic>
-                  {designer.services.map((service, index) => {
-                    return <Options key={index}id="services" type="text" placeholder={service} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
+                  {designer?.services?.map((service, index) => {
+                    return <Options key={index} id="services" type="text" placeholder={service} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
                 </Italic>
@@ -158,7 +161,7 @@ console.log(key)
               <Info>
                 <SmallHeader>Studio Mates:</SmallHeader>
                 <Italic>
-                  {designer.sharesStudioWith.map((studioMate, index) => {
+                  {designer?.sharesStudioWith?.map((studioMate, index) => {
                     return <Options key={index} id="sharesStudioWith" type="text" placeholder={studioMate} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
                   })}
                   <Button>Add</Button>
@@ -264,7 +267,7 @@ const AboutSection = styled.div`
   flex-direction: column;
   margin-top: 3rem;
 `;
-const About1 = styled.input`
+const About1 = styled.textarea`
   font-size: 1.2rem;
   text-align: right;
   width: 100%;
@@ -310,10 +313,7 @@ const About2 = styled.textarea`
   background-color: var(--color-lightGrey);
   border-radius: 5px;
 `;
-const Portrait = styled.img`
-  max-height: 16rem;
-  margin: 0 15px 0 30px;
-`;
+
 const Input = styled.input`
   font-style: italic;
   font-size: 1rem;
@@ -367,10 +367,6 @@ const Contact = styled.div`
   margin-top: 20px;
   align-items: center;
 `;
-const ExternalLink = styled.a`
-  text-decoration: none;
-  color: var(--color-darkGrey);
-`;
 const AboutBoutique = styled.div`
   display: flex;
   justify-content: space-around;
@@ -404,17 +400,6 @@ const Google = styled.div`
   width: 350px;
   overflow: hidden;
 `;
-const BoutiquePic = styled.img`
-  width: 40%;
-  object-fit: contain;
-`;
-const HorizontalPic = styled.img`
-  width: 100%;
-  margin: 30px 0;
-`;
-const VerticalPic = styled.img`
-  width: 40%;
-`;
 const Location = styled.div`
   margin-top: 15px;
   display: flex;
@@ -425,10 +410,6 @@ const LogoSection = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 9px;
-`;
-const Logo = styled.img`
-  max-width: 20%;
-  display: flex;
 `;
 const Header = styled.div`
   font-family: var(--font-headers);
@@ -484,16 +465,6 @@ margin-left: 5px;
 padding:10px 20px;
 cursor: pointer;
 `
-const Reset =styled.div`
-font-size: 1rem;
-font-family: var(--font);
-background-color: var(--color-darkGrey);
-border: none;
-border-radius: 4px;
-margin-left: 5px;
-padding:10px 20px;
-cursor: pointer;
-`
 const SubmitReset=styled.div`
 display: flex;
 padding: 0 150px;
@@ -512,6 +483,22 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
+const Spin = keyframes`
+from {transform: rotate(0deg);}
+to {transform: rotate(360deg);}
+`;
+
+const Spinner = styled.span`
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${Spin} 2s infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+`;
 export default DesignerProfile;
 
     // "openingHours": [{"Day":[ {"Thursday": "Thursday"}]}, [{"11 am": "11 am"}, {"7 pm": "7 pm"}]],

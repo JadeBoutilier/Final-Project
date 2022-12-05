@@ -1,9 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import GoogleMapsHome from "./GoogleMapsHome";
 import GoogleMapsCalculator from "./GoogleMapsCalculator";
-import styled from "styled-components";
-// import Ticker from 'react-ticker'
-import Veri from "./assets/Veri.png";
+import styled, { keyframes } from "styled-components";
+import * as FontAwesome from "react-icons/fa";
 import Events from "./Events";
 import { useContext, useEffect, useRef, useState } from "react";
 import { DesignersContext } from "./DesignersContext";
@@ -37,7 +36,13 @@ getNewDesigner()
   const handleClick2= () => {
     navigate(`/designer/${randomDesigner?._id}`)
   }
-
+if (!designers || !randomDesigner){
+  return(
+    <Spinner>
+    <FontAwesome.FaSpinner />
+  </Spinner>
+  )
+}
   // console.log(randomDesigner)
   return (
     <Wrapper>
@@ -57,7 +62,7 @@ getNewDesigner()
         <Title3>{randomDesigner?.brand}</Title3>
         <ImageButton onClick={handleClick2}><Image src={randomDesigner?.brandPic1} alt="Featured brand"/></ImageButton>
       </FeaturedDesigner>
-      <MapTitle>Find Local Brands</MapTitle>
+      <MapTitle>Find Local Montreal Brands</MapTitle>
       <Underline></Underline>
         <GoogleMapBox>
           {/* <Ticker tickerStyle={{width: "100%"}} >
@@ -212,4 +217,20 @@ const RouteButton = styled.button`
    background-color: transparent;
    cursor: pointer;
    `
+   const Spin = keyframes`
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg);}
+   `;
+   
+   const Spinner = styled.span`
+     font-size: 2rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     animation: ${Spin} 1s infinite;
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform: translateX(-50%);
+   `;
 export default Home;

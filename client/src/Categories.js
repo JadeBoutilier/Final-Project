@@ -5,16 +5,8 @@ import { DesignersContext } from "./DesignersContext";
 
 const Categories = () => {
 const {designers} =useContext(DesignersContext) 
-const navigate = useNavigate
+const navigate = useNavigate()
 
-//how to match ref to button? 
-let ref = useRef([createRef(), createRef()]);
-
-const handleClick = (i) => {
-  // console.log("hiii")
-  // console.log("hi", ref?.current)
-  ref.current[0].focus();
-};
 
   // Finding all designer categories
   const designerCategories = designers.map((designer) => {
@@ -24,7 +16,7 @@ const handleClick = (i) => {
   // Created new set designer categories- filtering out duplicates
   const newDesignerCategorySet = new Set(designerCategories);
   const newDesignerCategoryArray = [...newDesignerCategorySet];
-  console.log(newDesignerCategoryArray)
+  // console.log(newDesignerCategoryArray)
 
   
 
@@ -34,21 +26,19 @@ if(!designers){
 // console.log(designers)
 return (
   <Wrapper>
-    <CategoryList>
-    {newDesignerCategoryArray.map((designerCategory, index)=> {
-    return <Button key={index} onClick={handleClick}>{designerCategory}</Button>
-    })}
-    </CategoryList>
+  <Header>Categories</Header>
+  <Underline></Underline>
     <CategoryHeaders>
     {newDesignerCategoryArray.map((designerCategory, index)=> {
     return (<Category key={index}>
-      <Title ref={ref.current[index]}>{designerCategory}</Title>
 
       {designers.map((designer) => {
         if (designer.category === designerCategory){
-          return <Image key={designer._id} src={designer.brandPic1} alt="brand"/>
+          return <Image key={designer._id} onClick={() => navigate(`/designer/${designer._id}`)} src={designer.brandPic2} alt="brand"/>
         }
       })}
+      <Title >{designerCategory}</Title>
+      <Underline></Underline>
       
     </Category>
     )})}
@@ -56,17 +46,19 @@ return (
     </CategoryHeaders>
 
 
-  </Wrapper>);
+  </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
   background-color: var(--color-grey);
   color: var(--color-darkGrey);
   font-family: var(--font);
+  padding: 0 5% 5% 5%;
 `;
-const CategoryList =styled.div`
-display: flex;
-justify-content: space-evenly;
+const Header =styled.div`
+font-family: var(--font-headers);
+font-size: 3rem;
 `
 const Button= styled.button`
 cursor: pointer;
@@ -91,8 +83,21 @@ flex-direction: column;
 const Category=styled.div`
 `
 const Title=styled.div`
+font-family: var(--font-headers);
+font-size: 2rem;
 `
-const Image =styled.img`
-width: 40%;
-`
+const Image = styled.img`
+  height: 13rem;
+  object-fit: cover;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+`;
+const Underline = styled.div`
+  font-family: var(--font);
+  width: 100%;
+  border-bottom: 1px solid var(--color-darkGrey);
+  margin: 5px 0;
+  margin-bottom: 20px;
+`;
 export default Categories;

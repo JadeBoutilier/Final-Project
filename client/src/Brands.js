@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { useContext } from "react";
 import { DesignersContext } from "./DesignersContext";
+import styled, { keyframes } from "styled-components";
+import * as FontAwesome from "react-icons/fa";
 
 const Brands = () => {
   const { designers } = useContext(DesignersContext);
   const navigate = useNavigate();
 
   if (!designers) {
-    return <div>Loading...</div>;
+    return   <Spinner>
+    <FontAwesome.FaSpinner />
+  </Spinner>;
   }
   // console.log(designers)
   return (
@@ -39,7 +42,7 @@ const Wrapper = styled.div`
   color: var(--color-darkGrey);
   font-family: var(--font);
   height: 100vh;
-  padding: 20px;
+  padding: 0 5% 5% 5%;
 `;
 const Underline = styled.div`
   font-family: var(--font);
@@ -75,5 +78,22 @@ padding-left: 30px;
 const BrandName = styled.div`
   font-size: 1rem;
   padding-top: 5px;
+`;
+
+const Spin = keyframes`
+from {transform: rotate(0deg);}
+to {transform: rotate(360deg);}
+`;
+
+const Spinner = styled.span`
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${Spin} 1s infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
 `;
 export default Brands;

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import { SignInContext } from "./SignInContext";
@@ -34,7 +34,7 @@ const Header = ({
   return (
     <Wrapper>
       <NavigationLink to="/" end>
-        LOGO
+        LOCAL
       </NavigationLink>
       <SearchBar />
       <SignInWrapper>
