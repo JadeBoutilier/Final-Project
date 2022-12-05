@@ -131,6 +131,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
   &:hover {
     padding: 0 10px 0 10px;
   }

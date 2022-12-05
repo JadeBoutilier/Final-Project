@@ -1,5 +1,10 @@
-import { GoogleMap, MarkerF, DirectionsRenderer, InfoWindow} from "@react-google-maps/api";
-import { useContext, useState} from "react";
+import {
+  GoogleMap,
+  MarkerF,
+  DirectionsRenderer,
+  InfoWindow,
+} from "@react-google-maps/api";
+import { useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import * as FontAwesome from "react-icons/fa";
 import { GoogleMapsContext } from "./GoogleMapsContext";
@@ -7,55 +12,78 @@ import { DesignersContext } from "./DesignersContext";
 import mapStyle from "./MapStyle";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 const GoogleMaps = () => {
-
-  const {setMap, center, isLoaded, directionsResponse} =useContext(GoogleMapsContext)
-  const {designers} =useContext(DesignersContext)
-  const [selectedMarker, setSelectedMarker] =useState(null)
-  const navigate= useNavigate()
-
+  const { setMap, center, isLoaded, directionsResponse } =
+    useContext(GoogleMapsContext);
+  const { designers } = useContext(DesignersContext);
+  const [selectedMarker, setSelectedMarker] = useState(null);
+  const navigate = useNavigate();
 
   if (!isLoaded) {
-    return   <Spinner>
-    <FontAwesome.FaSpinner />
-  </Spinner>
+    return (
+      <Spinner>
+        <FontAwesome.FaSpinner />
+      </Spinner>
+    );
   }
   return (
     <Map>
-      <GoogleMap 
+      <GoogleMap
         center={center}
         zoom={15}
-        mapContainerStyle={{height: "60vh", width: "100vw"}}
+        mapContainerStyle={{ height: "60vh", width: "100vw" }}
         options={{
           mapTypeControl: false,
           fullscreenControl: false,
           zoomControl: true,
           streetViewControl: false,
-          styles: mapStyle
+          styles: mapStyle,
         }}
-        onLoad={map => setMap(map)}
+        onLoad={(map) => setMap(map)}
       >
-        {designers.map((designer)=> {
-          const position= {lat: parseFloat(designer.latt), lng: parseFloat(designer.longt)}
+        {designers.map((designer) => {
+          const position = {
+            lat: parseFloat(designer.latt),
+            lng: parseFloat(designer.longt),
+          };
           // console.log(designer)
-          return (<>
-          <MarkerF position={position} onClick={()=>{setSelectedMarker(designer)}} />
-          {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
-          </>
-          )
+          return (
+            <>
+              <MarkerF
+                position={position}
+                onClick={() => {
+                  setSelectedMarker(designer);
+                }}
+              />
+              {directionsResponse && (
+                <DirectionsRenderer directions={directionsResponse} />
+              )}
+            </>
+          );
         })}
-   {selectedMarker && (
-    <InfoWindow position={{lat: parseFloat(selectedMarker.latt), lng: parseFloat(selectedMarker.longt)}} onCloseClick={()=>{setSelectedMarker(null)}}>
-      <>
-      <Header onClick={()=>{navigate(`/designer/${selectedMarker._id}`)}}>{selectedMarker.brand}</Header>
-      <div>{selectedMarker.tagLine}</div>
-      <Address>{selectedMarker.address}</Address>
-      </>
-    </InfoWindow>
-   )}
+        {selectedMarker && (
+          <InfoWindow
+            position={{
+              lat: parseFloat(selectedMarker.latt),
+              lng: parseFloat(selectedMarker.longt),
+            }}
+            onCloseClick={() => {
+              setSelectedMarker(null);
+            }}
+          >
+            <>
+              <Header
+                onClick={() => {
+                  navigate(`/designer/${selectedMarker._id}`);
+                }}
+              >
+                {selectedMarker.brand}
+              </Header>
+              <div>{selectedMarker.tagLine}</div>
+              <Address>{selectedMarker.address}</Address>
+            </>
+          </InfoWindow>
+        )}
 
         {/* WILL NEED TO GENERATE MARKER POSITIONS */}
       </GoogleMap>
@@ -63,10 +91,10 @@ const GoogleMaps = () => {
   );
 };
 const Map = styled.div`
-font-family: var(--font);
+  font-family: var(--font);
 `;
-const Header =styled.button`
-font-weight: bold;
+const Header = styled.button`
+  font-weight: bold;
   text-align: center;
   color: var(--color-dark-grey);
   cursor: pointer;
@@ -75,12 +103,11 @@ font-weight: bold;
   font-size: 1rem;
   padding: 0 0 1px 0px;
   width: fit-content;
-  margin-top: 30px;
   &:hover {
     border-bottom: 1px solid var(--color-darkGrey);
     padding: 0;
   }
-`
+`;
 const Spin = keyframes`
 from {transform: rotate(0deg);}
 to {transform: rotate(360deg);}
@@ -99,6 +126,6 @@ const Spinner = styled.span`
 `;
 
 const Address = styled.div`
-font-style: italic;
-`
+  font-style: italic;
+`;
 export default GoogleMaps;

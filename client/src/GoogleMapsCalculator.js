@@ -7,7 +7,7 @@ import { GoogleMapsContext } from "./GoogleMapsContext";
 
 const GoogleMapCalculator = () => {
 
-const {isLoaded, setDirectionsResponse, distance, setDistance, duration, setDuration} =useContext(GoogleMapsContext)
+const {center, setMap, isLoaded, setDirectionsResponse, distance, setDistance, duration, setDuration} =useContext(GoogleMapsContext)
 
 const originRef = useRef()
 const destinationRef = useRef()
@@ -36,6 +36,7 @@ const resetRoute = () => {
   setDuration("")
   originRef.current.value = ""
   setDuration.current.value=""
+  setMap(center)
 }
 
 if (!isLoaded) {

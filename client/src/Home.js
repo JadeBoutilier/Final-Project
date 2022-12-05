@@ -126,8 +126,10 @@ const NavigationLink = styled(NavLink)`
   }
 `;
 const Image = styled.img`
-  width: 100%;
+width: 100%;
   margin-bottom: 30px;
+  object-fit: cover;
+  cursor: pointer;
   `;
 const FeaturedDesigner = styled.div`
   position: relative;
@@ -153,9 +155,9 @@ const Title2 = styled.div`
   z-index: 1;
   `;
 const Title3 = styled.div`
-  position: absolute;
-    bottom: 74px;
-    right: 32px;
+     position: absolute;
+    top: 217px;
+    left: 27px;
     font-size: 1.7rem;
     font-family: var(--font-headers);
     z-index: 1;

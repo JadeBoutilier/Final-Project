@@ -80,8 +80,10 @@ const NavigationLink = styled(NavLink)`
   color: var(--color-darkGrey);
   font-size: 1.5rem;
   margin: 4px;
+  cursor: pointer;
   &:hover {
     border-bottom: 1px solid var(--color-darkGrey);
+    cursor: pointer;
   }
 
   &.active {
@@ -98,10 +100,12 @@ const SignInNavigationLink = styled(NavLink)`
   font-size: 1.1rem;
   padding: 0;
   margin-bottom: 14px;
+  cursor: pointer;
   &:hover {
     border-bottom: 1px solid var(--color-darkGrey);
     margin-bottom: 13px;
-    padding: 0;
+    padding: 0; 
+     cursor: pointer;
   }
 
   &.active {
