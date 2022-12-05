@@ -11,6 +11,7 @@ const DesignerProfile = () => {
   const id = useParams().id;
 
   const [designer, setDesigner] = useState(null);
+  const [images, setImages] = useState([]) //brandpic2
 
   const handleChange = (key, value) => {
     const { [key]: _, ...rest } = designer; //designer object gets put into rest variable - except for key
@@ -44,8 +45,8 @@ const DesignerProfile = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(designer),
-      // brandPic1: images[0].url.url)
+      body: JSON.stringify({...designer, brandPic2: images[0].url.url}),
+
     })
       .then((res) => res.json())
       .then((data) => {
@@ -91,7 +92,7 @@ const DesignerProfile = () => {
       </BrandNameSection>
       <BrandIntro>
         <PhotoInsert>
-          <ImageUpload />
+          <ImageUpload images={images} setImages={setImages}/>
         </PhotoInsert>
         <NameTagLine id="NameTagLine">
           <TagLine

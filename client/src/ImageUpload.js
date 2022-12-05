@@ -1,8 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const ImageUpload = () => {
-  const [images, setImages] = useState([]);
+const ImageUpload = ({images, setImages}) => {
   const [imagesToRemove, setImagesToRemove] = useState(null);
 
   const handleRemoveImg = (imgObj) => {
@@ -33,11 +32,13 @@ const ImageUpload = () => {
     myWidget.open();
   };
 
+console.log(images)
   return (
+    
     <div>
       <Container>
         <div className="images-preview-container">
-          {images.map((image) => {
+          { images && images.map((image) => {
             return (
               <ImageRemove>
                 <Image src={image.url.url} />
