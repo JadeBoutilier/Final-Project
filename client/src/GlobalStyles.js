@@ -2,17 +2,11 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --color-darkGrey: black;
+    --color-darkGrey: #1B1B1D;
     --color-grey: #EAEAE7;
    --color-lightGrey: #FDFDFB;
-    /* --color-medium-grey: #dedede;
-    --color-grey: #6b6b6b;
-    --color-dark-grey: #262626; */ 
     --font: "futura-pt", sans-serif;
-    /* --font: "proxima-soft-thin", sans-serif; */
    --font-headers: "retiro-std-24pt", sans-serif;
-
-    /* --font: bely, serif; */
   }
   
   /* http://meyerweb.com/eric/tools/css/reset/

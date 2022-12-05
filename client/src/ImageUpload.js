@@ -1,18 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-// import { useAuth0 } from "@auth0/auth0-react";
 
-const ImageUpload = ( /*{images, setImages}*/ ) => {
-//   const { user, isAuthenticated, isLoading } = useAuth0();
-const [images, setImages]=useState([])
+const ImageUpload = () => {
+  const [images, setImages] = useState([]);
   const [imagesToRemove, setImagesToRemove] = useState(null);
 
   const handleRemoveImg = (imgObj) => {
     setImagesToRemove(imgObj.public_id);
-    // axios.delete(`http://loaclhost:8000/${imgObj.public_id}`).then(()=> {
-        setImagesToRemove(null)
-        setImages((prev) => prev.filter((img)=> img.public_id !== imgObj.public_id));
-    // }).catch((e) => console.log(e))
+    setImagesToRemove(null);
+    setImages((prev) =>
+      prev.filter((img) => img.public_id !== imgObj.public_id)
+    );
   };
 
   const handleOpenWidget = (e) => {
@@ -38,13 +36,16 @@ const [images, setImages]=useState([])
   return (
     <div>
       <Container>
-       
         <div className="images-preview-container">
           {images.map((image) => {
             return (
               <ImageRemove>
                 <Image src={image.url.url} />
-                {imagesToRemove != image.public_id && <RemoveButton onClick={() => handleRemoveImg(image)}>Remove</RemoveButton>}
+                {imagesToRemove != image.public_id && (
+                  <RemoveButton onClick={() => handleRemoveImg(image)}>
+                    Remove
+                  </RemoveButton>
+                )}
               </ImageRemove>
             );
           })}
@@ -62,11 +63,11 @@ const [images, setImages]=useState([])
 };
 
 const Container = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-`
-const Button= styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Button = styled.button`
   cursor: pointer;
   border: none;
   background-color: var(--color-grey);
@@ -78,9 +79,9 @@ const Button= styled.button`
   &:hover {
     box-shadow: none;
   }
-`
-const RemoveButton=styled.button`
-cursor: pointer;
+`;
+const RemoveButton = styled.button`
+  cursor: pointer;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -91,15 +92,15 @@ cursor: pointer;
   color: var(--color-darkGrey);
   &:hover {
     border-bottom: 1px solid var(--color-darkGrey);
-    padding: 0 
+    padding: 0;
   }
-`
-const Image =styled.img`
+`;
+const Image = styled.img`
   width: 100%;
-`
-const ImageRemove =styled.div`
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-`
+`;
+const ImageRemove = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
 export default ImageUpload;

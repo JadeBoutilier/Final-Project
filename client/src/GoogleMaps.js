@@ -1,9 +1,4 @@
-import {
-  GoogleMap,
-  MarkerF,
-  DirectionsRenderer,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import {GoogleMap, MarkerF, DirectionsRenderer, useJsApiLoader} from "@react-google-maps/api";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import * as FontAwesome from "react-icons/fa";
@@ -21,7 +16,6 @@ const GoogleMaps = ({ lat, lng }) => {
   const [directionsResponse, setDirectionsResponse] = useState(null);
 
   const Location = { lat: parseFloat(lat), lng: parseFloat(lng) };
-  // console.log("hihihihihihi", lat, lng)
   if (!isLoaded) {
     return (
       <Spinner>

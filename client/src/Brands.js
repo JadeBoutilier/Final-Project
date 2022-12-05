@@ -9,21 +9,23 @@ const Brands = () => {
   const navigate = useNavigate();
 
   if (!designers) {
-    return   <Spinner>
-    <FontAwesome.FaSpinner />
-  </Spinner>;
+    return (
+      <Spinner>
+        <FontAwesome.FaSpinner />
+      </Spinner>
+    );
   }
   // console.log(designers)
   return (
     <Wrapper>
-        <Title>All designers</Title>
-        <Underline></Underline>
+      <Title>All designers</Title>
+      <Underline></Underline>
       <Container id="container">
         {designers.map((designer) => {
           return (
             <BrandContainer
-            key={designer._id}
-            onClick={() => navigate(`/designer/${designer._id}`)}
+              key={designer._id}
+              onClick={() => navigate(`/designer/${designer._id}`)}
             >
               <Image src={designer.brandPic2} alt="brand promotion material" />
               <BrandName>{designer.brand}</BrandName>
@@ -55,7 +57,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  `;
+`;
 const BrandContainer = styled.div`
   text-decoration: none;
   display: flex;
@@ -72,8 +74,8 @@ const Image = styled.img`
 const Title = styled.div`
   font-family: var(--font-headers);
   font-size: 3rem;
-margin-top: 30px;
-padding-left: 30px;
+  margin-top: 30px;
+  padding-left: 30px;
 `;
 const BrandName = styled.div`
   font-size: 1rem;

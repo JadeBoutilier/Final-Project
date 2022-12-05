@@ -7,7 +7,7 @@ import { GoogleMapsContext } from "./GoogleMapsContext";
 
 const GoogleMapCalculator = () => {
 
-const {map, setMap, center, isLoaded, directionsResponse, setDirectionsResponse, distance, setDistance, duration, setDuration} =useContext(GoogleMapsContext)
+const {isLoaded, setDirectionsResponse, distance, setDistance, duration, setDuration} =useContext(GoogleMapsContext)
 
 const originRef = useRef()
 const destinationRef = useRef()

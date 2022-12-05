@@ -28,7 +28,7 @@ export const DesignersProvider = ({ children }) => {
     <FontAwesome.FaSpinner />
   </Spinner>;
   }
-//   console.log(designers)
+
     return (
         <DesignersContext.Provider value={{designers}}>
             {children}

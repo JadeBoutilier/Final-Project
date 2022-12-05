@@ -4,14 +4,8 @@ import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import { SignInContext } from "./SignInContext";
 
-const Header = ({
-  setUserEmail,
-  setUserPassword,
-  setDesignerEmail,
-  setDesignerPassword,
-}) => {
+const Header = ({ setUserEmail, setUserPassword, setDesignerEmail,setDesignerPassword }) => {
   const navigate = useNavigate();
-  // const id = useParams().id;
 
   const {
     userSignedIn,

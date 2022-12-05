@@ -7,8 +7,7 @@ import Events from "./Events";
 import { useContext, useEffect, useRef, useState } from "react";
 import { DesignersContext } from "./DesignersContext";
 
-//FEATURED DESIGNER - select designer at random and display designer.brand /designer horizontal image
-//click to go to page
+
 const Home = () => {
   const ref = useRef(null);
   const navigate = useNavigate();
@@ -65,14 +64,6 @@ if (!designers || !randomDesigner){
       <MapTitle>Find Local Montreal Brands</MapTitle>
       <Underline></Underline>
         <GoogleMapBox>
-          {/* <Ticker tickerStyle={{width: "100%"}} >
-        {({ index }) => (
-          <>
-          <h1>This is the Headline of element #{index}!</h1>
-          <img src="www.my-image-source.com/" alt=""/>
-          </>
-          )}
-        </Ticker> */}
           <GoogleMapsHome />
         </GoogleMapBox>
         <Route>
@@ -148,7 +139,6 @@ const Title1 = styled.div`
   top: 1px;
   left: 20px;
   font-size: 7rem;
-  /* font-family: bely-display, sans-serif; */
   font-family: var(--font-headers);
   z-index: 1;
   `;
@@ -159,7 +149,6 @@ const Title2 = styled.div`
   top: 100px;
   left: 20px;
   font-size: 7rem;
-  /* font-family: bely-display, sans-serif; */
   font-family: var(--font-headers);
   z-index: 1;
   `;

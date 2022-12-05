@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { VscSearch } from "react-icons/vsc";
 import { DesignersContext } from "./DesignersContext";
 import { useNavigate } from "react-router-dom";
-import { FaAlignCenter } from "react-icons/fa";
+
 
 const SearchBar = () => {
   const { designers } = useContext(DesignersContext);
@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [matchedSuggestion, setMatchedSuggestion] = useState("");
   const navigate = useNavigate();
 
-  //returns all designer brands
+
   let suggestedDesigners = designers.map((designer) => {
     return designer;
   });
@@ -46,7 +46,6 @@ const SearchBar = () => {
             let matchedSuggestions = suggestedDesigners.filter(
               (filteredSuggestion) => {
                 return (
-                  //conditional render the length of name  - first letter.
                   filteredSuggestion._id
                     .toLowerCase()
                     .startsWith(e.target.value.toLowerCase()) &&

@@ -6,20 +6,14 @@ import GoogleMaps from "./GoogleMaps";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload";
 
-
 const DesignerProfile = () => {
-  const navigate = useNavigate()  
+  const navigate = useNavigate();
   const id = useParams().id;
 
-
   const [designer, setDesigner] = useState(null);
-  const [images, setImages] = useState([]);
-//   const [designerFormData, setDesignerFormData] = useState("");
 
   const handleChange = (key, value) => {
-    const {[key]: _, ...rest} = designer      //designer object gets put into rest variable - except for key
-// console.log(rest)
-// console.log(key)
+    const { [key]: _, ...rest } = designer; //designer object gets put into rest variable - except for key
     setDesigner({
       ...rest,
       [key]: value,
@@ -37,64 +31,84 @@ const DesignerProfile = () => {
         }
       })
       .catch((err) => console.log(err));
-    }, [id]);
-    
-    console.log(designer);
-    
-    const formSubmit = (e) => {
-        e.preventDefault();
-        
+  }, [id]);
+
+  console.log(designer);
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+
     fetch("/designer/update", {
-        method: "PATCH",
-        headers: {
-            Accept : "application/json",
-            "Content-Type" : "application/json",
-        },
-        body: JSON.stringify(designer)
-            // brandPic1: images[0].url.url)
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(designer),
+      // brandPic1: images[0].url.url)
     })
-    .then(res => res.json())
-    .then((data) => {
-        if(data.status === 400){
-            throw new Error(data.message);
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 400) {
+          throw new Error(data.message);
         } else {
-            navigate(`/designer/${designer._id}`);
+          navigate(`/designer/${designer._id}`);
         }
-    })
-    .catch(error => window.alert(error));
-  }
-   
+      })
+      .catch((error) => window.alert(error));
+  };
 
   if (designer === null) {
-    return <Spinner>
-    <FontAwesome.FaSpinner />
-  </Spinner>;
+    return (
+      <Spinner>
+        <FontAwesome.FaSpinner />
+      </Spinner>
+    );
   }
   return (
     <Wrapper onSubmit={(e) => formSubmit(e)}>
       <BrandNameSection>
         <BrandNameCategory>
-        <BrandName id="brand" type="text" placeholder={designer.brand} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-        {/* <input id="_id" type="text" placeholder={designer.brand} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/> */}
-          <Category id="category" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>
+          <BrandName
+            id="brand"
+            type="text"
+            placeholder={designer.brand}
+            onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+          />
+          <Category
+            id="category"
+            onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+          >
             <option value={designer.category}>Jewelry</option>
             <option>Clothing</option>
             <option>Hats</option>
             <option>Furniture</option>
             <option>Art</option>
             <option>Shoes</option>
-            </Category>
+          </Category>
         </BrandNameCategory>
         <Underline></Underline>
       </BrandNameSection>
       <BrandIntro>
-      <PhotoInsert>
-      <ImageUpload />
-      </PhotoInsert>
+        <PhotoInsert>
+          <ImageUpload />
+        </PhotoInsert>
         <NameTagLine id="NameTagLine">
-        <TagLine id="tagLine"  name="tagLine" wrap="hard" defaultValue={designer.tagLine} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-          <About1 id="about1" name="about1" wrap="hard" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection1}</About1>
-          {/* <About1 id="aboutSection1" type="text" placeholder={designer.aboutSection1} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/> */}
+          <TagLine
+            id="tagLine"
+            name="tagLine"
+            wrap="hard"
+            defaultValue={designer.tagLine}
+            onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+          />
+          <About1
+            id="about1"
+            name="about1"
+            wrap="hard"
+            onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+          >
+            {designer.aboutSection1}
+          </About1>
         </NameTagLine>
       </BrandIntro>
       <AboutSection>
@@ -104,24 +118,51 @@ const DesignerProfile = () => {
         </AboutHeader>
         <AboutBrand id="aboutBrand">
           <HeaderInfo>
-            <About2 id="aboutSection2" wrap="hard" name="aboutSection2" onChange={(ev) => handleChange(ev.target.id, ev.target.value)}>{designer.aboutSection2}</About2>
+            <About2
+              id="aboutSection2"
+              wrap="hard"
+              name="aboutSection2"
+              onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+            >
+              {designer.aboutSection2}
+            </About2>
           </HeaderInfo>
           <ContactBrand>
-          <PhotoInsert id="photoinsert">
-            <ImageUpload/>
-        </PhotoInsert>
+            <PhotoInsert id="photoinsert">
+              <ImageUpload />
+            </PhotoInsert>
             <DesignerData>
-                <Contact>
-               <div>Owner/ Founder </div>
+              <Contact>
+                <div>Owner/ Founder </div>
                 <Underline></Underline>
-               <ContactInput id="firstName" type="text" placeholder={designer.firstName} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-               </Contact>
+                <ContactInput
+                  id="firstName"
+                  type="text"
+                  placeholder={designer.firstName}
+                  onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+                />
+              </Contact>
               <Contact>
                 <div>Contact</div>
                 <Underline></Underline>
-                  <ContactInput id="website" type="text" placeholder={designer.website} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-                  <ContactInput id="instagram" type="text" placeholder={designer.instagram} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
-                <ContactInput id="designerEmail" type="text" placeholder={designer.designerEmail} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                <ContactInput
+                  id="website"
+                  type="text"
+                  placeholder={designer.website}
+                  onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+                />
+                <ContactInput
+                  id="instagram"
+                  type="text"
+                  placeholder={designer.instagram}
+                  onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+                />
+                <ContactInput
+                  id="designerEmail"
+                  type="text"
+                  placeholder={designer.designerEmail}
+                  onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+                />
               </Contact>
             </DesignerData>
           </ContactBrand>
@@ -134,15 +175,25 @@ const DesignerProfile = () => {
             <Underline></Underline>
           </Header>
           <AboutBoutique>
-          <PhotoInsert id="photoinsert">
-            <ImageUpload/>
-        </PhotoInsert>
+            <PhotoInsert id="photoinsert">
+              <ImageUpload />
+            </PhotoInsert>
             <BoutiqueData2>
               <Info>
                 <SmallHeader>Open for walk-ins:</SmallHeader>
                 <Italic>
                   {designer?.openingHours?.map((dayTime, index) => {
-                    return <TimeOptions key={index} id="openingHours" type="text" placeholder={dayTime} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
+                    return (
+                      <TimeOptions
+                        key={index}
+                        id="openingHours"
+                        type="text"
+                        placeholder={dayTime}
+                        onChange={(ev) =>
+                          handleChange(ev.target.id, ev.target.value)
+                        }
+                      />
+                    );
                   })}
                   <Button>Add</Button>
                 </Italic>
@@ -152,7 +203,17 @@ const DesignerProfile = () => {
                 <SmallHeader>Services:</SmallHeader>
                 <Italic>
                   {designer?.services?.map((service, index) => {
-                    return <Options key={index} id="services" type="text" placeholder={service} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
+                    return (
+                      <Options
+                        key={index}
+                        id="services"
+                        type="text"
+                        placeholder={service}
+                        onChange={(ev) =>
+                          handleChange(ev.target.id, ev.target.value)
+                        }
+                      />
+                    );
                   })}
                   <Button>Add</Button>
                 </Italic>
@@ -162,7 +223,17 @@ const DesignerProfile = () => {
                 <SmallHeader>Studio Mates:</SmallHeader>
                 <Italic>
                   {designer?.sharesStudioWith?.map((studioMate, index) => {
-                    return <Options key={index} id="sharesStudioWith" type="text" placeholder={studioMate} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>;
+                    return (
+                      <Options
+                        key={index}
+                        id="sharesStudioWith"
+                        type="text"
+                        placeholder={studioMate}
+                        onChange={(ev) =>
+                          handleChange(ev.target.id, ev.target.value)
+                        }
+                      />
+                    );
                   })}
                   <Button>Add</Button>
                 </Italic>
@@ -170,17 +241,33 @@ const DesignerProfile = () => {
               <Underline></Underline>
               <Location>
                 <LogoSection>
-                <PhotoInsert id="photoinsert">
-      <ImageUpload/>
-  </PhotoInsert>
+                  <PhotoInsert id="photoinsert">
+                    <ImageUpload />
+                  </PhotoInsert>
                 </LogoSection>
                 <Google>
-                  <GoogleMaps lat={designer.latt} lng={designer.longt}/>
+                  <GoogleMaps lat={designer.latt} lng={designer.longt} />
                 </Google>
-                <Input id="address" type="text" placeholder={designer.address} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                <Input
+                  id="address"
+                  type="text"
+                  placeholder={designer.address}
+                  onChange={(ev) => handleChange(ev.target.id, ev.target.value)}
+                />
                 <CityPostalCode>
-                <Input id="city" type="text" placeholder={designer.city + ","}/>
-                <Input id="postalCode" type="test" placeholder={designer.postalCode} onChange={(ev) => handleChange(ev.target.id, ev.target.value)}/>
+                  <Input
+                    id="city"
+                    type="text"
+                    placeholder={designer.city + ","}
+                  />
+                  <Input
+                    id="postalCode"
+                    type="test"
+                    placeholder={designer.postalCode}
+                    onChange={(ev) =>
+                      handleChange(ev.target.id, ev.target.value)
+                    }
+                  />
                 </CityPostalCode>
               </Location>
             </BoutiqueData2>
@@ -189,17 +276,17 @@ const DesignerProfile = () => {
       </BoutiqueInfo>
       <Underline></Underline>
       <HorizontalImageBox>
-     <PhotoInsert id="photoinsert">
-      <ImageUpload/>
-  </PhotoInsert>
-  </HorizontalImageBox>
+        <PhotoInsert id="photoinsert">
+          <ImageUpload />
+        </PhotoInsert>
+      </HorizontalImageBox>
       <SubmitReset>
-      <Submit onSubmit>Submit</Submit>
+        <Submit onSubmit>Submit</Submit>
       </SubmitReset>
     </Wrapper>
   );
 };
- 
+
 const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
@@ -225,10 +312,10 @@ const BrandName = styled.input`
   border: 2px solid var(--color-lightGrey);
   background-color: var(--color-lightGrey);
   border-radius: 5px;
-    
-  ::placeholder { 
-  color: var(--color-darkGrey);
-}
+
+  ::placeholder {
+    color: var(--color-darkGrey);
+  }
 `;
 const Category = styled.select`
   font-style: italic;
@@ -243,11 +330,11 @@ const BrandIntro = styled.div`
   justify-content: space-around;
 `;
 const NameTagLine = styled.div`
-margin-left: 30px;
+  margin-left: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width:100%;
+  width: 100%;
 `;
 const TagLine = styled.textarea`
   font-style: italic;
@@ -278,12 +365,10 @@ const About1 = styled.textarea`
   background-color: var(--color-lightGrey);
   border-radius: 5px;
 
-  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  white-space:pre-line;  
-  position:relative;
-  top:-7px;
-  
-}
+  ::-webkit-input-placeholder {
+    position: relative;
+    top: -7px;
+  }
 `;
 const AboutBrand = styled.div`
   display: flex;
@@ -300,7 +385,7 @@ const ContactBrand = styled.div`
 const HeaderInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width:100%;
+  width: 100%;
 `;
 const About2 = styled.textarea`
   font-size: 1.2rem;
@@ -324,10 +409,10 @@ const Input = styled.input`
   border: 2px solid var(--color-lightGrey);
   background-color: var(--color-lightGrey);
   border-radius: 5px;
-    
-  ::placeholder { 
-  color: var(--color-darkGrey);
-}
+
+  ::placeholder {
+    color: var(--color-darkGrey);
+  }
 `;
 const ContactInput = styled.input`
   font-style: italic;
@@ -339,17 +424,16 @@ const ContactInput = styled.input`
   background-color: var(--color-lightGrey);
   border-radius: 5px;
   color: var(--color-darkGrey);
-    
-  ::placeholder { 
-  color: var(--color-darkGrey);
-}
-  `
-const Italic = styled.div`/////////DELETE AFTER
+
+  ::placeholder {
+    color: var(--color-darkGrey);
+  }
+`;
+const Italic = styled.div`
   font-style: italic;
   font-size: 1rem;
   margin-left: 5px;
   margin: 1px 0;
-
 `;
 const Underline = styled.div`
   font-family: var(--font);
@@ -424,65 +508,65 @@ const SmallHeader = styled.div`
   font-size: 1rem;
 `;
 const Options = styled.input`
-text-align:center;
-border: 2px solid var(--color-lightGrey);
+  text-align: center;
+  border: 2px solid var(--color-lightGrey);
   background-color: var(--color-lightGrey);
   border-radius: 5px;
-    
-  ::placeholder { 
-  color: var(--color-darkGrey);
-}
+
+  ::placeholder {
+    color: var(--color-darkGrey);
+  }
 `;
 const TimeOptions = styled.input`
-text-align:center; 
-border: 2px solid var(--color-lightGrey);
+  text-align: center;
+  border: 2px solid var(--color-lightGrey);
   background-color: var(--color-lightGrey);
   border-radius: 5px;
-  
-  ::placeholder { 
-  color: var(--color-darkGrey);
-}
+
+  ::placeholder {
+    color: var(--color-darkGrey);
+  }
 `;
-const CityPostalCode=styled.div`
-display: flex;
-`
-const Button=styled.button`
-font-size: 1rem;
-font-family: var(--font);
-background-color: var(--color-darkGrey);
-border: none;
-border-radius: 2px;
-margin-left: 5px;
-cursor: pointer;
-`
-const Submit=styled.button`
-font-size: 1rem;
-font-family: var(--font);
-background-color: var(--color-darkGrey);
-border: none;
-border-radius: 4px;
-margin-left: 5px;
-padding:10px 20px;
-cursor: pointer;
-`
-const SubmitReset=styled.div`
-display: flex;
-padding: 0 150px;
-justify-content: space-around;
-`
-const PhotoInsert =styled.div`
-display: flex;
-flex-direction: column;
-width: 100%;
-justify-content: center;
-align-items: center;
-`
+const CityPostalCode = styled.div`
+  display: flex;
+`;
+const Button = styled.button`
+  font-size: 1rem;
+  font-family: var(--font);
+  background-color: var(--color-darkGrey);
+  border: none;
+  border-radius: 2px;
+  margin-left: 5px;
+  cursor: pointer;
+`;
+const Submit = styled.button`
+  font-size: 1rem;
+  font-family: var(--font);
+  background-color: var(--color-darkGrey);
+  border: none;
+  border-radius: 4px;
+  margin-left: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+`;
+const SubmitReset = styled.div`
+  display: flex;
+  padding: 0 150px;
+  justify-content: space-around;
+`;
+const PhotoInsert = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
 const HorizontalImageBox = styled.div`
-height: 400px;
-display: flex;
-justify-content: center;
-align-items: center;
-`
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const Spin = keyframes`
 from {transform: rotate(0deg);}
 to {transform: rotate(360deg);}
@@ -500,7 +584,3 @@ const Spinner = styled.span`
   transform: translateX(-50%);
 `;
 export default DesignerProfile;
-
-    // "openingHours": [{"Day":[ {"Thursday": "Thursday"}]}, [{"11 am": "11 am"}, {"7 pm": "7 pm"}]],
-
-

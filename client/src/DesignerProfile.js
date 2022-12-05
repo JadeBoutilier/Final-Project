@@ -404,4 +404,3 @@ const Spinner = styled.span`
 `;
 export default DesignerProfile;
 
-// "openingHours": [{"Day":[ {"Thursday": "Thursday"}]}, [{"11 am": "11 am"}, {"7 pm": "7 pm"}]],

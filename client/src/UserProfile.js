@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { DesignersContext } from "./DesignersContext";
 import { SignInContext } from "./SignInContext";
@@ -56,7 +56,6 @@ const UserProfile = () => {
           }
         })}
       </Container>
-      {/* <div>HELLO</div> */}
     </Wrapper>
   );
 };
