@@ -1,4 +1,4 @@
-# Final-Project
+# LOCAL
 
 An online directory for local and independent retail studios aiming to help facilitate organic growth and company awareness for smaller brands.
 
