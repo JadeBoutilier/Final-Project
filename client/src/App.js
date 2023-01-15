@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import Header from "./Header";
 import Home from "./Home";
 import SignIn from "./SignIn";
-import DesignerProfile from "./DesignerProfile";
+import DesignerProfile from "./designer-profile/DesignerProfile";
 import Categories from "./Categories";
 import Brands from "./Brands";
 import UserProfile from "./UserProfile";

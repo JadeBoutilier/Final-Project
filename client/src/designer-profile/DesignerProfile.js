@@ -1,22 +1,18 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { FaHeart } from "react-icons/fa";
-import GoogleMaps from "./GoogleMaps";
-import { SignInContext } from "./SignInContext";
-import Events from "./Events";
+
+import GoogleMaps from "../GoogleMaps";
+
+import Events from "../Events";
 import * as FontAwesome from "react-icons/fa";
+import DesignerIntro from "./DesignerIntro";
+
 
 const DesignerProfile = () => {
   const id = useParams().id;
 
   const [designer, setDesigner] = useState();
-  const [isActive, setIsActive] = useState(false);
-  const { userSignedIn } = useContext(SignInContext);
-
-  const handleClick = () => {
-    setIsActive((current) => !current);
-  };
 
   //fetching designer info
   useEffect(() => {
@@ -49,43 +45,12 @@ const DesignerProfile = () => {
         </BrandNameCategory>
         <Underline></Underline>
       </BrandNameSection>
-      <BrandIntro>
-        <VerticalPic
-          src={designer.brandPic2}
-          alt="Designer promotion material"
-        />
-        <HeartDiv id="heartdiv">
-          {userSignedIn &&
-          userSignedIn?.Favourites?.map((favourite) => favourite) ===
-            designer.brand ? (
-            <FavouriteButton
-              onClick={handleClick}
-              style={{
-                color: isActive
-                  ? "var(--color-lightGrey)"
-                  : "var(--color-darkGrey)",
-              }}
-            >
-              <FaHeart />
-            </FavouriteButton>
-          ) : (
-            <FavouriteButton
-              onClick={handleClick}
-              style={{
-                color: isActive
-                  ? "var(--color-lightGrey)"
-                  : "var(--color-darkGrey)",
-              }}
-            >
-              <FaHeart />
-            </FavouriteButton>
-          )}
-          <NameTagLine id="NameTagLine">
-            <TagLine>{designer.tagLine}</TagLine>
-            <About1>{designer.aboutSection1}</About1>
-          </NameTagLine>
-        </HeartDiv>
-      </BrandIntro>
+      <DesignerIntro
+        designerImage={designer.brandPic2}
+        tagLine={designer.tagLine}
+        aboutSection={designer.aboutSection1}
+        
+      />
       <AboutSection>
         <AboutHeader>
           <div>About</div>
@@ -215,31 +180,13 @@ const Category = styled.div`
   font-style: italic;
   font-size: 1.5rem;
 `;
-const BrandIntro = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-const NameTagLine = styled.div`
-  margin-left: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-const TagLine = styled.div`
-  font-style: italic;
-  font-size: 2rem;
-  text-align: right;
-  margin-bottom: 30px;
-`;
+
 const AboutSection = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
 `;
-const About1 = styled.div`
-  font-size: 1.2rem;
-  text-align: right;
-`;
+
 const AboutBrand = styled.div`
   display: flex;
   justify-content: space-around;
@@ -335,9 +282,7 @@ const HorizontalPic = styled.img`
   width: 100%;
   margin: 30px 0;
 `;
-const VerticalPic = styled.img`
-  width: 40%;
-`;
+
 const Location = styled.div`
   margin-top: 15px;
   display: flex;
@@ -368,24 +313,6 @@ const SmallHeader = styled.div`
 const Options = styled.span``;
 const TimeOptions = styled.div``;
 
-const FavouriteButton = styled.button`
-  cursor: pointer;
-  border: none;
-  background-color: var(--color-grey);
-  color: var(--color-lightGrey);
-  font-size: 2rem;
-  text-align: right;
-margin-bottom: 40px;
-
-  &:hover {
-    color: 1px solid var(--color-darkGrey);
-  }
-`;
-const HeartDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
 const Spin = keyframes`
 from {transform: rotate(0deg);}
 to {transform: rotate(360deg);}
@@ -403,4 +330,3 @@ const Spinner = styled.span`
   transform: translateX(-50%);
 `;
 export default DesignerProfile;
-
