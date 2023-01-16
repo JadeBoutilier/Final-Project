@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Heart from "./Heart";
 
-const DesignerIntro = ({ designerImage, tagLine, aboutSection }) => {
+const DesignerIntro = ({ designerImage, tagLine, aboutSection1 }) => {
   return (
     <div>
       <BrandIntro>
@@ -9,7 +9,7 @@ const DesignerIntro = ({ designerImage, tagLine, aboutSection }) => {
       <NameTagLine id="NameTagLine">
       <Heart />
         <TagLine>{tagLine}</TagLine>
-        <About1>{aboutSection}</About1>
+        <About1>{aboutSection1}</About1>
       </NameTagLine>
       </BrandIntro>
     </div>
