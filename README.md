@@ -9,20 +9,25 @@ ________________________________________________________________________________
 
 HOME PAGE: 
 
-Search a brand via the search bar at the top of the site
+Featured designer changes upon refresh of site.
+
+Search a brand via the search bar at the top of the site.
+
+
 ![](client/assets/homepage.png)
 
 _______________________________________________________________________________________________________________________________
 
-Or by location using Google Maps:
+Search by location using Google Maps:
 
 You can find your route to their atelier/ boutique.
+
 ![](client/assets/googlemaps.png)
 
 _______________________________________________________________________________________________________________________________
 
 
-One can also search by clicking the heading: Brand or Category at the top of the site...
+One can also search brands by Brand Name or Category at the top of the site...
 
 By category: 
 
