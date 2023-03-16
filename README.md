@@ -42,7 +42,7 @@ DESIGNER PROFILE PAGE
 
 Once Brand is clicked - the following designer profile page will show:
 
-Designer Profile Page example: VERI
+Designer Profile Page example: CAPTIVE ATELIER
 
 ![](client/assets/designerProfile1.png)
 ![](client/assets/designerProfile2.png)
