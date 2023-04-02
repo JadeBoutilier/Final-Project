@@ -37,6 +37,7 @@ const DesignerProfile = () => {
   console.log("events", designer.events);
   return (
     <Wrapper>
+      <Content>
       <BrandNameSection>
         <BrandNameCategory>
           <BrandName>{designer.brand}</BrandName>
@@ -74,8 +75,9 @@ const DesignerProfile = () => {
         alt="Designer promotion material"
       />
       <Header>Upcoming Events</Header>
-      <Underline30></Underline30>
+
       <Events />
+      </Content>
     </Wrapper>
   );
 };
@@ -86,12 +88,19 @@ const Wrapper = styled.div`
   background-color: var(--color-grey);
   color: var(--color-darkGrey);
   font-family: var(--font);
-  padding: 0 5% 5% 5%;
+  margin: auto;
+  align-items: center;
 `;
+
+const Content = styled.div`
+max-width: 1280px;
+padding: 0 80px 80px 80px;
+`
 const BrandNameSection = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+  border-bottom: 1px solid black;
 `;
 const BrandNameCategory = styled.div`
   display: flex;
@@ -101,18 +110,11 @@ const BrandNameCategory = styled.div`
 const BrandName = styled.div`
   font-family: var(--font-headers);
   font-size: 3rem;
+
 `;
 const Category = styled.div`
   font-style: italic;
   font-size: 1.5rem;
-`;
-
-const Underline30 = styled.div`
-  font-family: var(--font);
-  width: 100%;
-  border-bottom: 1px solid var(--color-darkGrey);
-  margin: 5px 0;
-  margin-bottom: 30px;
 `;
 
 const HorizontalPic = styled.img`
@@ -123,6 +125,8 @@ const HorizontalPic = styled.img`
 const Header = styled.div`
   font-family: var(--font-headers);
   font-size: 2rem;
+  margin-bottom: 30px;
+  border-bottom: 1px solid black;
 `;
 
 const Spin = keyframes`

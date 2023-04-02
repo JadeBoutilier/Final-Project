@@ -27,6 +27,7 @@ const Header = ({ setUserEmail, setUserPassword, setDesignerEmail,setDesignerPas
 
   return (
     <Wrapper>
+      <Content>
       <NavigationLink to="/" end>
         LOCAL
       </NavigationLink>
@@ -63,18 +64,23 @@ const Header = ({ setUserEmail, setUserPassword, setDesignerEmail,setDesignerPas
           </SignInNavigationLink>
         )}
       </SignInWrapper>
+      </Content>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
   background-color: var(--color-grey);
   color: var(--color-darkGrey);
   font-family: var(--font);
-`;
+  `;
+const Content = styled.div`
+padding: 50px 80px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: auto;
+`
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
   color: var(--color-darkGrey);

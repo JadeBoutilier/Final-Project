@@ -11,24 +11,22 @@ const DesignerAbout = ({
   return (
     <AboutSection>
       <AboutHeader>
-        <div>About</div>
-
+        About
       </AboutHeader>
-      <AboutBrand id="aboutBrand">
-        <HeaderInfo>
-          <About2>{aboutSection2}</About2>
-        </HeaderInfo>
+      <Content>
+
+
+          <Text>{aboutSection2}</Text>
+
         <ContactBrand>
           <Portrait src={headShot} alt="Designer portrait" />
           <DesignerData>
             <Contact>
               <div>Owner/ Founder </div>
-
               <Italic>{name}</Italic>
             </Contact>
             <Contact>
               <div>Contact</div>
-
               <ExternalLink href={`https://${website}`} target="_blank">
                 <Italic>{website}</Italic>
               </ExternalLink>
@@ -42,7 +40,8 @@ const DesignerAbout = ({
             </Contact>
           </DesignerData>
         </ContactBrand>
-      </AboutBrand>
+
+      </Content>
     </AboutSection>
   );
 };
@@ -50,6 +49,7 @@ const AboutHeader = styled.div`
   font-family: var(--font-headers);
   font-size: 2rem;
   margin-bottom: 30px;
+  border-bottom: 1px solid black;
 `;
 
 const AboutSection = styled.div`
@@ -58,23 +58,23 @@ const AboutSection = styled.div`
   margin-top: 3rem;
 `;
 
-const AboutBrand = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
+const Content = styled.div`
+justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+`
+
+
 const ContactBrand = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
-const HeaderInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-const About2 = styled.div`
+
+const Text = styled.div`
   font-size: 1.2rem;
-  text-align: left;
+max-width: 50%;
 `;
 const Portrait = styled.img`
   max-height: 16rem;

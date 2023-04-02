@@ -3,25 +3,29 @@ import Heart from "./Heart";
 
 const DesignerIntro = ({ designerImage, tagLine, aboutSection1 }) => {
   return (
-    <div>
-      <BrandIntro>
+    <Wrapper>
         <VerticalPic src={designerImage} alt="Designer promotion material" />
-      <NameTagLine id="NameTagLine">
+      <BrandIntro>
       <Heart />
+      <NameTagLine id="NameTagLine">
         <TagLine>{tagLine}</TagLine>
         <About1>{aboutSection1}</About1>
       </NameTagLine>
       </BrandIntro>
-    </div>
+    </Wrapper>
   );
 };
-
+const Wrapper =styled.div`
+display: flex;
+padding: 0 50px;
+`
 const BrandIntro = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
 `;
 const VerticalPic = styled.img`
-  width: 40%;
+  max-width: 33%;
+  object-fit: contain;
 `;
 
 const NameTagLine = styled.div`

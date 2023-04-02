@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 
 const Boutique = ({boutiquePicture, schedule, services, studioMates, logo, longitude, latitude, address, city, postalCode }) => {
-    return (      <BoutiqueInfo id="boutique">
+    return (     
+       <BoutiqueInfo id="boutique">
     <BoutiqueData>
       <Header>
         <div>Boutique</div>
-        <Underline30></Underline30>
       </Header>
       <AboutBoutique>
         <BoutiquePic src={boutiquePicture} alt="Designer boutique" />
@@ -69,12 +69,14 @@ const SmallHeader = styled.div`
 const Options = styled.span``;
 const TimeOptions = styled.div``;
 const BoutiquePic = styled.img`
-  width: 40%;
+  max-width: 40%;
   object-fit: contain;
 `;
 const Header = styled.div`
   font-family: var(--font-headers);
   font-size: 2rem;
+  margin-bottom: 30px;
+  border-bottom: 1px solid black;
 `;
 
 const Location = styled.div`
@@ -93,9 +95,10 @@ const Logo = styled.img`
   display: flex;
 `;
 const BoutiqueInfo = styled.div`
-  display: flex;
   margin-top: 2rem;
   justify-content: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid black;
 `;
 const BoutiqueData = styled.div`
   display: flex;
@@ -125,11 +128,4 @@ const AboutBoutique = styled.div`
   justify-content: space-around;
 `;
 
-const Underline30 = styled.div`
-  font-family: var(--font);
-  width: 100%;
-  border-bottom: 1px solid var(--color-darkGrey);
-  margin: 5px 0;
-  margin-bottom: 30px;
-`;
 export default Boutique;
