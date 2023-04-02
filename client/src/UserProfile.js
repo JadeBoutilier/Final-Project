@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { DesignersContext } from "./DesignersContext";
-import { SignInContext } from "./SignInContext";
+import { DesignersContext } from "./contexts/DesignersContext";
+import { SignInContext } from "./contexts/SignInContext";
 import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {

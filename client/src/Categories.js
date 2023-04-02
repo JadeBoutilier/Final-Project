@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import * as FontAwesome from "react-icons/fa";
-import { DesignersContext } from "./DesignersContext";
+import { DesignersContext } from "./contexts/DesignersContext";
 
 const Categories = () => {
   const { designers } = useContext(DesignersContext);

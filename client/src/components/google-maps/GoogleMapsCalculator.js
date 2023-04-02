@@ -3,7 +3,7 @@ import { useContext, useRef } from "react";
 
 import styled, { keyframes } from "styled-components";
 import * as FontAwesome from "react-icons/fa";
-import { GoogleMapsContext } from "./GoogleMapsContext";
+import { GoogleMapsContext } from "../../contexts/GoogleMapsContext";
 
 const GoogleMapCalculator = () => {
 

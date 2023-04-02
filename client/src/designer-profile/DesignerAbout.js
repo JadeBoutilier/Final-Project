@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Underline from "./Underline";
 
 const DesignerAbout = ({
   aboutSection2,
@@ -13,7 +12,7 @@ const DesignerAbout = ({
     <AboutSection>
       <AboutHeader>
         <div>About</div>
-        <Underline/> 
+
       </AboutHeader>
       <AboutBrand id="aboutBrand">
         <HeaderInfo>
@@ -24,12 +23,12 @@ const DesignerAbout = ({
           <DesignerData>
             <Contact>
               <div>Owner/ Founder </div>
-              <Underline/>
+
               <Italic>{name}</Italic>
             </Contact>
             <Contact>
               <div>Contact</div>
-              <Underline/>
+
               <ExternalLink href={`https://${website}`} target="_blank">
                 <Italic>{website}</Italic>
               </ExternalLink>

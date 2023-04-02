@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import styled from "styled-components";
-import { SignInContext } from "./SignInContext";
+import { SignInContext } from "./contexts/SignInContext";
 
 const SignIn = ({
     userEmail,

@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import * as FontAwesome from "react-icons/fa";
-import GoogleMaps from "./GoogleMaps";
+import GoogleMaps from "./components/google-maps/GoogleMaps";
 import { useNavigate } from "react-router-dom";
-import ImageUpload from "./ImageUpload";
+import ImageUpload from "./components/ImageUpload";
 
 const DesignerProfile = () => {
   const navigate = useNavigate();

@@ -2,11 +2,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
-import Events from "../Events";
+import Events from "../components/Events";
 import * as FontAwesome from "react-icons/fa";
 import DesignerIntro from "./DesignerIntro";
 import DesignerAbout from "./DesignerAbout";
-import Underline from "./Underline";
 import Boutique from "./Boutique";
 
 const DesignerProfile = () => {
@@ -43,7 +42,6 @@ const DesignerProfile = () => {
           <BrandName>{designer.brand}</BrandName>
           <Category>{designer.category}</Category>
         </BrandNameCategory>
-        <Underline />
       </BrandNameSection>
       <DesignerIntro
         designerImage={designer.brandPic2}
@@ -71,7 +69,6 @@ const DesignerProfile = () => {
         postalCode={designer.postalCode}
 
       />
-      <Underline />
       <HorizontalPic
         src={designer.brandPic1}
         alt="Designer promotion material"

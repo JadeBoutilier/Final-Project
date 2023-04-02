@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useContext, useState } from "react";
 import { VscSearch } from "react-icons/vsc";
-import { DesignersContext } from "./DesignersContext";
+import { DesignersContext } from "../contexts/DesignersContext";
 import { useNavigate } from "react-router-dom";
 
 

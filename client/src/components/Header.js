@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import SearchBar from "./SearchBar";
-import { SignInContext } from "./SignInContext";
+import SearchBar from "../filters/SearchBar";
+import { SignInContext } from "../contexts/SignInContext";
 
 const Header = ({ setUserEmail, setUserPassword, setDesignerEmail,setDesignerPassword }) => {
   const navigate = useNavigate();

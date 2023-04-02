@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GlobalStyles from "./GlobalStyles";
+import GlobalStyles from "./styling/GlobalStyles";
 import { useContext, useState } from "react";
 
-import Header from "./Header";
+import Header from "./components/Header";
 import Home from "./Home";
 import SignIn from "./SignIn";
-import DesignerProfile from "./designer-profile/DesignerProfile";
+import DesignerProfile from "./Designer-Profile/DesignerProfile";
 import Categories from "./Categories";
 import Brands from "./Brands";
 import UserProfile from "./UserProfile";
-import DesignerAccountNew from "./DesignerAccountNew";
-import { SignInContext } from "./SignInContext";
+import DesignerForm from "./DesignerForm";
+import { SignInContext } from "./contexts/SignInContext";
 
 const App = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -67,7 +67,7 @@ const App = () => {
         <Route path="/designer/:id" element={<DesignerProfile />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/brands" element={<Brands />} />
-        <Route path="/designer/account/:id" element={<DesignerAccountNew />} />
+        <Route path="/designer/account/:id" element={<DesignerForm />} />
         <Route path="" element={<h1>404: Oops!</h1>} />
         </>
         ): (<>

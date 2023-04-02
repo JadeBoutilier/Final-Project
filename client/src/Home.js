@@ -1,11 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import GoogleMapsHome from "./GoogleMapsHome";
-import GoogleMapsCalculator from "./GoogleMapsCalculator";
+import GoogleMapsHome from "./components/GoogleMapsHome";
+import GoogleMapsCalculator from "./components/google-maps/GoogleMapsCalculator";
 import styled, { keyframes } from "styled-components";
 import * as FontAwesome from "react-icons/fa";
-import Events from "./Events";
+import Events from "./components/Events";
 import { useContext, useEffect, useRef, useState } from "react";
-import { DesignersContext } from "./DesignersContext";
+import { DesignersContext } from "./contexts/DesignersContext";
 
 
 const Home = () => {

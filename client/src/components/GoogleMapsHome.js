@@ -7,9 +7,9 @@ import {
 import { useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import * as FontAwesome from "react-icons/fa";
-import { GoogleMapsContext } from "./GoogleMapsContext";
-import { DesignersContext } from "./DesignersContext";
-import mapStyle from "./MapStyle";
+import { GoogleMapsContext } from "../contexts/GoogleMapsContext";
+import { DesignersContext } from "../contexts/DesignersContext";
+import mapStyle from "./google-maps/MapStyle";
 import { useNavigate } from "react-router-dom";
 
 const GoogleMaps = () => {

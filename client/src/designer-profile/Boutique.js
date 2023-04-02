@@ -1,6 +1,6 @@
-import GoogleMaps from "../GoogleMaps";
+import GoogleMaps from "../components/google-maps/GoogleMaps";
 import styled from "styled-components";
-import Underline from "./Underline";
+
 
 const Boutique = ({boutiquePicture, schedule, services, studioMates, logo, longitude, latitude, address, city, postalCode }) => {
     return (      <BoutiqueInfo id="boutique">
@@ -20,7 +20,7 @@ const Boutique = ({boutiquePicture, schedule, services, studioMates, logo, longi
               })}
             </Italic>
           </Info>
-          <Underline/>
+
           <Info>
             <SmallHeader>Services:</SmallHeader>
             <Italic>
@@ -29,7 +29,7 @@ const Boutique = ({boutiquePicture, schedule, services, studioMates, logo, longi
               })}
             </Italic>
           </Info>
-          <Underline/>
+
           <Info>
             <SmallHeader>Studio Mates:</SmallHeader>
             <Italic>
@@ -38,7 +38,7 @@ const Boutique = ({boutiquePicture, schedule, services, studioMates, logo, longi
               })}
             </Italic>
           </Info>
-          <Underline/>
+
           <Location>
             <LogoSection>
               <Logo src={logo} alt="Designer Logo" />
